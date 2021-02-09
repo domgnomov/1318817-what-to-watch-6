@@ -9,12 +9,12 @@ import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 
 const App = (props) => {
-  const {film} = props;
+  const {films} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main film={film} />
+          <Main films={films}/>
         </Route>
         <Route exact path="/login">
           <SignIn />
