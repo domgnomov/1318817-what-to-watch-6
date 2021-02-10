@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
-import Card from "../card/card";
 import PropTypes from "prop-types";
+import FilmList from "../film-list/film-list";
 
 const Main = (props) => {
   const {films} = props;
@@ -93,9 +93,7 @@ const Main = (props) => {
             </li>
           </ul>
           <div className="catalog__movies-list">
-            {
-              films.map((film, id) => (<Card key={id} film={film}/>))
-            }
+            <FilmList films={films}/>
           </div>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
