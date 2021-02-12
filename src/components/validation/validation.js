@@ -25,6 +25,3 @@ export const FilmValidation = {
 export const FilmsValidation = {
   films: PropTypes.arrayOf(FilmValidation).isRequired,
 };
-
-
-

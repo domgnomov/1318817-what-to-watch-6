@@ -8,7 +8,7 @@ const FilmList = (props) => {
   return (
     <Fragment>
       {
-        films.map((film) => (<Card key={film.id} film={film} setActiveId={setActiveId}/>))
+        films.map((film) => (<Card key={film.id} film={film} activeId={activeId} setActiveId={setActiveId}/>))
       }
     </Fragment>
   );
