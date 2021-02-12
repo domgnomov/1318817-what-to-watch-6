@@ -1,14 +1,20 @@
 import React, {Fragment} from 'react';
 import FilmList from "../film-list/film-list";
+import {useHistory} from 'react-router-dom';
 
 const MyList = (props) => {
   const {films} = props;
+  const history = useHistory();
+
   return (
     <Fragment>
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <a href="main.html" className="logo__link" onClick={(e) => {
+              history.push(`/`);
+              e.preventDefault();
+            }}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>

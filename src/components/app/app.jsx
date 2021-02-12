@@ -7,6 +7,7 @@ import MyList from "../my-list/my-list";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
+import Film from "../film/film";
 
 const App = (props) => {
   const {films} = props;
@@ -25,8 +26,11 @@ const App = (props) => {
         <Route exact path="/films/:id/review">
           <AddReview film={films[1]}/>
         </Route>
+        <Route exact path="/films/:id">
+          <Film film={films[1]}/>
+        </Route>
         <Route exact path="/player/:id">
-          <Player film={films[2]}/>
+          <Player film={films[1]}/>
         </Route>
         <Route>
           <NotFound />

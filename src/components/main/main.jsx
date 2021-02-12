@@ -1,12 +1,16 @@
 import React, {Fragment} from 'react';
 import PropTypes from "prop-types";
 import FilmList from "../film-list/film-list";
+import {useHistory} from 'react-router-dom';
 
 const Main = (props) => {
   const {films} = props;
   const name = films[0].name;
   const genre = films[0].genre;
   const year = films[0].released;
+
+  const history = useHistory();
+
   return (
     <Fragment>
       <section className="movie-card">
@@ -40,13 +44,13 @@ const Main = (props) => {
                 <span className="movie-card__year">{year}</span>
               </p>
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => history.push(`/player/1`)}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button className="btn btn--list movie-card__button" type="button" onClick={() => history.push(`/myList`)}>
                   <svg viewBox="0 0 19 20" width={19} height={20}>
                     <use xlinkHref="#add" />
                   </svg>
