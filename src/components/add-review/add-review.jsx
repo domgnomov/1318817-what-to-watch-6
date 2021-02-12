@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import {FilmValidation} from "../validation/validation";
 
 const AddReview = (props) => {
   const {film} = props;
@@ -76,5 +77,7 @@ const AddReview = (props) => {
     </Fragment>
   );
 };
+
+AddReview.propTypes = FilmValidation;
 
 export default AddReview;

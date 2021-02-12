@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import {useHistory} from 'react-router-dom';
+import {FilmValidation} from "../validation/validation";
 
 const Player = (props) => {
   const {film} = props;
@@ -39,5 +40,7 @@ const Player = (props) => {
     </Fragment>
   );
 };
+
+Player.propTypes = FilmValidation;
 
 export default Player;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom';
+import {FilmValidation} from "../validation/validation";
 
 const Card = (props) => {
   const {film, setActiveId} = props;
@@ -23,5 +24,7 @@ const Card = (props) => {
     </>
   );
 };
+
+Card.propTypes = FilmValidation;
 
 export default Card;

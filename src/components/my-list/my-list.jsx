@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import FilmList from "../film-list/film-list";
 import {useHistory} from 'react-router-dom';
+import {FilmsValidation} from "../validation/validation";
 
 const MyList = (props) => {
   const {films} = props;
@@ -49,5 +50,7 @@ const MyList = (props) => {
     </Fragment>
   );
 };
+
+MyList.propTypes = FilmsValidation;
 
 export default MyList;

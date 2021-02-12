@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import Main from '../main/main';
 import SignIn from "../sign-in/sign-in";
@@ -8,6 +7,7 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import Film from "../film/film";
+import {FilmsValidation} from "../validation/validation";
 
 const App = (props) => {
   const {films} = props;
@@ -40,12 +40,6 @@ const App = (props) => {
   );
 };
 
-App.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.number.isRequired
-  })
-};
+App.propTypes = FilmsValidation;
 
 export default App;

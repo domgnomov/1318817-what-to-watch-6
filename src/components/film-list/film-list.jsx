@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import Card from "../card/card";
+import {FilmsValidation} from "../validation/validation";
 
 const FilmList = (props) => {
   const [activeId, setActiveId] = useState(1);
@@ -12,5 +13,7 @@ const FilmList = (props) => {
     </Fragment>
   );
 };
+
+FilmList.propTypes = FilmsValidation;
 
 export default FilmList;

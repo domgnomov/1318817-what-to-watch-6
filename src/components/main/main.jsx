@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
-import PropTypes from "prop-types";
 import FilmList from "../film-list/film-list";
 import {useHistory} from 'react-router-dom';
+import {FilmsValidation} from "../validation/validation";
 
 const Main = (props) => {
   const {films} = props;
@@ -108,12 +108,6 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.number.isRequired
-  })
-};
+Main.propTypes = FilmsValidation;
 
 export default Main;
