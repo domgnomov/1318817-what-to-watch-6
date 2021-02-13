@@ -11,7 +11,7 @@ const Card = (props) => {
     <>
       <article className="small-movie-card catalog__movies-card" >
         <div className="small-movie-card__image" onMouseEnter={() => setActiveId(film.id)}>
-          <img src={film.posterImage} alt="We need to talk about Kevin" width="280" height="175"
+          <img src={film.posterImage} alt={film.name} width="280" height="175"
           />
         </div>
         <h3 className="small-movie-card__title">
