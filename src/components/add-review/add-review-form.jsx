@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 
 const AddReviewForm = () => {
   const ratingStarsLength = 10;
@@ -23,10 +23,10 @@ const AddReviewForm = () => {
           <div className="rating__stars">
             {
               ratingStars.map((value, id) => (
-                <>
+                <Fragment key={id}>
                   <input className="rating__input" id={`star-` + (id + 1)} type="radio" name="rating" defaultValue={(id + 1)} onChange={() => setRating((id + 1))}/>
                   <label className="rating__label" htmlFor={`star-` + (id + 1)}>Rating {(id + 1)}</label>
-                </>
+                </Fragment>
               ))
             }
           </div>
