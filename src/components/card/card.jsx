@@ -1,18 +1,30 @@
-import React, {Fragment} from 'react';
+import React from 'react';
+import {useHistory} from 'react-router-dom';
+import {FilmValidation} from "../validation/validation";
 
-const Card = () => {
+const Card = (props) => {
+  const {film, setActiveId} = props;
+
+  const history = useHistory();
+
   return (
-    <Fragment>
-      <article className="small-movie-card catalog__movies-card">
-        <div className="small-movie-card__image">
-          <img src="img/we-need-to-talk-about-kevin.jpg" alt="We need to talk about Kevin" width="280" height="175"/>
+    <>
+      <article className="small-movie-card catalog__movies-card" >
+        <div className="small-movie-card__image" onMouseEnter={() => setActiveId(film.id)}>
+          <img src={film.posterImage} alt={film.name} width="280" height="175"
+          />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">We need to talk about Kevin</a>
+          <a className="small-movie-card__link" href="movie-page.html" onClick={(e) => {
+            history.push(`/films/1`);
+            e.preventDefault();
+          }}>{film.name}</a>
         </h3>
       </article>
-    </Fragment>
+    </>
   );
 };
+
+Card.propTypes = FilmValidation;
 
 export default Card;

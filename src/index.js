@@ -1,16 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-
-const film = {
-  name: `We need to talk about Kevin`,
-  genre: `Comedy`,
-  year: 2020
-};
+import films from "./mocks/films";
 
 ReactDOM.render(
-    <App
-      film={film}
-    />,
+    <App films={films}/>,
     document.querySelector(`#root`)
 );

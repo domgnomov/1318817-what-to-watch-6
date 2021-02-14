@@ -1,11 +1,17 @@
 import React, {Fragment} from 'react';
+import {useHistory} from 'react-router-dom';
+import {FilmValidation} from "../validation/validation";
 
-const Player = () => {
+const Player = (props) => {
+  const {film} = props;
+
+  const history = useHistory();
+
   return (
     <Fragment>
       <div className="player">
-        <video src="#" className="player__video" poster="img/player-poster.jpg" />
-        <button type="button" className="player__exit">Exit</button>
+        <video src="#" className="player__video" poster={film.previewImage} />
+        <button type="button" className="player__exit" onClick={() => history.push(`/`)}>Exit</button>
         <div className="player__controls">
           <div className="player__controls-row">
             <div className="player__time">
@@ -34,5 +40,7 @@ const Player = () => {
     </Fragment>
   );
 };
+
+Player.propTypes = FilmValidation;
 
 export default Player;

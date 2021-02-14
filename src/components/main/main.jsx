@@ -1,9 +1,16 @@
 import React, {Fragment} from 'react';
-import Card from "../card/card";
-import PropTypes from "prop-types";
+import FilmList from "../film-list/film-list";
+import {useHistory} from 'react-router-dom';
+import {FilmsValidation} from "../validation/validation";
 
 const Main = (props) => {
-  const {film} = props;
+  const {films} = props;
+  const name = films[0].name;
+  const genre = films[0].genre;
+  const year = films[0].released;
+
+  const history = useHistory();
+
   return (
     <Fragment>
       <section className="movie-card">
@@ -31,19 +38,19 @@ const Main = (props) => {
               <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width={218} height={327} />
             </div>
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{film.name}</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{film.genre}</span>
-                <span className="movie-card__year">{film.year}</span>
+                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__year">{year}</span>
               </p>
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => history.push(`/player/1`)}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button className="btn btn--list movie-card__button" type="button" onClick={() => history.push(`/myList`)}>
                   <svg viewBox="0 0 19 20" width={19} height={20}>
                     <use xlinkHref="#add" />
                   </svg>
@@ -90,7 +97,7 @@ const Main = (props) => {
             </li>
           </ul>
           <div className="catalog__movies-list">
-            {Array.from(Array(20).keys()).map((id) => <Card key={id} />)}
+            <FilmList films={films}/>
           </div>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -101,12 +108,6 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.number.isRequired
-  })
-};
+Main.propTypes = FilmsValidation;
 
 export default Main;

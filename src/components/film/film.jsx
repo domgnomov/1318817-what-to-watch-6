@@ -1,18 +1,27 @@
 import React, {Fragment} from 'react';
+import {useHistory} from 'react-router-dom';
+import {FilmValidation} from "../validation/validation";
 
-const Film = () => {
+const Film = (props) => {
+  const {film} = props;
+
+  const history = useHistory();
+
   return (
     <Fragment>
       <div>
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
             <div className="movie-card__bg">
-              <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+              <img src={film.previewImage} alt={film.name} />
             </div>
             <h1 className="visually-hidden">WTW</h1>
             <header className="page-header movie-card__head">
               <div className="logo">
-                <a href="main.html" className="logo__link">
+                <a href="main.html" className="logo__link" onClick={(e) => {
+                  history.push(`/`);
+                  e.preventDefault();
+                }}>
                   <span className="logo__letter logo__letter--1">W</span>
                   <span className="logo__letter logo__letter--2">T</span>
                   <span className="logo__letter logo__letter--3">W</span>
@@ -26,25 +35,34 @@ const Film = () => {
             </header>
             <div className="movie-card__wrap">
               <div className="movie-card__desc">
-                <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+                <h2 className="movie-card__title">{film.name}</h2>
                 <p className="movie-card__meta">
                   <span className="movie-card__genre">Drama</span>
                   <span className="movie-card__year">2014</span>
                 </p>
                 <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
+                  <button className="btn btn--play movie-card__button" type="button" onClick={(e) => {
+                    history.push(`/player/:id`);
+                    e.preventDefault();
+                  }}>
                     <svg viewBox="0 0 19 19" width={19} height={19}>
                       <use xlinkHref="#play-s" />
                     </svg>
                     <span>Play</span>
                   </button>
-                  <button className="btn btn--list movie-card__button" type="button">
+                  <button className="btn btn--list movie-card__button " type="button" onClick={(e) => {
+                    history.push(`/myList`);
+                    e.preventDefault();
+                  }}>
                     <svg viewBox="0 0 19 20" width={19} height={20}>
                       <use xlinkHref="#add" />
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  <a href="add-review.html" className="btn movie-card__button" onClick={(e) => {
+                    history.push(`/films/:id/review`);
+                    e.preventDefault();
+                  }}>Add review</a>
                 </div>
               </div>
             </div>
@@ -140,5 +158,7 @@ const Film = () => {
     </Fragment>
   );
 };
+
+Film.propTypes = FilmValidation;
 
 export default Film;
