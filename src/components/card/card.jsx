@@ -1,13 +1,12 @@
-import React, {useEffect, useRef} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, {useState, useEffect, useRef} from 'react';
 import {FilmValidation} from "../validation/validation";
+import VideoPlayer from "../video-player/video-player";
+import Cover from "../cover/cover";
 
 const Card = (props) => {
   const {film, setActiveId} = props;
-
   const cardRef = useRef();
-
-  const history = useHistory();
+  const [isPreviewPlaying, setIsPreviewPlaying] = useState(false);
 
   useEffect(() => {
     const delay = function (elem, callback) {
@@ -18,11 +17,12 @@ const Card = (props) => {
 
       elem.onmouseout = function () {
         clearTimeout(timeout);
+        setIsPreviewPlaying(false);
       };
     };
 
     delay(cardRef.current, function () {
-      console.log("Fired");
+      setIsPreviewPlaying(true);
     });
 
     return () => {
@@ -31,19 +31,17 @@ const Card = (props) => {
     };
   }, []);
 
+  const getCardContainer = () => {
+    if (isPreviewPlaying) {
+      return <VideoPlayer film={film}/>;
+    } else {
+      return <Cover film={film}/>;
+    }
+  };
   return (
     <>
-      <article className="small-movie-card catalog__movies-card" >
-        <div className="small-movie-card__image" ref={cardRef} onMouseEnter={() => setActiveId(film.id)}>
-          <img src={film.posterImage} alt={film.name} width="280" height="175"
-          />
-        </div>
-        <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html" onClick={(e) => {
-            history.push(`/films/1`);
-            e.preventDefault();
-          }}>{film.name}</a>
-        </h3>
+      <article className="small-movie-card catalog__movies-card" ref={cardRef} onMouseEnter={() => setActiveId(film.id)}>
+        {getCardContainer()}
       </article>
     </>
   );
