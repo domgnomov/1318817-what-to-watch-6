@@ -5,7 +5,7 @@ import Cover from "../cover/cover";
 
 const Card = (props) => {
   const {film, setActiveId} = props;
-  const cardRef = useRef();
+  const ref = useRef();
   const [isPreviewPlaying, setIsPreviewPlaying] = useState(false);
 
   useEffect(() => {
@@ -21,17 +21,17 @@ const Card = (props) => {
       };
     };
 
-    delay(cardRef.current, function () {
+    delay(ref.current, function () {
       setIsPreviewPlaying(true);
     });
 
     return () => {
-      cardRef.current.onmouseover = null;
-      cardRef.current.onmouseout = null;
+      ref.current.onmouseover = null;
+      ref.current.onmouseout = null;
     };
   }, []);
 
-  const getCardContainer = () => {
+  const getFilmContainer = () => {
     if (isPreviewPlaying) {
       return <VideoPlayer film={film}/>;
     } else {
@@ -40,8 +40,8 @@ const Card = (props) => {
   };
   return (
     <>
-      <article className="small-movie-card catalog__movies-card" ref={cardRef} onMouseEnter={() => setActiveId(film.id)}>
-        {getCardContainer()}
+      <article className="small-movie-card catalog__movies-card" ref={ref} onMouseEnter={() => setActiveId(film.id)}>
+        {getFilmContainer()}
       </article>
     </>
   );
