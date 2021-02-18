@@ -9,6 +9,7 @@ const Card = (props) => {
   const [isPreviewPlaying, setIsPreviewPlaying] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
     const delay = function (elem, callback) {
       let timeout = null;
       elem.onmouseover = function () {
@@ -17,17 +18,22 @@ const Card = (props) => {
 
       elem.onmouseout = function () {
         clearTimeout(timeout);
-        setIsPreviewPlaying(false);
+        if (isMounted) {
+          setIsPreviewPlaying(false);
+        }
       };
     };
 
     delay(ref.current, function () {
-      setIsPreviewPlaying(true);
+      if (isMounted) {
+        setIsPreviewPlaying(true);
+      }
     });
 
     return () => {
       ref.current.onmouseover = null;
       ref.current.onmouseout = null;
+      isMounted = false;
     };
   }, []);
 

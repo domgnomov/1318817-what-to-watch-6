@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import {useHistory} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import Tabs from "../tabs/tabs";
+import Tab from "../tabs/tab";
 
 const Film = (props) => {
   const {film} = props;
