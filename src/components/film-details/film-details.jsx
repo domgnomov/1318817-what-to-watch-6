@@ -37,7 +37,7 @@ const FilmDetails = (props) => {
             <span className="movie-card__details-value">1h 39m</span>
           </p>
           <p className="movie-card__details-item">
-            <strong className="movie-card__details-name">Genre</strong>
+            <strong className="movie-card__details-name">{film.genre}</strong>
             <span className="movie-card__details-value">Comedy</span>
           </p>
           <p className="movie-card__details-item">

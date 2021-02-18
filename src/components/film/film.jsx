@@ -2,10 +2,11 @@ import React, {Fragment} from 'react';
 import {useHistory} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import Tabs from "../tabs/tabs";
-import Tab from "../tabs/tab";
+import FilmList from "../film-list/film-list";
+import PropTypes from "prop-types";
 
 const Film = (props) => {
-  const {film} = props;
+  const {film, films} = props;
 
   const history = useHistory();
 
@@ -82,38 +83,7 @@ const Film = (props) => {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
             <div className="catalog__movies-list">
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width={280} height={175} />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-                </h3>
-              </article>
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width={280} height={175} />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-                </h3>
-              </article>
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/macbeth.jpg" alt="Macbeth" width={280} height={175} />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-                </h3>
-              </article>
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/aviator.jpg" alt="Aviator" width={280} height={175} />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-                </h3>
-              </article>
+              <FilmList films={films} genre={film.genre}/>
             </div>
           </section>
           <footer className="page-footer">
@@ -134,6 +104,9 @@ const Film = (props) => {
   );
 };
 
-Film.propTypes = FilmValidation;
+Film.propTypes = {
+  film: FilmValidation,
+  films: PropTypes.arrayOf(FilmValidation).isRequired
+};
 
 export default Film;
