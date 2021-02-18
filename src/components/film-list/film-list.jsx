@@ -4,11 +4,11 @@ import {FilmsValidation} from "../validation/validation";
 
 const FilmList = (props) => {
   const setActiveId = useState(1)[1];
-  const {films} = props;
+  const {films, genre} = props;
   return (
     <Fragment>
       {
-        films.map((film) => (<Card key={film.id} film={film} setActiveId={setActiveId}/>))
+        films.filter((film) => !genre || film.genre === genre).map((film) => (<Card key={film.id} film={film} setActiveId={setActiveId}/>))
       }
     </Fragment>
   );

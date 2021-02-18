@@ -14,7 +14,7 @@ export default [
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     runTime: 99,
-    genre: `Comedy`,
+    genre: `Drama`,
     released: 2014,
     isFavorite: false
   },
@@ -34,7 +34,7 @@ export default [
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     runTime: 99,
-    genre: `Comedy`,
+    genre: `Drama`,
     released: 2015,
     isFavorite: false
   },
@@ -74,7 +74,7 @@ export default [
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     runTime: 99,
-    genre: `Comedy`,
+    genre: `Drama`,
     released: 2015,
     isFavorite: false
   },
@@ -134,7 +134,7 @@ export default [
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     runTime: 99,
-    genre: `Comedy`,
+    genre: `Drama`,
     released: 2015,
     isFavorite: false
   },
@@ -154,7 +154,7 @@ export default [
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     runTime: 99,
-    genre: `Comedy`,
+    genre: `Drama`,
     released: 2015,
     isFavorite: false
   }
