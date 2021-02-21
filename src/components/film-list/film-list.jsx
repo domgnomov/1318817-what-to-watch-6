@@ -6,24 +6,22 @@ import PropTypes from "prop-types";
 
 const FilmList = (props) => {
   const setActiveId = useState(1)[1];
-  const {filteredFilms, activeGenre} = props;
+  const {filteredFilms} = props;
   return (
     <>
       {
-        filteredFilms.filter((film) => activeGenre === `All genres` || film.genre === activeGenre).map((film) => (<Card key={film.id} film={film} setActiveId={setActiveId}/>))
+        filteredFilms.map((film) => (<Card key={film.id} film={film} setActiveId={setActiveId}/>))
       }
     </>
   );
 };
 
 const mapStateToProps = (state) => ({
-  activeGenre: state.activeGenre,
   filteredFilms: state.filteredFilms
 });
 
 FilmList.propTypes = {
-  filteredFilms: PropTypes.arrayOf(FilmValidation).isRequired,
-  activeGenre: PropTypes.string.isRequired
+  filteredFilms: PropTypes.arrayOf(FilmValidation).isRequired
 };
 
 export {FilmList};
