@@ -8,8 +8,8 @@ export const ActionCreator = {
     type: ActionType.CHANGE_GENRE,
     payload: genre
   }),
-  getFilms: (genre, films) => {
-    const filteredFilms = genre === `All genres` ? films : Array.from(films).filter((film) => film.genre === genre);
+  getFilms: (genre, allFilms) => {
+    const filteredFilms = genre === `All genres` ? allFilms : Array.from(allFilms).filter((film) => film.genre === genre);
     return {
       type: ActionType.GET_FILMS,
       payload: filteredFilms

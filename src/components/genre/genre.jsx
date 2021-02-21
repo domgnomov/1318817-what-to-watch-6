@@ -18,13 +18,13 @@ const getGenreByTitle = (genreTitle) => {
 };
 
 const Genre = (props) => {
-  const {films, genreTitle, activeGenre, onChangeGenre} = props;
+  const {allFilms, genreTitle, activeGenre, onChangeGenre} = props;
   const genre = getGenreByTitle(genreTitle);
   return (
     <>
       <li className={`catalog__genres-item ${activeGenre === genre && `catalog__genres-item--active`}`}>
         <a href="#" className="catalog__genres-link" onClick={(e) => {
-          onChangeGenre(genre, films);
+          onChangeGenre(genre, allFilms);
           e.preventDefault();
         }}>{genre}</a>
       </li>
@@ -33,18 +33,19 @@ const Genre = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  activeGenre: state.activeGenre
+  activeGenre: state.activeGenre,
+  allFilms: state.allFilms
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeGenre(genre, films) {
+  onChangeGenre(genre, allFilms) {
     dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.getFilms(genre, films));
+    dispatch(ActionCreator.getFilms(genre, allFilms));
   },
 });
 
 Genre.propTypes = {
-  films: PropTypes.arrayOf(FilmValidation),
+  allFilms: PropTypes.arrayOf(FilmValidation),
   genreTitle: PropTypes.string.isRequired,
   activeGenre: PropTypes.string.isRequired,
   onChangeGenre: PropTypes.func.isRequired

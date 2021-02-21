@@ -3,6 +3,7 @@ import films from "../mocks/films";
 
 const initialState = {
   activeGenre: `All genres`,
+  allFilms: films,
   filteredFilms: films
 };
 

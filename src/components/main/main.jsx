@@ -65,7 +65,7 @@ const Main = (props) => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenreList films={films}/>
+          <GenreList/>
           <div className="catalog__movies-list">
             <FilmList/>
           </div>

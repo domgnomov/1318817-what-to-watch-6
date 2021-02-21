@@ -1,6 +1,8 @@
 import React from 'react';
 import Genre from "../genre/genre";
-import {FilmsValidation} from "../validation/validation";
+import {FilmValidation} from "../validation/validation";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 const getGenreTitle = (genre) => {
   switch (genre) {
@@ -16,21 +18,28 @@ const getGenreTitle = (genre) => {
 };
 
 const GenreList = (props) => {
-  const {films} = props;
+  const {allFilms} = props;
   const genreTitles = new Set();
   genreTitles.add(`All genres`);
-  films.map((film) => getGenreTitle(film.genre)).forEach(genreTitles.add, genreTitles);
+  allFilms.map((film) => getGenreTitle(film.genre)).forEach(genreTitles.add, genreTitles);
   return (
     <>
       <ul className="catalog__genres-list">
         {
-          Array.from(genreTitles.values()).map((genreTitle, id) => (<Genre key={id} genreTitle={genreTitle} films={films}/>))
+          Array.from(genreTitles.values()).map((genreTitle, id) => (<Genre key={id} genreTitle={genreTitle}/>))
         }
       </ul>
     </>
   );
 };
 
-GenreList.propTypes = FilmsValidation;
+const mapStateToProps = (state) => ({
+  allFilms: state.allFilms
+});
 
-export default GenreList;
+GenreList.propTypes = {
+  allFilms: PropTypes.arrayOf(FilmValidation),
+};
+
+export {GenreList};
+export default connect(mapStateToProps, null)(GenreList);
