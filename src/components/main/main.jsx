@@ -3,6 +3,7 @@ import FilmList from "../film-list/film-list";
 import {useHistory} from 'react-router-dom';
 import {FilmsValidation} from "../validation/validation";
 import GenreList from "../genre-list/genre-list";
+import ShowMore from "../show-more/show-more";
 
 const Main = (props) => {
   const {films} = props;
@@ -70,7 +71,7 @@ const Main = (props) => {
             <FilmList/>
           </div>
           <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
+            <ShowMore/>
           </div>
         </section>
       </div>
