@@ -5,8 +5,8 @@ import {FilmValidation} from "../validation/validation";
 import {ActionCreator} from "../../store/action";
 import {SHOW_MORE_COUNTER} from "../../const";
 
-const isShowMoreAvailable = (filteredFilms, allFilms) => {
-  return filteredFilms.length < allFilms.length;
+const isShowMoreAvailable = (filteredFilms, allFilms, showCount) => {
+  return showCount < allFilms.length;
 };
 
 const ShowMore = (props) => {
@@ -14,7 +14,7 @@ const ShowMore = (props) => {
   return (
     <>
       {
-        isShowMoreAvailable(filteredFilms, allFilms) && <button className="catalog__button" type="button" onClick={() => {
+        isShowMoreAvailable(filteredFilms, allFilms, showCount) && <button className="catalog__button" type="button" onClick={() => {
           onShowMore(activeGenre, allFilms, showCount);
         }}>Show more</button>
       }
