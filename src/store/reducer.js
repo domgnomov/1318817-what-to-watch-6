@@ -1,13 +1,13 @@
 import {ActionType} from "./action";
 import films from "../mocks/films";
-import {SHOW_MORE_COUNTER} from "../const";
+import {SHOW_MORE_DEFAULT_COUNT} from "../const";
 
 const initialState = {
   activeGenre: `All genres`,
   allFilms: films,
   allFilmsByActiveGenre: films,
-  filteredFilms: Array.from(films).slice(0, SHOW_MORE_COUNTER),
-  showCount: SHOW_MORE_COUNTER,
+  filteredFilms: Array.from(films).slice(0, SHOW_MORE_DEFAULT_COUNT),
+  showCount: SHOW_MORE_DEFAULT_COUNT,
 };
 
 const reducer = (state = initialState, action) => {

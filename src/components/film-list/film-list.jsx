@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 const FilmList = (props) => {
   const setActiveId = useState(1)[1];
   const {filteredFilms} = props;
+
   return (
     <>
       {
