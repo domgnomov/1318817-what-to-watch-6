@@ -5,6 +5,7 @@ import {SHOW_MORE_COUNTER} from "../const";
 const initialState = {
   activeGenre: `All genres`,
   allFilms: films,
+  allFilmsByActiveGenre: films,
   filteredFilms: Array.from(films).slice(0, SHOW_MORE_COUNTER),
   showCount: SHOW_MORE_COUNTER,
 };
@@ -27,6 +28,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showCount: action.payload
+      };
+
+    case ActionType.CHANGE_ALL_FILMS_BY_ACTIVE_GENRE:
+      return {
+        ...state,
+        allFilmsByActiveGenre: action.payload
       };
   }
   return state;

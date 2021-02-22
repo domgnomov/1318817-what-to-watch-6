@@ -3,6 +3,7 @@ import {ActionCreator} from "../../store/action";
 import {connect} from "react-redux";
 import {FilmValidation} from "../validation/validation";
 import PropTypes from "prop-types";
+import {SHOW_MORE_COUNTER} from "../../const";
 
 const getGenreByTitle = (genreTitle) => {
   switch (genreTitle) {
@@ -34,13 +35,16 @@ const Genre = (props) => {
 
 const mapStateToProps = (state) => ({
   activeGenre: state.activeGenre,
-  allFilms: state.allFilms
+  allFilms: state.allFilms,
+  showCount: state.showCount
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeGenre(genre, allFilms) {
+    dispatch(ActionCreator.changeShowCount(SHOW_MORE_COUNTER));
     dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.getFilms(genre, allFilms));
+    dispatch(ActionCreator.changeAllFilmsByActiveGenre(genre, allFilms));
+    dispatch(ActionCreator.getFilms(genre, allFilms, SHOW_MORE_COUNTER));
   },
 });
 

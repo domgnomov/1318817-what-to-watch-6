@@ -5,16 +5,16 @@ import {FilmValidation} from "../validation/validation";
 import {ActionCreator} from "../../store/action";
 import {SHOW_MORE_COUNTER} from "../../const";
 
-const isShowMoreAvailable = (filteredFilms, allFilms, showCount) => {
-  return showCount < allFilms.length;
+const isShowMoreAvailable = (filteredFilms, allFilmsByActiveGenre) => {
+  return filteredFilms.length < allFilmsByActiveGenre.length;
 };
 
 const ShowMore = (props) => {
-  const {filteredFilms, activeGenre, allFilms, showCount, onShowMore} = props;
+  const {filteredFilms, activeGenre, allFilms, allFilmsByActiveGenre, showCount, onShowMore} = props;
   return (
     <>
       {
-        isShowMoreAvailable(filteredFilms, allFilms, showCount) && <button className="catalog__button" type="button" onClick={() => {
+        isShowMoreAvailable(filteredFilms, allFilmsByActiveGenre) && <button className="catalog__button" type="button" onClick={() => {
           onShowMore(activeGenre, allFilms, showCount);
         }}>Show more</button>
       }
@@ -25,6 +25,7 @@ const ShowMore = (props) => {
 const mapStateToProps = (state) => ({
   filteredFilms: state.filteredFilms,
   allFilms: state.allFilms,
+  allFilmsByActiveGenre: state.allFilmsByActiveGenre,
   activeGenre: state.activeGenre,
   showCount: state.showCount
 });
@@ -39,6 +40,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 ShowMore.propTypes = {
   allFilms: PropTypes.arrayOf(FilmValidation),
+  allFilmsByActiveGenre: PropTypes.arrayOf(FilmValidation),
   filteredFilms: PropTypes.arrayOf(FilmValidation),
   activeGenre: PropTypes.string.isRequired,
   showCount: PropTypes.number.isRequired,
