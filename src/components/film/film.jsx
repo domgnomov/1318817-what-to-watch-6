@@ -2,11 +2,10 @@ import React, {Fragment} from 'react';
 import {useHistory} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import Tabs from "../tabs/tabs";
-import FilmList from "../film-list/film-list";
-import PropTypes from "prop-types";
+import LikeThisFilms from "../like-this-films/like-this-films";
 
 const Film = (props) => {
-  const {film, films} = props;
+  const {film} = props;
 
   const history = useHistory();
 
@@ -83,7 +82,7 @@ const Film = (props) => {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
             <div className="catalog__movies-list">
-              <FilmList films={films} genre={film.genre}/>
+              <LikeThisFilms genre={film.genre}/>
             </div>
           </section>
           <footer className="page-footer">
@@ -105,8 +104,7 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
-  film: FilmValidation,
-  films: PropTypes.arrayOf(FilmValidation).isRequired
+  film: FilmValidation
 };
 
 export default Film;
