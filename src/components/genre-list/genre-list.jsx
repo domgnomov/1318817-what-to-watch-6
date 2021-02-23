@@ -21,7 +21,6 @@ const getGenreTitle = (genre) => {
 
 const GenreList = (props) => {
   const {allFilms, changeGenre} = props;
-  debugger;
   const genreTitles = new Set();
   genreTitles.add(`All genres`);
   allFilms.map((film) => getGenreTitle(film.genre)).forEach(genreTitles.add, genreTitles);
