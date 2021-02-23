@@ -36,8 +36,7 @@ const Genre = (props) => {
 
 const mapStateToProps = (state) => ({
   activeGenre: state.activeGenre,
-  allFilms: state.allFilms,
-  showCount: state.showCount
+  allFilms: state.allFilms
 });
 
 const mapDispatchToProps = (dispatch) => ({
