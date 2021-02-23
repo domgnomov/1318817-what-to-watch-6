@@ -1,3 +1,5 @@
+import {DEFAULT_GENRE} from "../const";
+
 export const ActionType = {
   CHANGE_GENRE: `changeGenre`,
   GET_FILMS: `getFilms`,
@@ -11,7 +13,7 @@ export const ActionCreator = {
     payload: genre
   }),
   getFilms: (genre, allFilms, showCount) => {
-    const filteredFilms = genre === `All genres` ? allFilms : Array.from(allFilms).filter((film) => film.genre === genre);
+    const filteredFilms = genre === DEFAULT_GENRE ? allFilms : Array.from(allFilms).filter((film) => film.genre === genre);
     const showedFilms = filteredFilms.slice(0, showCount);
     return {
       type: ActionType.GET_FILMS,
@@ -25,7 +27,7 @@ export const ActionCreator = {
     };
   },
   changeAllFilmsByActiveGenre: (genre, allFilms) => {
-    const allFilmsByActiveGenre = genre === `All genres` ? allFilms : Array.from(allFilms).filter((film) => film.genre === genre);
+    const allFilmsByActiveGenre = genre === DEFAULT_GENRE ? allFilms : Array.from(allFilms).filter((film) => film.genre === genre);
     return {
       type: ActionType.CHANGE_ALL_FILMS_BY_ACTIVE_GENRE,
       payload: allFilmsByActiveGenre

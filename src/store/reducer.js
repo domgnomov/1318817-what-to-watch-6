@@ -1,9 +1,9 @@
 import {ActionType} from "./action";
 import films from "../mocks/films";
-import {SHOW_MORE_DEFAULT_COUNT} from "../const";
+import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../const";
 
 const initialState = {
-  activeGenre: `All genres`,
+  activeGenre: DEFAULT_GENRE,
   allFilms: films,
   allFilmsByActiveGenre: films,
   filteredFilms: Array.from(films).slice(0, SHOW_MORE_DEFAULT_COUNT),

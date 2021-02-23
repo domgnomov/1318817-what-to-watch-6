@@ -3,7 +3,7 @@ import {ActionCreator} from "../../store/action";
 import {connect} from "react-redux";
 import {FilmValidation} from "../validation/validation";
 import PropTypes from "prop-types";
-import {SHOW_MORE_DEFAULT_COUNT} from "../../const";
+import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../../const";
 
 const getGenreByTitle = (genreTitle) => {
   switch (genreTitle) {
@@ -14,7 +14,7 @@ const getGenreByTitle = (genreTitle) => {
     case `Crime`:
       return `Crime`;
     default:
-      return `All genres`;
+      return DEFAULT_GENRE;
   }
 };
 
