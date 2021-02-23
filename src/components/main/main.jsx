@@ -6,6 +6,7 @@ import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show-more/show-more";
 import PropTypes from "prop-types";
 
+
 const Main = (props) => {
   const {films} = props;
   const name = films[0].name;
@@ -13,7 +14,7 @@ const Main = (props) => {
   const year = films[0].released;
 
   const history = useHistory();
-  
+
   return (
     <Fragment>
       <section className="movie-card">

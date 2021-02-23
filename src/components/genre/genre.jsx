@@ -19,6 +19,7 @@ const getGenreByTitle = (genreTitle) => {
 };
 
 const Genre = (props) => {
+  debugger;
   const {allFilms, genreTitle, activeGenre, onChangeGenre} = props;
   const genre = getGenreByTitle(genreTitle);
   return (
