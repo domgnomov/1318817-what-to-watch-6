@@ -4,20 +4,16 @@ import {useHistory} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show-more/show-more";
-import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
-import {SHOW_MORE_DEFAULT_COUNT} from "../../const";
 import PropTypes from "prop-types";
 
 const Main = (props) => {
-  const {films, resetFilters, allFilms} = props;
+  const {films} = props;
   const name = films[0].name;
   const genre = films[0].genre;
   const year = films[0].released;
 
   const history = useHistory();
-  debugger;
-  resetFilters(allFilms);
+  
   return (
     <Fragment>
       <section className="movie-card">
@@ -85,22 +81,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  films: PropTypes.arrayOf(FilmValidation).isRequired,
-  resetFilters: PropTypes.func.isRequired,
-  allFilms: PropTypes.arrayOf(FilmValidation).isRequired,
+  films: PropTypes.arrayOf(FilmValidation).isRequired
 };
 
-const mapStateToProps = (state) => ({
-  allFilms: state.allFilms,
-  activeGenre: state.activeGenre
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  resetFilters(allFilms) {
-    dispatch(ActionCreator.changeShowCount(SHOW_MORE_DEFAULT_COUNT));
-    dispatch(ActionCreator.getFilms(`All genres`, allFilms, SHOW_MORE_DEFAULT_COUNT));
-  },
-});
-
-export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;
