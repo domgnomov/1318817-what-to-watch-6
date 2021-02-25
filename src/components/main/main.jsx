@@ -11,9 +11,11 @@ import {connect} from "react-redux";
 const Main = (props) => {
   const {allFilms} = props;
 
-  const name = allFilms[0].name;
-  const genre = allFilms[0].genre;
-  const year = allFilms[0].released;
+  const film = allFilms[0];
+
+  const name = film.name;
+  const genre = film.genre;
+  const year = film.released;
 
   const history = useHistory();
 
@@ -50,7 +52,7 @@ const Main = (props) => {
                 <span className="movie-card__year">{year}</span>
               </p>
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={() => history.push(`/player/1`)}>
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => history.push(`/player/` + film.id)}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>

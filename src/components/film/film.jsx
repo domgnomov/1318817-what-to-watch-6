@@ -46,7 +46,7 @@ const Film = (props) => {
                 </p>
                 <div className="movie-card__buttons">
                   <button className="btn btn--play movie-card__button" type="button" onClick={(e) => {
-                    history.push(`/player/:id`);
+                    history.push(`/player/` + film.id);
                     e.preventDefault();
                   }}>
                     <svg viewBox="0 0 19 19" width={19} height={19}>
@@ -64,7 +64,7 @@ const Film = (props) => {
                     <span>My list</span>
                   </button>
                   <a href="add-review.html" className="btn movie-card__button" onClick={(e) => {
-                    history.push(`/films/:id/review`);
+                    history.push(`/films/` + film.id + `/review`);
                     e.preventDefault();
                   }}>Add review</a>
                 </div>

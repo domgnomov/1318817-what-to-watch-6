@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -8,7 +8,8 @@ const Player = (props) => {
   const {allFilms} = props;
   const history = useHistory();
 
-  const film = allFilms[0];
+  const {id} = useParams();
+  const film = allFilms.find((obj) => obj.id.toString() === id);
 
   return (
     <Fragment>
