@@ -15,7 +15,7 @@ const getGenreTitle = (genre) => {
     case `Crime`:
       return `Crime`;
     default:
-      return ``;
+      return `All genres`;
   }
 };
 
@@ -53,7 +53,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.getFilms(DEFAULT_GENRE, allFilms, SHOW_MORE_DEFAULT_COUNT));
   },
 });
-
 
 export {GenreList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenreList);

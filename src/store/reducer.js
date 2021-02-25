@@ -1,13 +1,14 @@
 import {ActionType} from "./action";
-import films from "../mocks/films";
-import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../const";
+import {AuthorizationStatus, DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
-  allFilms: films,
-  allFilmsByActiveGenre: films,
-  filteredFilms: Array.from(films).slice(0, SHOW_MORE_DEFAULT_COUNT),
+  allFilms: [],
+  allFilmsByActiveGenre: [],
+  filteredFilms: [],
   showCount: SHOW_MORE_DEFAULT_COUNT,
+  isDataLoaded: false,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,6 +35,21 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allFilmsByActiveGenre: action.payload
+      };
+
+    case ActionType.LOAD_FILMS:
+      return {
+        ...state,
+        allFilms: action.payload,
+        allFilmsByActiveGenre: action.payload,
+        filteredFilms: Array.from(action.payload).slice(0, SHOW_MORE_DEFAULT_COUNT),
+        isDataLoaded: true
+      };
+
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.payload,
       };
   }
   return state;
