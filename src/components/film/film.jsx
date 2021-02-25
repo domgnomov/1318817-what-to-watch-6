@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import Tabs from "../tabs/tabs";
 import LikeThisFilms from "../like-this-films/like-this-films";
@@ -8,9 +8,9 @@ import {connect} from "react-redux";
 
 const Film = (props) => {
   const {allFilms} = props;
-  const film = allFilms[0];
   const history = useHistory();
-
+  const {id} = useParams();
+  const film = allFilms.find((obj) => obj.id.toString() === id);
   return (
     <Fragment>
       <div>
