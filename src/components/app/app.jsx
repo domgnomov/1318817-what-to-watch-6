@@ -11,6 +11,8 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchFilmList} from "../../store/api-actions";
+import {PrivateRoute} from "../private-route/private-route";
+import {AppRoute} from "../../const";
 
 const App = (props) => {
   const {isDataLoaded, onLoadData} = props;
@@ -36,9 +38,15 @@ const App = (props) => {
         <Route exact path="/login">
           <SignIn />
         </Route>
-        <Route exact path="/mylist">
-          <MyList/>
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.MY_LIST}
+          render={() => {
+            return (
+              <MyList/>
+            );
+          }}
+        />
         <Route exact path="/films/:id/review">
           <AddReview/>
         </Route>
