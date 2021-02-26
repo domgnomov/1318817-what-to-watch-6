@@ -11,8 +11,8 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchFilmList} from "../../store/api-actions";
-import {PrivateRoute} from "../private-route/private-route";
 import {AppRoute} from "../../const";
+import PrivateRoute from "../private-route/private-route";
 
 const App = (props) => {
   const {isDataLoaded, onLoadData} = props;
