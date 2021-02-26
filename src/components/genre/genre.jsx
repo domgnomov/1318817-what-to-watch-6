@@ -3,7 +3,7 @@ import {ActionCreator} from "../../store/action";
 import {connect} from "react-redux";
 import {FilmValidation} from "../validation/validation";
 import PropTypes from "prop-types";
-import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../../const";
+import {SHOW_MORE_DEFAULT_COUNT} from "../../const";
 
 const Genre = (props) => {
   const {allFilms, genre, activeGenre, onChangeGenre} = props;
