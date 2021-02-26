@@ -6,30 +6,16 @@ import PropTypes from "prop-types";
 import {ActionCreator} from "../../store/action";
 import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../../const";
 
-const getGenreTitle = (genre) => {
-  switch (genre) {
-    case `Comedy`:
-      return `Comedies`;
-    case `Drama`:
-      return `Dramas`;
-    case `Crime`:
-      return `Crime`;
-    default:
-      return `All genres`;
-  }
-};
-
 const GenreList = (props) => {
-  const {allFilms, changeGenre} = props;
-  const genreTitles = new Set();
-  genreTitles.add(DEFAULT_GENRE);
-  allFilms.map((film) => getGenreTitle(film.genre)).forEach(genreTitles.add, genreTitles);
-  changeGenre(allFilms);
+  const {allFilms} = props;
+  const genres = new Set();
+  genres.add(`All genres`);
+  allFilms.map((film) => film.genre).forEach(genres.add, genres);
   return (
     <>
       <ul className="catalog__genres-list">
         {
-          Array.from(genreTitles.values()).map((genreTitle, id) => (<Genre key={id} genreTitle={genreTitle}/>))
+          Array.from(genres.values()).map((genre, id) => (<Genre key={id} genre={genre}/>))
         }
       </ul>
     </>
