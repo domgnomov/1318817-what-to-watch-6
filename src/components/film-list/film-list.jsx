@@ -1,19 +1,28 @@
-import React, {Fragment, useState} from 'react';
+import React, {useState} from 'react';
 import Card from "../card/card";
-import {FilmsValidation} from "../validation/validation";
+import {connect} from "react-redux";
+import {FilmValidation} from "../validation/validation";
+import PropTypes from "prop-types";
 
 const FilmList = (props) => {
   const setActiveId = useState(1)[1];
-  const {films, genre} = props;
+  const {filteredFilms} = props;
   return (
-    <Fragment>
+    <>
       {
-        films.filter((film) => !genre || film.genre === genre).map((film) => (<Card key={film.id} film={film} setActiveId={setActiveId}/>))
+        filteredFilms.map((film) => (<Card key={film.id} film={film} setActiveId={setActiveId}/>))
       }
-    </Fragment>
+    </>
   );
 };
 
-FilmList.propTypes = FilmsValidation;
+const mapStateToProps = (state) => ({
+  filteredFilms: state.filteredFilms
+});
 
-export default FilmList;
+FilmList.propTypes = {
+  filteredFilms: PropTypes.arrayOf(FilmValidation).isRequired
+};
+
+export {FilmList};
+export default connect(mapStateToProps, null)(FilmList);
