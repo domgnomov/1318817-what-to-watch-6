@@ -4,29 +4,16 @@ import {FilmValidation} from "../validation/validation";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-const getGenreTitle = (genre) => {
-  switch (genre) {
-    case `Comedy`:
-      return `Comedies`;
-    case `Drama`:
-      return `Dramas`;
-    case `Crime`:
-      return `Crime`;
-    default:
-      return ``;
-  }
-};
-
 const GenreList = (props) => {
   const {allFilms} = props;
-  const genreTitles = new Set();
-  genreTitles.add(`All genres`);
-  allFilms.map((film) => getGenreTitle(film.genre)).forEach(genreTitles.add, genreTitles);
+  const genres = new Set();
+  genres.add(`All genres`);
+  allFilms.map((film) => film.genre).forEach(genres.add, genres);
   return (
     <>
       <ul className="catalog__genres-list">
         {
-          Array.from(genreTitles.values()).map((genreTitle, id) => (<Genre key={id} genreTitle={genreTitle}/>))
+          Array.from(genres.values()).map((genre, id) => (<Genre key={id} genre={genre}/>))
         }
       </ul>
     </>

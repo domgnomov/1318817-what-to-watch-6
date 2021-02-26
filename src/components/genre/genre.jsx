@@ -4,22 +4,8 @@ import {connect} from "react-redux";
 import {FilmValidation} from "../validation/validation";
 import PropTypes from "prop-types";
 
-const getGenreByTitle = (genreTitle) => {
-  switch (genreTitle) {
-    case `Comedies`:
-      return `Comedy`;
-    case `Dramas`:
-      return `Drama`;
-    case `Crime`:
-      return `Crime`;
-    default:
-      return `All genres`;
-  }
-};
-
 const Genre = (props) => {
-  const {allFilms, genreTitle, activeGenre, onChangeGenre} = props;
-  const genre = getGenreByTitle(genreTitle);
+  const {allFilms, genre, activeGenre, onChangeGenre} = props;
   return (
     <>
       <li className={`catalog__genres-item ${activeGenre === genre && `catalog__genres-item--active`}`}>
@@ -46,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Genre.propTypes = {
   allFilms: PropTypes.arrayOf(FilmValidation),
-  genreTitle: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
   activeGenre: PropTypes.string.isRequired,
   onChangeGenre: PropTypes.func.isRequired
 };
