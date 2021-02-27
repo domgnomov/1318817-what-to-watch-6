@@ -1,22 +1,21 @@
 import React from 'react';
 import FilmList from "../film-list/film-list";
-import {useHistory} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show-more/show-more";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../const";
+import NoAuthUserBlock from "../sign-in/no-auth-user-block";
 
 
 const Main = (props) => {
-  const {allFilms, authorizationStatus} = props;
+  const {allFilms, authorizationStatus, history} = props;
   const film = allFilms[0];
-  const history = useHistory();
 
   const getUserBlock = () => {
-    if (authorizationStatus === AuthorizationStatus.AUTH) {
-      return <a href="sign-in.html" className="user-block__link">Sign in</a>;
+    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      return <NoAuthUserBlock history={history}/>;
     } else {
       return `dexter.mr@yandex.ru`;
     }

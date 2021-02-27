@@ -1,10 +1,9 @@
 import React from 'react';
-import {useHistory} from "react-router-dom";
 import {FilmValidation} from "../validation/validation";
 
 const Cover = (props) => {
-  const {film} = props;
-  const history = useHistory();
+  const {film, history} = props;
+
   return (
     <>
       <div className="small-movie-card__image" >

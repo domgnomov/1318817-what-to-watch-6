@@ -1,9 +1,8 @@
 import React, {Fragment} from 'react';
 import FilmList from "../film-list/film-list";
-import {useHistory} from 'react-router-dom';
 
-const MyList = () => {
-  const history = useHistory();
+const MyList = (props) => {
+  const {history} = props;
 
   return (
     <Fragment>

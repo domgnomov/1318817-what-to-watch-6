@@ -9,7 +9,9 @@ export const APIRoute = {
 
 export const AppRoute = {
   LOGIN: `/login`,
-  MY_LIST: `/myList`
+  MY_LIST: `/myList`,
+  ROOT: `/`,
+  PLAYER: `/player/`
 };
 
 export const AuthorizationStatus = {

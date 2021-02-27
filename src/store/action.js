@@ -7,6 +7,7 @@ export const ActionType = {
   CHANGE_ALL_FILMS_BY_ACTIVE_GENRE: `changeAllFilmsByActiveGenre`,
   LOAD_FILMS: `loadFilms`,
   REQUIRED_AUTHORIZATION: `requiredAuthorization`,
+  REDIRECT_TO_ROUTE: `redirectToRoute`,
 };
 
 export const ActionCreator = {
@@ -44,5 +45,9 @@ export const ActionCreator = {
       type: ActionType.CHANGE_ALL_FILMS_BY_ACTIVE_GENRE,
       payload: allFilmsByActiveGenre
     };
-  }
+  },
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
+  })
 };

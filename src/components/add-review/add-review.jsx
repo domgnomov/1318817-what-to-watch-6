@@ -1,13 +1,12 @@
 import React from 'react';
 import {FilmValidation} from "../validation/validation";
 import AddReviewForm from "./add-review-form";
-import {useHistory, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
 const AddReview = (props) => {
-  const {allFilms} = props;
-  const history = useHistory();
+  const {allFilms, history} = props;
   const {id} = useParams();
   const film = allFilms.find((obj) => obj.id.toString() === id);
   return (
