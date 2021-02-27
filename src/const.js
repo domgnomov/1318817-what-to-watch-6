@@ -18,3 +18,12 @@ export const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };
+
+
+export const DEFAULT_AUTH_INFO = {
+  id: 0,
+  email: ``,
+  name: ``,
+  avatarUrl: ``
+};
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import FilmList from "../film-list/film-list";
-import {FilmValidation} from "../validation/validation";
+import {AuthInfoValidation, FilmValidation} from "../validation/validation";
 import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show-more/show-more";
 import PropTypes from "prop-types";
@@ -11,7 +11,7 @@ import {useHistory} from "react-router-dom";
 
 
 const Main = (props) => {
-  const {allFilms, authorizationStatus} = props;
+  const {allFilms, authorizationStatus, authInfo} = props;
   const film = allFilms[0];
   const history = useHistory();
 
@@ -19,7 +19,7 @@ const Main = (props) => {
     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
       return <NoAuthUserBlock history={history}/>;
     } else {
-      return `dexter.mr@yandex.ru`;
+      return authInfo.email;
     }
   };
 
@@ -89,12 +89,14 @@ const Main = (props) => {
 
 Main.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
+  allFilms: PropTypes.arrayOf(FilmValidation).isRequired,
+  authInfo: AuthInfoValidation
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: state.authorizationStatus,
-  allFilms: state.allFilms
+  allFilms: state.allFilms,
+  authInfo: state.authInfo
 });
 
 export {Main};

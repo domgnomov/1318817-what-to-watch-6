@@ -8,6 +8,7 @@ export const ActionType = {
   LOAD_FILMS: `loadFilms`,
   REQUIRED_AUTHORIZATION: `requiredAuthorization`,
   REDIRECT_TO_ROUTE: `redirectToRoute`,
+  SET_AUTH_INFO: `setAuthInfo`
 };
 
 export const ActionCreator = {
@@ -33,6 +34,12 @@ export const ActionCreator = {
     return {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: status,
+    };
+  },
+  setAuthInfo: (authInfo) => {
+    return {
+      type: ActionType.SET_AUTH_INFO,
+      payload: authInfo,
     };
   },
   changeShowCount: (showCount) => {
