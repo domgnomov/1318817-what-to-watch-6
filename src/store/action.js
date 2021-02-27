@@ -29,10 +29,12 @@ export const ActionCreator = {
       payload: films
     };
   },
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  }),
+  requireAuthorization: (status) => {
+    return {
+      type: ActionType.REQUIRED_AUTHORIZATION,
+      payload: status,
+    };
+  },
   changeShowCount: (showCount) => {
     return {
       type: ActionType.CHANGE_SHOW_COUNT,

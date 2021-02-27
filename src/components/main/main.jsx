@@ -7,11 +7,13 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../const";
 import NoAuthUserBlock from "../sign-in/no-auth-user-block";
+import {useHistory} from "react-router-dom";
 
 
 const Main = (props) => {
-  const {allFilms, authorizationStatus, history} = props;
+  const {allFilms, authorizationStatus} = props;
   const film = allFilms[0];
+  const history = useHistory();
 
   const getUserBlock = () => {
     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {

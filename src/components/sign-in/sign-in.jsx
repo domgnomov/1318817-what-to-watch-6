@@ -4,12 +4,12 @@ import {connect} from "react-redux";
 import {login} from "../../store/api-actions";
 
 const SignIn = (props) => {
-  const {onSubmit, history} = props;
+  const {onSubmit} = props;
+
   const loginRef = useRef();
   const passwordRef = useRef();
 
   const handleSubmit = (evt) => {
-    debugger;
     evt.preventDefault();
 
     onSubmit({
@@ -72,7 +72,6 @@ SignIn.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
-    debugger;
     dispatch(login(authData));
   }
 });

@@ -1,7 +1,8 @@
 import React from 'react';
+import {useHistory} from "react-router-dom";
 
-const NoAuthUserBlock = (props) => {
-  const {history} = props;
+const NoAuthUserBlock = () => {
+  const history = useHistory();
 
   return (
     <>

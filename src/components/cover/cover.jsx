@@ -1,8 +1,11 @@
 import React from 'react';
 import {FilmValidation} from "../validation/validation";
+import {useHistory} from "react-router-dom";
 
 const Cover = (props) => {
-  const {film, history} = props;
+  const {film} = props;
+
+  const history = useHistory();
 
   return (
     <>

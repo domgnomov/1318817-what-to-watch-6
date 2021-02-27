@@ -34,17 +34,17 @@ const App = (props) => {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
-          <Main history={browserHistory}/>
+          <Main/>
         </Route>
         <Route exact path="/login">
-          <SignIn history={browserHistory}/>
+          <SignIn/>
         </Route>
         <PrivateRoute
           exact
           path={AppRoute.MY_LIST}
           render={() => {
             return (
-              <MyList history={browserHistory}/>
+              <MyList/>
             );
           }}
         />
