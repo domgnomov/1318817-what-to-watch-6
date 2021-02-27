@@ -6,12 +6,21 @@ import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show-more/show-more";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {AuthorizationStatus} from "../../const";
 
 
 const Main = (props) => {
-  const {allFilms} = props;
+  const {allFilms, authorizationStatus} = props;
   const film = allFilms[0];
   const history = useHistory();
+
+  const getUserBlock = () => {
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return <a href="sign-in.html" className="user-block__link">Sign in</a>;
+    } else {
+      return `dexter.mr@yandex.ru`;
+    }
+  };
 
   return (
     <>
@@ -29,9 +38,7 @@ const Main = (props) => {
             </a>
           </div>
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-            </div>
+            {getUserBlock()}
           </div>
         </header>
         <div className="movie-card__wrap">
@@ -80,10 +87,12 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   allFilms: PropTypes.arrayOf(FilmValidation).isRequired
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
   allFilms: state.allFilms
 });
 
