@@ -6,7 +6,8 @@ import LikeThisFilms from "../like-this-films/like-this-films";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {fetchFilm} from "../../store/api-actions";
-
+import LoadingScreen from "../loading-screen/loading-screen";
+import {DEFAULT_FILM} from "../../const";
 
 const Film = (props) => {
   const {onLoadFilm, currentFilm} = props;
@@ -16,6 +17,12 @@ const Film = (props) => {
   useEffect(() => {
     onLoadFilm(id);
   }, [id]);
+
+  if (film === DEFAULT_FILM) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <>
@@ -112,7 +119,10 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
-  currentFilm: FilmValidation,
+  currentFilm: PropTypes.oneOfType([
+    FilmValidation,
+    PropTypes.shape(DEFAULT_FILM).isRequired
+  ]),
   onLoadFilm: PropTypes.func.isRequired,
 };
 

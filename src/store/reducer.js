@@ -1,10 +1,10 @@
 import {ActionType} from "./action";
-import {AuthorizationStatus, DEFAULT_GENRE, DEFAULT_AUTH_INFO, SHOW_MORE_DEFAULT_COUNT} from "../const";
+import {AuthorizationStatus, DEFAULT_GENRE, DEFAULT_AUTH_INFO, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
   allFilms: [],
-  currentFilm: {},
+  currentFilm: DEFAULT_FILM,
   allFilmsByActiveGenre: [],
   filteredFilms: [],
   showCount: SHOW_MORE_DEFAULT_COUNT,

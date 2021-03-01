@@ -9,6 +9,7 @@ export const ActionType = {
   LOAD_FILM: `loadFilm`,
   REQUIRED_AUTHORIZATION: `requiredAuthorization`,
   REDIRECT_TO_ROUTE: `redirectToRoute`,
+  REDIRECT_TO_NOT_FOUND: `redirectToNotFound`,
   SET_AUTH_INFO: `setAuthInfo`
 };
 
@@ -64,6 +65,10 @@ export const ActionCreator = {
   },
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
+  }),
+  redirectToNotFound: (url) => ({
+    type: ActionType.REDIRECT_TO_NOT_FOUND,
     payload: url,
   })
 };

@@ -57,6 +57,9 @@ const App = (props) => {
         <Route exact path="/player/:id">
           <Player/>
         </Route>
+        <Route exact path="/notFound">
+          <NotFound />
+        </Route>
         <Route>
           <NotFound />
         </Route>
