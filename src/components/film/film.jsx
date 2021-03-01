@@ -1,18 +1,24 @@
-import React, {Fragment} from 'react';
+import React, {useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import Tabs from "../tabs/tabs";
 import LikeThisFilms from "../like-this-films/like-this-films";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {fetchFilm} from "../../store/api-actions";
+
 
 const Film = (props) => {
-  const {allFilms} = props;
+  const {onLoadFilm, currentFilm} = props;
   const history = useHistory();
   const {id} = useParams();
-  const film = allFilms.find((obj) => obj.id.toString() === id);
+  const film = currentFilm;
+  useEffect(() => {
+    onLoadFilm(id);
+  }, [id]);
+
   return (
-    <Fragment>
+    <>
       <div>
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
@@ -101,18 +107,24 @@ const Film = (props) => {
           </footer>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 
 Film.propTypes = {
-  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
+  currentFilm: FilmValidation,
+  onLoadFilm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  allFilms: state.allFilms,
+  currentFilm: state.currentFilm,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onLoadFilm(id) {
+    dispatch(fetchFilm(id));
+  },
+});
 
 export {Film};
-export default connect(mapStateToProps, null)(Film);
+export default connect(mapStateToProps, mapDispatchToProps)(Film);

@@ -6,6 +6,7 @@ export const ActionType = {
   CHANGE_SHOW_COUNT: `changeShowCount`,
   CHANGE_ALL_FILMS_BY_ACTIVE_GENRE: `changeAllFilmsByActiveGenre`,
   LOAD_FILMS: `loadFilms`,
+  LOAD_FILM: `loadFilm`,
   REQUIRED_AUTHORIZATION: `requiredAuthorization`,
   REDIRECT_TO_ROUTE: `redirectToRoute`,
   SET_AUTH_INFO: `setAuthInfo`
@@ -28,6 +29,12 @@ export const ActionCreator = {
     return {
       type: ActionType.LOAD_FILMS,
       payload: films
+    };
+  },
+  loadFilm: (film) => {
+    return {
+      type: ActionType.LOAD_FILM,
+      payload: film
     };
   },
   requireAuthorization: (status) => {

@@ -7,6 +7,14 @@ export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
     .then(({data}) => {
       dispatch(ActionCreator.loadFilms(FilmData.parseFilms(data)));
+      dispatch(ActionCreator.loadFilm(FilmData.parseFilm(data[0])));
+    })
+);
+
+export const fetchFilm = (id) => (dispatch, _getState, api) => (
+  api.get(APIRoute.FILMS + `/` + id)
+    .then(({data}) => {
+      dispatch(ActionCreator.loadFilm(FilmData.parseFilm(data)));
     })
 );
 

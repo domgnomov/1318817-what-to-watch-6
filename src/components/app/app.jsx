@@ -16,11 +16,11 @@ import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 
 const App = (props) => {
-  const {isDataLoaded, onLoadData} = props;
+  const {isDataLoaded, onLoadFilmList} = props;
 
   useEffect(() => {
     if (!isDataLoaded) {
-      onLoadData();
+      onLoadFilmList();
     }
   }, [isDataLoaded]);
 
@@ -67,7 +67,7 @@ const App = (props) => {
 
 App.propTypes = {
   isDataLoaded: PropTypes.bool.isRequired,
-  onLoadData: PropTypes.func.isRequired,
+  onLoadFilmList: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -75,9 +75,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadData() {
+  onLoadFilmList() {
     dispatch(fetchFilmList());
-  },
+  }
 });
 
 export {App};

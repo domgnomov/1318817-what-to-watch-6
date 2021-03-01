@@ -4,6 +4,7 @@ import {AuthorizationStatus, DEFAULT_GENRE, DEFAULT_AUTH_INFO, SHOW_MORE_DEFAULT
 const initialState = {
   activeGenre: DEFAULT_GENRE,
   allFilms: [],
+  currentFilm: {},
   allFilmsByActiveGenre: [],
   filteredFilms: [],
   showCount: SHOW_MORE_DEFAULT_COUNT,
@@ -51,6 +52,12 @@ const reducer = (state = initialState, action) => {
         allFilmsByActiveGenre: action.payload,
         filteredFilms: Array.from(action.payload).slice(0, SHOW_MORE_DEFAULT_COUNT),
         isDataLoaded: true
+      };
+
+    case ActionType.LOAD_FILM:
+      return {
+        ...state,
+        currentFilm: action.payload,
       };
 
     case ActionType.REQUIRED_AUTHORIZATION:
