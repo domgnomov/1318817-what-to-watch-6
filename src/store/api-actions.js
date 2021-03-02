@@ -36,3 +36,10 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
       dispatch(ActionCreator.redirectToRoute(AppRoute.ROOT));
     })
 );
+
+export const sendComment = (id, commentPost) => (dispatch, _getState, api) => (
+  api.post(APIRoute.COMMENT + `/` + id, commentPost)
+    .then(() => {
+      dispatch(ActionCreator.redirectToFilm(AppRoute.FILMS + `/` + id));
+    })
+);

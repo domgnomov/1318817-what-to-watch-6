@@ -5,13 +5,15 @@ export const DEFAULT_FILM = {};
 
 export const APIRoute = {
   LOGIN: `/login`,
-  FILMS: `/films`
+  FILMS: `/films`,
+  COMMENT: `comments`
 };
 
 export const AppRoute = {
   LOGIN: `/login`,
   MY_LIST: `/myList`,
   ROOT: `/`,
+  FILMS: `/films`,
   PLAYER: `/player/`,
   NOT_FOUND: `/notFound`
 };
