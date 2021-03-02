@@ -1,10 +1,8 @@
 import React, {Fragment} from 'react';
 import FilmList from "../film-list/film-list";
 import {useHistory} from 'react-router-dom';
-import {FilmsValidation} from "../validation/validation";
 
-const MyList = (props) => {
-  const {films} = props;
+const MyList = () => {
   const history = useHistory();
 
   return (
@@ -31,7 +29,7 @@ const MyList = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <div className="catalog__movies-list">
-            <FilmList films={films}/>
+            <FilmList/>
           </div>
         </section>
         <footer className="page-footer">
@@ -50,7 +48,5 @@ const MyList = (props) => {
     </Fragment>
   );
 };
-
-MyList.propTypes = FilmsValidation;
 
 export default MyList;

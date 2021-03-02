@@ -3,10 +3,12 @@ import {useHistory} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import Tabs from "../tabs/tabs";
 import LikeThisFilms from "../like-this-films/like-this-films";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 const Film = (props) => {
-  const {film} = props;
-
+  const {allFilms} = props;
+  const film = allFilms[0];
   const history = useHistory();
 
   return (
@@ -104,7 +106,13 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
-  film: FilmValidation
+  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
 };
 
-export default Film;
+const mapStateToProps = (state) => ({
+  allFilms: state.allFilms,
+});
+
+
+export {Film};
+export default connect(mapStateToProps, null)(Film);

@@ -1,11 +1,14 @@
 import React, {Fragment} from 'react';
 import {useHistory} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 const Player = (props) => {
-  const {film} = props;
-
+  const {allFilms} = props;
   const history = useHistory();
+
+  const film = allFilms[0];
 
   return (
     <Fragment>
@@ -41,6 +44,13 @@ const Player = (props) => {
   );
 };
 
-Player.propTypes = FilmValidation;
+Player.propTypes = {
+  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
+};
 
-export default Player;
+const mapStateToProps = (state) => ({
+  allFilms: state.allFilms,
+});
+
+export {Player};
+export default connect(mapStateToProps, null)(Player);

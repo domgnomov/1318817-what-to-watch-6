@@ -1,13 +1,16 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {FilmValidation} from "../validation/validation";
 import AddReviewForm from "./add-review-form";
 import {useHistory} from "react-router-dom";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 const AddReview = (props) => {
-  const {film} = props;
+  const {allFilms} = props;
   const history = useHistory();
+  const film = allFilms[0];
   return (
-    <Fragment>
+    <>
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
@@ -49,10 +52,18 @@ const AddReview = (props) => {
           <AddReviewForm />
         </div>
       </section>
-    </Fragment>
+    </>
   );
 };
 
-AddReview.propTypes = FilmValidation;
+AddReview.propTypes = {
+  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
+};
 
-export default AddReview;
+const mapStateToProps = (state) => ({
+  allFilms: state.allFilms,
+});
+
+
+export {AddReview};
+export default connect(mapStateToProps, null)(AddReview);

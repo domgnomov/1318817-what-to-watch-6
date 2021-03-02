@@ -1,22 +1,24 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import FilmList from "../film-list/film-list";
 import {useHistory} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show-more/show-more";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 
 const Main = (props) => {
-  const {films} = props;
-  const name = films[0].name;
-  const genre = films[0].genre;
-  const year = films[0].released;
+  const {allFilms} = props;
+
+  const name = allFilms[0].name;
+  const genre = allFilms[0].genre;
+  const year = allFilms[0].released;
 
   const history = useHistory();
 
   return (
-    <Fragment>
+    <>
       <section className="movie-card">
         <div className="movie-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
@@ -77,12 +79,17 @@ const Main = (props) => {
           </div>
         </section>
       </div>
-    </Fragment>
+    </>
   );
 };
 
 Main.propTypes = {
-  films: PropTypes.arrayOf(FilmValidation).isRequired
+  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  allFilms: state.allFilms
+});
+
+export {Main};
+export default connect(mapStateToProps, null)(Main);

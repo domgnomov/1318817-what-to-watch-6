@@ -4,7 +4,9 @@ export const ActionType = {
   CHANGE_GENRE: `changeGenre`,
   GET_FILMS: `getFilms`,
   CHANGE_SHOW_COUNT: `changeShowCount`,
-  CHANGE_ALL_FILMS_BY_ACTIVE_GENRE: `changeAllFilmsByActiveGenre`
+  CHANGE_ALL_FILMS_BY_ACTIVE_GENRE: `changeAllFilmsByActiveGenre`,
+  LOAD_FILMS: `loadFilms`,
+  REQUIRED_AUTHORIZATION: `requiredAuthorization`,
 };
 
 export const ActionCreator = {
@@ -20,6 +22,16 @@ export const ActionCreator = {
       payload: showedFilms
     };
   },
+  loadFilms: (films) => {
+    return {
+      type: ActionType.LOAD_FILMS,
+      payload: films
+    };
+  },
+  requireAuthorization: (status) => ({
+    type: ActionType.REQUIRED_AUTHORIZATION,
+    payload: status,
+  }),
   changeShowCount: (showCount) => {
     return {
       type: ActionType.CHANGE_SHOW_COUNT,
