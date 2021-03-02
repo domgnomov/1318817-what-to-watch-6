@@ -3,10 +3,27 @@ export const LIKE_THIS_LIMIT = 4;
 export const DEFAULT_GENRE = `All genres`;
 
 export const APIRoute = {
+  LOGIN: `/login`,
   FILMS: `/films`
+};
+
+export const AppRoute = {
+  LOGIN: `/login`,
+  MY_LIST: `/myList`,
+  ROOT: `/`,
+  PLAYER: `/player/`
 };
 
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };
+
+
+export const DEFAULT_AUTH_INFO = {
+  id: 0,
+  email: ``,
+  name: ``,
+  avatarUrl: ``
+};
+

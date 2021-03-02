@@ -1,5 +1,5 @@
 import {ActionType} from "./action";
-import {AuthorizationStatus, DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../const";
+import {AuthorizationStatus, DEFAULT_GENRE, DEFAULT_AUTH_INFO, SHOW_MORE_DEFAULT_COUNT} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
@@ -9,6 +9,7 @@ const initialState = {
   showCount: SHOW_MORE_DEFAULT_COUNT,
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authInfo: DEFAULT_AUTH_INFO
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,6 +36,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allFilmsByActiveGenre: action.payload
+      };
+
+    case ActionType.SET_AUTH_INFO:
+      return {
+        ...state,
+        authInfo: action.payload
       };
 
     case ActionType.LOAD_FILMS:

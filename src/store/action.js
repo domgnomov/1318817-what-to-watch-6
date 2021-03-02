@@ -7,6 +7,8 @@ export const ActionType = {
   CHANGE_ALL_FILMS_BY_ACTIVE_GENRE: `changeAllFilmsByActiveGenre`,
   LOAD_FILMS: `loadFilms`,
   REQUIRED_AUTHORIZATION: `requiredAuthorization`,
+  REDIRECT_TO_ROUTE: `redirectToRoute`,
+  SET_AUTH_INFO: `setAuthInfo`
 };
 
 export const ActionCreator = {
@@ -28,10 +30,18 @@ export const ActionCreator = {
       payload: films
     };
   },
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  }),
+  requireAuthorization: (status) => {
+    return {
+      type: ActionType.REQUIRED_AUTHORIZATION,
+      payload: status,
+    };
+  },
+  setAuthInfo: (authInfo) => {
+    return {
+      type: ActionType.SET_AUTH_INFO,
+      payload: authInfo,
+    };
+  },
   changeShowCount: (showCount) => {
     return {
       type: ActionType.CHANGE_SHOW_COUNT,
@@ -44,5 +54,9 @@ export const ActionCreator = {
       type: ActionType.CHANGE_ALL_FILMS_BY_ACTIVE_GENRE,
       payload: allFilmsByActiveGenre
     };
-  }
+  },
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
+  })
 };

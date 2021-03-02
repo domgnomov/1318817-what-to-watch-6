@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import Tabs from "../tabs/tabs";
 import LikeThisFilms from "../like-this-films/like-this-films";
@@ -8,9 +8,9 @@ import {connect} from "react-redux";
 
 const Film = (props) => {
   const {allFilms} = props;
-  const film = allFilms[0];
   const history = useHistory();
-
+  const {id} = useParams();
+  const film = allFilms.find((obj) => obj.id.toString() === id);
   return (
     <Fragment>
       <div>
@@ -41,12 +41,12 @@ const Film = (props) => {
               <div className="movie-card__desc">
                 <h2 className="movie-card__title">{film.name}</h2>
                 <p className="movie-card__meta">
-                  <span className="movie-card__genre">Drama</span>
-                  <span className="movie-card__year">2014</span>
+                  <span className="movie-card__genre">{film.genre}</span>
+                  <span className="movie-card__year">{film.year}</span>
                 </p>
                 <div className="movie-card__buttons">
                   <button className="btn btn--play movie-card__button" type="button" onClick={(e) => {
-                    history.push(`/player/:id`);
+                    history.push(`/player/` + film.id);
                     e.preventDefault();
                   }}>
                     <svg viewBox="0 0 19 19" width={19} height={19}>
@@ -64,7 +64,7 @@ const Film = (props) => {
                     <span>My list</span>
                   </button>
                   <a href="add-review.html" className="btn movie-card__button" onClick={(e) => {
-                    history.push(`/films/:id/review`);
+                    history.push(`/films/` + film.id + `/review`);
                     e.preventDefault();
                   }}>Add review</a>
                 </div>
@@ -74,7 +74,7 @@ const Film = (props) => {
           <div className="movie-card__wrap movie-card__translate-top">
             <div className="movie-card__info">
               <div className="movie-card__poster movie-card__poster--big">
-                <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width={218} height={327} />
+                <img src={film.posterImage} alt={film.name + `poster`} width={218} height={327} />
               </div>
               <Tabs film={film} />
             </div>
