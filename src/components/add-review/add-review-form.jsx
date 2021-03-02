@@ -13,14 +13,13 @@ const AddReviewForm = (props) => {
   const rattingRef = useRef();
   const commentRef = useRef();
 
-  const {id} = useParams();
+  const {filmId} = useParams();
 
   const ratingStars = new Array(ratingStarsLength).fill(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    debugger;
-    onSubmit(id,
+    onSubmit(filmId,
         {
           rating: rattingRef.current.value,
           comment: commentRef.current.value
@@ -63,8 +62,8 @@ AddReviewForm.propTypes = {
 
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(id, commentPost) {
-    dispatch(sendComment(id, commentPost));
+  onSubmit(filmId, commentPost) {
+    dispatch(sendComment(filmId, commentPost));
   }
 });
 
