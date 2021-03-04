@@ -1,9 +1,10 @@
 import {ActionType} from "./action";
-import {AuthorizationStatus, DEFAULT_GENRE, DEFAULT_AUTH_INFO, SHOW_MORE_DEFAULT_COUNT} from "../const";
+import {AuthorizationStatus, DEFAULT_GENRE, DEFAULT_AUTH_INFO, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
   allFilms: [],
+  currentFilm: DEFAULT_FILM,
   allFilmsByActiveGenre: [],
   filteredFilms: [],
   showCount: SHOW_MORE_DEFAULT_COUNT,
@@ -51,6 +52,12 @@ const reducer = (state = initialState, action) => {
         allFilmsByActiveGenre: action.payload,
         filteredFilms: Array.from(action.payload).slice(0, SHOW_MORE_DEFAULT_COUNT),
         isDataLoaded: true
+      };
+
+    case ActionType.LOAD_FILM:
+      return {
+        ...state,
+        currentFilm: action.payload,
       };
 
     case ActionType.REQUIRED_AUTHORIZATION:

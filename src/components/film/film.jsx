@@ -1,18 +1,46 @@
-import React, {Fragment} from 'react';
+import React, {useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import {FilmValidation} from "../validation/validation";
 import Tabs from "../tabs/tabs";
 import LikeThisFilms from "../like-this-films/like-this-films";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {fetchFilm} from "../../store/api-actions";
+import LoadingScreen from "../loading-screen/loading-screen";
+import {AuthorizationStatus, DEFAULT_FILM} from "../../const";
 
 const Film = (props) => {
-  const {allFilms} = props;
+  const {onLoadFilm, authorizationStatus, currentFilm} = props;
   const history = useHistory();
   const {id} = useParams();
-  const film = allFilms.find((obj) => obj.id.toString() === id);
+  const film = currentFilm;
+  useEffect(() => {
+    onLoadFilm(id);
+  }, [id]);
+
+  if (film === DEFAULT_FILM) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
+  const getAddReviewButton = () => {
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return (
+        <>
+          <a href="add-review.html" className="btn movie-card__button" onClick={(e) => {
+            history.push(`/films/` + film.id + `/review`);
+            e.preventDefault();
+          }}>Add review</a>
+        </>
+      );
+    } else {
+      return ``;
+    }
+  };
+
   return (
-    <Fragment>
+    <>
       <div>
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
@@ -63,10 +91,7 @@ const Film = (props) => {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button" onClick={(e) => {
-                    history.push(`/films/` + film.id + `/review`);
-                    e.preventDefault();
-                  }}>Add review</a>
+                  {getAddReviewButton()}
                 </div>
               </div>
             </div>
@@ -101,18 +126,29 @@ const Film = (props) => {
           </footer>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 
 Film.propTypes = {
-  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  currentFilm: PropTypes.oneOfType([
+    FilmValidation,
+    PropTypes.shape(DEFAULT_FILM).isRequired
+  ]),
+  onLoadFilm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  allFilms: state.allFilms,
+  currentFilm: state.currentFilm,
+  authorizationStatus: state.authorizationStatus,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onLoadFilm(id) {
+    dispatch(fetchFilm(id));
+  },
+});
 
 export {Film};
-export default connect(mapStateToProps, null)(Film);
+export default connect(mapStateToProps, mapDispatchToProps)(Film);
