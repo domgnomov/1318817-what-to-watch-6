@@ -29,7 +29,10 @@ export const fetchFilm = (id) => (dispatch, _getState, api) => (
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+    .then((data) => {
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(setAuthInfo(AuthInfoData.parseAuthInfo(data.data)));
+    })
     .catch(() => {})
 );
 
