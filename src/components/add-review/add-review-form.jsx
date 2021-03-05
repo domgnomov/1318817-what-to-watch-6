@@ -2,18 +2,15 @@ import React, {useState, Fragment, useRef} from 'react';
 import {sendComment} from "../../store/api-actions";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {useParams} from "react-router-dom";
 
 const AddReviewForm = (props) => {
-  const {onSubmit} = props;
+  const {filmId, onSubmit} = props;
   const ratingStarsLength = 10;
   const [comment, setComment] = useState(``);
   const setRating = useState(ratingStarsLength)[1];
 
   const rattingRef = useRef();
   const commentRef = useRef();
-
-  const {filmId} = useParams();
 
   const ratingStars = new Array(ratingStarsLength).fill(false);
 
@@ -58,6 +55,7 @@ const AddReviewForm = (props) => {
 
 AddReviewForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  filmId: PropTypes.string.isRequired
 };
 
 

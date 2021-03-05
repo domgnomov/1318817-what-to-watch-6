@@ -50,7 +50,7 @@ const AddReview = (props) => {
           </div>
         </div>
         <div className="add-review">
-          <AddReviewForm />
+          <AddReviewForm filmId={id}/>
         </div>
       </section>
     </>

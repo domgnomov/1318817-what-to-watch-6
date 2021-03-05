@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FilmValidation} from "../validation/validation";
-import {ActionCreator} from "../../store/action";
+import {changeShowCount, getFilms} from "../../store/action";
 import {SHOW_MORE_DEFAULT_COUNT} from "../../const";
 
 const isShowMoreAvailable = (filteredFilms, allFilmsByActiveGenre) => {
@@ -33,8 +33,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onShowMore(activeGenre, allFilms, showCount) {
     showCount += SHOW_MORE_DEFAULT_COUNT;
-    dispatch(ActionCreator.changeShowCount(showCount));
-    dispatch(ActionCreator.getFilms(activeGenre, allFilms, showCount));
+    dispatch(changeShowCount(showCount));
+    dispatch(getFilms(activeGenre, allFilms, showCount));
   },
 });
 

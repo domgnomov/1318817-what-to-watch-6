@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActionCreator} from "../../store/action";
+import {changeAllFilmsByActiveGenre, changeGenre, changeShowCount, getFilms} from "../../store/action";
 import {connect} from "react-redux";
 import {FilmValidation} from "../validation/validation";
 import PropTypes from "prop-types";
@@ -26,10 +26,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeGenre(genre, allFilms) {
-    dispatch(ActionCreator.changeShowCount(SHOW_MORE_DEFAULT_COUNT));
-    dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.changeAllFilmsByActiveGenre(genre, allFilms));
-    dispatch(ActionCreator.getFilms(genre, allFilms, SHOW_MORE_DEFAULT_COUNT));
+    dispatch(changeShowCount(SHOW_MORE_DEFAULT_COUNT));
+    dispatch(changeGenre(genre));
+    dispatch(changeAllFilmsByActiveGenre(genre, allFilms));
+    dispatch(getFilms(genre, allFilms, SHOW_MORE_DEFAULT_COUNT));
   },
 });
 
