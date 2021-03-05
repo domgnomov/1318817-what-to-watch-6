@@ -7,20 +7,20 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import Film from "../film/film";
-import {connect} from "react-redux";
-import PropTypes from "prop-types";
+import {useDispatch, useSelector} from "react-redux";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchFilmList} from "../../store/api-actions";
 import {AppRoute} from "../../const";
 import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 
-const App = (props) => {
-  const {isDataLoaded, onLoadFilmList} = props;
+const App = () => {
+  const dispatch = useDispatch();
+  const {isDataLoaded} = useSelector((state) => state.MAIN);
 
   useEffect(() => {
     if (!isDataLoaded) {
-      onLoadFilmList();
+      dispatch(fetchFilmList());
     }
   }, [isDataLoaded]);
 
@@ -68,20 +68,4 @@ const App = (props) => {
   );
 };
 
-App.propTypes = {
-  isDataLoaded: PropTypes.bool.isRequired,
-  onLoadFilmList: PropTypes.func.isRequired
-};
-
-const mapStateToProps = (state) => ({
-  isDataLoaded: state.isDataLoaded,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadFilmList() {
-    dispatch(fetchFilmList());
-  }
-});
-
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);

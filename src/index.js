@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app/app';
-import {rootReducer} from "./store/reducer";
+import {App} from './components/app/app';
 import {Provider} from "react-redux";
 import {createAPI} from "./components/services/api";
 import {requireAuthorization} from "./store/action";
@@ -9,6 +8,7 @@ import {AuthorizationStatus} from "./const";
 import {redirect} from "./store/redirect";
 import {checkAuth} from "./store/api-actions";
 import {configureStore} from "@reduxjs/toolkit";
+import rootReducer from './store/r-reducer';
 
 const api = createAPI(
     () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))

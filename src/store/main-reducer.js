@@ -3,10 +3,9 @@ import {
   changeGenre,
   changeShowCount,
   getFilms, loadFilm,
-  loadFilms, requireAuthorization,
-  setAuthInfo
+  loadFilms,
 } from "./action";
-import {AuthorizationStatus, DEFAULT_GENRE, DEFAULT_AUTH_INFO, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM} from "../const";
+import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM} from "../const";
 import {createReducer} from "@reduxjs/toolkit/";
 
 const initialState = {
@@ -17,11 +16,9 @@ const initialState = {
   filteredFilms: [],
   showCount: SHOW_MORE_DEFAULT_COUNT,
   isDataLoaded: false,
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
-  authInfo: DEFAULT_AUTH_INFO
 };
 
-const rootReducer = createReducer(initialState, (builder) => {
+const mainReducer = createReducer(initialState, (builder) => {
   builder.addCase(changeGenre, (state, action) => {
     state.activeGenre = action.payload;
   });
@@ -38,10 +35,6 @@ const rootReducer = createReducer(initialState, (builder) => {
     state.allFilmsByActiveGenre = action.payload;
   });
 
-  builder.addCase(setAuthInfo, (state, action) => {
-    state.authInfo = action.payload;
-  });
-
   builder.addCase(loadFilms, (state, action) => {
     state.allFilms = action.payload;
     state.allFilmsByActiveGenre = action.payload;
@@ -53,10 +46,6 @@ const rootReducer = createReducer(initialState, (builder) => {
     state.currentFilm = action.payload;
   });
 
-  builder.addCase(requireAuthorization, (state, action) => {
-    state.authorizationStatus = action.payload;
-  });
-
 });
 
-export {rootReducer};
+export {mainReducer};
