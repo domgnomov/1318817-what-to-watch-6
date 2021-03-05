@@ -1,12 +1,10 @@
 import React from 'react';
-import {FilmValidation} from "../validation/validation";
-import AddReviewForm from "./add-review-form";
+import {AddReviewForm} from "./add-review-form";
 import {useHistory, useParams} from "react-router-dom";
-import {connect} from "react-redux";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-const AddReview = (props) => {
-  const {allFilms} = props;
+const AddReview = () => {
+  const {allFilms} = useSelector((state) => state.MAIN);
   const history = useHistory();
   const {id} = useParams();
   const film = allFilms.find((obj) => obj.id.toString() === id);
@@ -57,14 +55,4 @@ const AddReview = (props) => {
   );
 };
 
-AddReview.propTypes = {
-  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
-};
-
-const mapStateToProps = (state) => ({
-  allFilms: state.allFilms,
-});
-
-
 export {AddReview};
-export default connect(mapStateToProps, null)(AddReview);

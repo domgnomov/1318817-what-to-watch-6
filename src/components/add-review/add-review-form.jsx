@@ -1,13 +1,14 @@
 import React, {useState, Fragment, useRef} from 'react';
 import {sendComment} from "../../store/api-actions";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import {useDispatch} from "react-redux";
 
 const AddReviewForm = (props) => {
-  const {filmId, onSubmit} = props;
+  const {filmId} = props;
   const ratingStarsLength = 10;
   const [comment, setComment] = useState(``);
   const setRating = useState(ratingStarsLength)[1];
+  const dispatch = useDispatch();
 
   const rattingRef = useRef();
   const commentRef = useRef();
@@ -16,11 +17,10 @@ const AddReviewForm = (props) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onSubmit(filmId,
-        {
-          rating: rattingRef.current.value,
-          comment: commentRef.current.value
-        });
+    dispatch(sendComment(filmId, {
+      rating: rattingRef.current.value,
+      comment: commentRef.current.value
+    }));
   };
 
   const handleCommentChange = (evt) => {
@@ -54,16 +54,7 @@ const AddReviewForm = (props) => {
 };
 
 AddReviewForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
   filmId: PropTypes.string.isRequired
 };
 
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(filmId, commentPost) {
-    dispatch(sendComment(filmId, commentPost));
-  }
-});
-
 export {AddReviewForm};
-export default connect(null, mapDispatchToProps)(AddReviewForm);

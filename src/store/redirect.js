@@ -3,7 +3,6 @@ import browserHistory from "../browser-history";
 
 
 export const redirect = (_store) => (next) => (action) => {
-  debugger;
   if (action.type === ActionType.REDIRECT_TO_ROUTE) {
     browserHistory.push(action.payload);
   }

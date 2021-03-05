@@ -1,11 +1,9 @@
 import React, {Fragment} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {FilmValidation} from "../validation/validation";
-import {connect} from "react-redux";
-import PropTypes from "prop-types";
+import { useSelector} from "react-redux";
 
-const Player = (props) => {
-  const {allFilms} = props;
+const Player = () => {
+  const {allFilms} = useSelector((state) => state.MAIN);
 
   const history = useHistory();
 
@@ -46,13 +44,4 @@ const Player = (props) => {
   );
 };
 
-Player.propTypes = {
-  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
-};
-
-const mapStateToProps = (state) => ({
-  allFilms: state.allFilms,
-});
-
 export {Player};
-export default connect(mapStateToProps, null)(Player);

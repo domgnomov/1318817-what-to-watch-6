@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import Card from "../card/card";
-import {connect} from "react-redux";
-import {FilmValidation} from "../validation/validation";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-const FilmList = (props) => {
+
+const FilmList = () => {
   const setActiveId = useState(1)[1];
-  const {filteredFilms} = props;
+  const {filteredFilms} = useSelector((state) => state.MAIN);
 
   return (
     <>
@@ -17,13 +16,4 @@ const FilmList = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  filteredFilms: state.filteredFilms
-});
-
-FilmList.propTypes = {
-  filteredFilms: PropTypes.arrayOf(FilmValidation).isRequired
-};
-
 export {FilmList};
-export default connect(mapStateToProps, null)(FilmList);

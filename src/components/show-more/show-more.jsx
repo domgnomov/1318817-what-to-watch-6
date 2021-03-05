@@ -1,7 +1,6 @@
 import React from 'react';
-import {connect} from "react-redux";
-import PropTypes from "prop-types";
-import {FilmValidation} from "../validation/validation";
+import {useDispatch, useSelector} from "react-redux";
+
 import {changeShowCount, getFilms} from "../../store/action";
 import {SHOW_MORE_DEFAULT_COUNT} from "../../const";
 
@@ -9,43 +8,21 @@ const isShowMoreAvailable = (filteredFilms, allFilmsByActiveGenre) => {
   return filteredFilms.length < allFilmsByActiveGenre.length;
 };
 
-const ShowMore = (props) => {
-  const {filteredFilms, activeGenre, allFilms, allFilmsByActiveGenre, showCount, onShowMore} = props;
+const ShowMore = () => {
+  const dispatch = useDispatch();
+  const {filteredFilms, activeGenre, allFilms, allFilmsByActiveGenre, showCount} = useSelector((state) => state.MAIN);
   return (
     <>
       {
         isShowMoreAvailable(filteredFilms, allFilmsByActiveGenre) && <button className="catalog__button" type="button" onClick={() => {
-          onShowMore(activeGenre, allFilms, showCount);
+          const newShowCount = showCount + SHOW_MORE_DEFAULT_COUNT;
+          dispatch(changeShowCount(newShowCount));
+          dispatch(getFilms(activeGenre, allFilms, newShowCount));
         }}>Show more</button>
       }
     </>
   );
 };
 
-const mapStateToProps = (state) => ({
-  filteredFilms: state.filteredFilms,
-  allFilms: state.allFilms,
-  allFilmsByActiveGenre: state.allFilmsByActiveGenre,
-  activeGenre: state.activeGenre,
-  showCount: state.showCount
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onShowMore(activeGenre, allFilms, showCount) {
-    showCount += SHOW_MORE_DEFAULT_COUNT;
-    dispatch(changeShowCount(showCount));
-    dispatch(getFilms(activeGenre, allFilms, showCount));
-  },
-});
-
-ShowMore.propTypes = {
-  allFilms: PropTypes.arrayOf(FilmValidation),
-  allFilmsByActiveGenre: PropTypes.arrayOf(FilmValidation),
-  filteredFilms: PropTypes.arrayOf(FilmValidation),
-  activeGenre: PropTypes.string.isRequired,
-  showCount: PropTypes.number.isRequired,
-  onShowMore: PropTypes.func.isRequired
-};
-
 export {ShowMore};
-export default connect(mapStateToProps, mapDispatchToProps)(ShowMore);
+

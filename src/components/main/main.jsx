@@ -1,17 +1,16 @@
 import React from 'react';
-import FilmList from "../film-list/film-list";
-import {AuthInfoValidation, FilmValidation} from "../validation/validation";
-import GenreList from "../genre-list/genre-list";
-import ShowMore from "../show-more/show-more";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import {FilmList} from "../film-list/film-list";
+import {GenreList} from "../genre-list/genre-list";
+import {ShowMore} from "../show-more/show-more";
+import {useSelector} from "react-redux";
 import {AuthorizationStatus} from "../../const";
 import NoAuthUserBlock from "../sign-in/no-auth-user-block";
 import {useHistory} from "react-router-dom";
 
 
-const Main = (props) => {
-  const {allFilms, authorizationStatus, authInfo} = props;
+const Main = () => {
+  const {allFilms} = useSelector((state) => state.MAIN);
+  const {authorizationStatus, authInfo} = useSelector((state) => state.AUTH);
   const film = allFilms[0];
   const history = useHistory();
 
@@ -88,17 +87,4 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  allFilms: PropTypes.arrayOf(FilmValidation).isRequired,
-  authInfo: AuthInfoValidation
-};
-
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus,
-  allFilms: state.allFilms,
-  authInfo: state.authInfo
-});
-
 export {Main};
-export default connect(mapStateToProps, null)(Main);
