@@ -4,7 +4,7 @@ export const ActionType = {
   CHANGE_GENRE: `changeGenre`,
   CHANGE_FILTERED_FILMS: `changedFilteredFilms`,
   CHANGE_SHOW_COUNT: `changeShowCount`,
-  CHANGE_ALL_FILMS_BY_ACTIVE_GENRE: `changeAllFilmsByActiveGenre`,
+  CHANGE_ALL_FILMS_BY_ACTIVE_GENRE_COUNT: `changeAllFilmsByActiveGenreCount`,
   LOAD_FILMS: `loadFilms`,
   LOAD_FILM: `loadFilm`,
   REQUIRED_AUTHORIZATION: `requiredAuthorization`,
@@ -47,7 +47,7 @@ export const changeShowCount = createAction(ActionType.CHANGE_SHOW_COUNT, (showC
   return {payload: showCount};
 });
 
-export const changeAllFilmsByActiveGenre = createAction(ActionType.CHANGE_ALL_FILMS_BY_ACTIVE_GENRE, (films) => {
+export const changeAllFilmsByActiveGenreCount = createAction(ActionType.CHANGE_ALL_FILMS_BY_ACTIVE_GENRE_COUNT, (films) => {
   return {payload: films};
 });
 

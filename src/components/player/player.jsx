@@ -1,6 +1,6 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import { useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 const Player = () => {
   const {allFilms} = useSelector((state) => state.MAIN);
@@ -11,7 +11,7 @@ const Player = () => {
   const film = allFilms.find((obj) => obj.id.toString() === id);
 
   return (
-    <Fragment>
+    <>
       <div className="player">
         <video src="#" className="player__video" poster={film.previewImage} />
         <button type="button" className="player__exit" onClick={() => history.push(`/`)}>Exit</button>
@@ -40,7 +40,7 @@ const Player = () => {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

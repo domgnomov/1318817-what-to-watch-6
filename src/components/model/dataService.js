@@ -1,6 +1,6 @@
 import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../../const";
 import {
-  changeAllFilmsByActiveGenre,
+  changeAllFilmsByActiveGenreCount,
   changedFilteredFilms, changeGenre, changeShowCount,
   loadFilms,
   setDataLoadStatus
@@ -14,15 +14,11 @@ export const initFilms = (dispatch, data) => {
   updateFilms(dispatch, films, DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT);
 };
 
-export const updateFilms = (dispatch, films, genre, count) => {
-  updateAllFilmsByActiveGenre(dispatch, films, genre);
-  updateFilteredFilms(dispatch, films, genre, count);
-};
-
-const updateAllFilmsByActiveGenre = (dispatch, allFilms, genre) => {
+export const updateFilms = (dispatch, films, genre, showCount) => {
   dispatch(changeGenre(genre));
-  const filteredByGenreFilms = getFilmsByGenre(genre, allFilms);
-  dispatch(changeAllFilmsByActiveGenre(filteredByGenreFilms));
+  const filteredByGenreFilms = getFilmsByGenre(genre, films);
+  dispatch(changeAllFilmsByActiveGenreCount(filteredByGenreFilms.length));
+  updateFilteredFilms(dispatch, films, genre, showCount);
 };
 
 export const updateFilteredFilms = (dispatch, allFilms, genre, showCount) => {
