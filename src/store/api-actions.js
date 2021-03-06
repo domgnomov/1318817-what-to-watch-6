@@ -9,7 +9,7 @@ import {
 import {APIRoute, AppRoute, AuthorizationStatus} from "../const";
 import FilmData from "../components/model/film";
 import AuthInfoData from "../components/model/authInfo";
-import {initFilms} from "../components/model/filter";
+import {initFilms} from "../components/model/dataService";
 
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)

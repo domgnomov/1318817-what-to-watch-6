@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {SHOW_MORE_DEFAULT_COUNT} from "../../const";
-import {updateFilteredFilms} from "../model/filter";
+import {updateFilteredFilms} from "../model/dataService";
 
 const isShowMoreAvailable = (filteredFilms, allFilmsByActiveGenre) => {
   return filteredFilms.length < allFilmsByActiveGenre.length;
