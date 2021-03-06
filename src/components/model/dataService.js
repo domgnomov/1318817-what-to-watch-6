@@ -16,15 +16,13 @@ export const initFilms = (dispatch, data) => {
 
 export const updateFilms = (dispatch, films, genre, showCount) => {
   dispatch(changeGenre(genre));
-  const filteredByGenreFilms = getFilmsByGenre(genre, films);
-  dispatch(changeAllFilmsByActiveGenreCount(filteredByGenreFilms.length));
+  dispatch(changeAllFilmsByActiveGenreCount(getFilmsByGenre(genre, films).length));
   updateFilteredFilms(dispatch, films, genre, showCount);
 };
 
 export const updateFilteredFilms = (dispatch, allFilms, genre, showCount) => {
   dispatch(changeShowCount(showCount));
-  const filteredFilms = getFilmsByGenre(genre, allFilms);
-  dispatch(changedFilteredFilms(filteredFilms.slice(0, showCount)));
+  dispatch(changedFilteredFilms(getFilmsByGenre(genre, allFilms).slice(0, showCount)));
 };
 
 export const getFilmsByGenreAndLimit = (genre, allFilms, limit) => {

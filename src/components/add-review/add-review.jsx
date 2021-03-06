@@ -4,7 +4,7 @@ import {useHistory, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 const AddReview = () => {
-  const {allFilms} = useSelector((state) => state.MAIN);
+  const {allFilms} = useSelector((state) => state.FILM);
   const history = useHistory();
   const {id} = useParams();
   const film = allFilms.find((obj) => obj.id.toString() === id);

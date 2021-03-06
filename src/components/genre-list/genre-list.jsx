@@ -3,7 +3,7 @@ import {Genre} from "../genre/genre";
 import {useSelector} from "react-redux";
 
 const GenreList = () => {
-  const {allFilms} = useSelector((state) => state.MAIN);
+  const {allFilms} = useSelector((state) => state.FILM);
 
   const genres = new Set();
   genres.add(`All genres`);

@@ -9,7 +9,7 @@ import {AuthorizationStatus, DEFAULT_FILM} from "../../const";
 
 const Film = () => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
-  const {currentFilm} = useSelector((state) => state.MAIN);
+  const {currentFilm} = useSelector((state) => state.FILM);
   const dispatch = useDispatch();
 
   const history = useHistory();

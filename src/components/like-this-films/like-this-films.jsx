@@ -6,7 +6,7 @@ import {getFilmsByGenreAndLimit} from "../model/dataService";
 
 const LikeThisFilms = () => {
   const setActiveId = useState(1)[1];
-  const {allFilms, genre} = useSelector((state) => state.MAIN);
+  const {allFilms, genre} = useSelector((state) => state.FILM);
   const likeThisFilms = getFilmsByGenreAndLimit(genre, allFilms, LIKE_THIS_LIMIT);
   return (
     <>

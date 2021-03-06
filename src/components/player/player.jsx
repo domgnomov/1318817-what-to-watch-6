@@ -3,7 +3,7 @@ import {useHistory, useParams} from 'react-router-dom';
 import {useSelector} from "react-redux";
 
 const Player = () => {
-  const {allFilms} = useSelector((state) => state.MAIN);
+  const {allFilms} = useSelector((state) => state.FILM);
 
   const history = useHistory();
 

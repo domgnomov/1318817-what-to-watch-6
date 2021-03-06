@@ -9,7 +9,7 @@ import {useHistory} from "react-router-dom";
 
 
 const Main = () => {
-  const {allFilms} = useSelector((state) => state.MAIN);
+  const {allFilms} = useSelector((state) => state.FILM);
   const {authorizationStatus, authInfo} = useSelector((state) => state.AUTH);
   const film = allFilms[0];
   const history = useHistory();

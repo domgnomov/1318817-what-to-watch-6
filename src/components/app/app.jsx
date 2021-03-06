@@ -16,7 +16,7 @@ import browserHistory from "../../browser-history";
 
 const App = () => {
   const dispatch = useDispatch();
-  const {isDataLoaded} = useSelector((state) => state.MAIN);
+  const {isDataLoaded} = useSelector((state) => state.FILM);
 
   useEffect(() => {
     if (!isDataLoaded) {

@@ -18,7 +18,7 @@ const initialState = {
   isDataLoaded: false,
 };
 
-const mainReducer = createReducer(initialState, (builder) => {
+const filmReducer = createReducer(initialState, (builder) => {
   builder.addCase(changeGenre, (state, action) => {
     state.activeGenre = action.payload;
   });
@@ -49,4 +49,4 @@ const mainReducer = createReducer(initialState, (builder) => {
 
 });
 
-export {mainReducer};
+export {filmReducer};

@@ -7,7 +7,7 @@ import {updateFilms} from "../model/dataService";
 const Genre = (props) => {
   const dispatch = useDispatch();
   const {genre} = props;
-  const {allFilms, activeGenre} = useSelector((state) => state.MAIN);
+  const {allFilms, activeGenre} = useSelector((state) => state.FILM);
 
   return (
     <>

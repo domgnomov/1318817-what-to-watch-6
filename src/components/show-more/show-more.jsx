@@ -9,7 +9,7 @@ const isShowMoreAvailable = (filteredFilms, allFilmsByActiveGenreCount) => {
 
 const ShowMore = () => {
   const dispatch = useDispatch();
-  const {filteredFilms, activeGenre, allFilms, allFilmsByActiveGenreCount, showCount} = useSelector((state) => state.MAIN);
+  const {filteredFilms, activeGenre, allFilms, allFilmsByActiveGenreCount, showCount} = useSelector((state) => state.FILM);
   return (
     <>
       {

@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 const FilmList = () => {
   const setActiveId = useState(1)[1];
-  const {filteredFilms} = useSelector((state) => state.MAIN);
+  const {filteredFilms} = useSelector((state) => state.FILM);
 
   return (
     <>

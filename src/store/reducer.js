@@ -1,14 +1,14 @@
 import {combineReducers} from 'redux';
-import {mainReducer} from "./main-reducer";
+import {filmReducer} from "./film-reducer";
 import {authReducer} from "./auth-reducer";
 
 
 export const NameSpace = {
-  MAIN: `MAIN`,
+  FILM: `FILM`,
   AUTH: `AUTH`,
 };
 
 export default combineReducers({
-  [NameSpace.MAIN]: mainReducer,
+  [NameSpace.FILM]: filmReducer,
   [NameSpace.AUTH]: authReducer,
 });

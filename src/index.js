@@ -8,7 +8,7 @@ import {AuthorizationStatus} from "./const";
 import {redirect} from "./store/redirect";
 import {checkAuth} from "./store/api-actions";
 import {configureStore} from "@reduxjs/toolkit";
-import rootReducer from './store/r-reducer';
+import rootReducer from './store/reducer';
 
 const api = createAPI(
     () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
