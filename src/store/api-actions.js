@@ -1,25 +1,20 @@
 import {
   loadFilm,
-  loadFilms, redirectToFilm,
+  redirectToFilm,
   redirectToNotFound,
   redirectToRoute,
-  requireAuthorization, resetFilter,
-  setAuthInfo, setDataLoadStatus
+  requireAuthorization,
+  setAuthInfo
 } from "./action";
-import {APIRoute, AppRoute, AuthorizationStatus, DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../const";
+import {APIRoute, AppRoute, AuthorizationStatus} from "../const";
 import FilmData from "../components/model/film";
 import AuthInfoData from "../components/model/authInfo";
-import {updateAllFilmsByActiveGenre} from "../components/model/filter";
+import {initFilms} from "../components/model/filter";
 
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
     .then(({data}) => {
-      const films = FilmData.parseFilms(data);
-      dispatch(loadFilms(films));
-      updateAllFilmsByActiveGenre(dispatch, films, DEFAULT_GENRE);
-      const defaultFilterFilms = Array.from(films).slice(0, SHOW_MORE_DEFAULT_COUNT);
-      dispatch(resetFilter(defaultFilterFilms));
-      dispatch(setDataLoadStatus(true));
+      initFilms(dispatch, data);
     })
 );
 
@@ -36,8 +31,7 @@ export const fetchFilm = (id) => (dispatch, _getState, api) => (
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then((data) => {
-      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-      dispatch(setAuthInfo(AuthInfoData.parseAuthInfo(data.data)));
+      authorize(dispatch, data);
     })
     .catch(() => {})
 );
@@ -45,8 +39,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
     .then((data) => {
-      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-      dispatch(setAuthInfo(AuthInfoData.parseAuthInfo(data.data)));
+      authorize(dispatch, data);
     })
     .then(() => {
       dispatch(redirectToRoute(AppRoute.ROOT));
@@ -59,3 +52,8 @@ export const sendComment = (id, commentPost) => (dispatch, _getState, api) => (
       dispatch(redirectToFilm(AppRoute.FILMS + `/` + id));
     })
 );
+
+const authorize = (dispatch, data) => {
+  dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+  dispatch(setAuthInfo(AuthInfoData.parseAuthInfo(data.data)));
+};

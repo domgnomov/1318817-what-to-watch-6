@@ -12,7 +12,6 @@ export const ActionType = {
   REDIRECT_TO_FILM: `redirectToFilm`,
   REDIRECT_TO_NOT_FOUND: `redirectToNotFound`,
   SET_AUTH_INFO: `setAuthInfo`,
-  RESET_FILTER: `resetFilter`,
   SET_DATA_LOAD_STATUS: `setDataLoadStatus`,
 };
 
@@ -27,10 +26,6 @@ export const changedDisplayedFilms = createAction(ActionType.CHANGE_DISPLAYED_FI
 });
 
 export const loadFilms = createAction(ActionType.LOAD_FILMS, (films) => {
-  return {payload: films};
-});
-
-export const resetFilter = createAction(ActionType.RESET_FILTER, (films) => {
   return {payload: films};
 });
 

@@ -43,10 +43,6 @@ const mainReducer = createReducer(initialState, (builder) => {
     state.isDataLoaded = action.payload;
   });
 
-  builder.addCase(resetFilter, (state, action) => {
-    state.filteredFilms = action.payload;
-  });
-
   builder.addCase(loadFilm, (state, action) => {
     state.currentFilm = action.payload;
   });
