@@ -1,4 +1,5 @@
 import {
+  changeAllFilmsByActiveGenre,
   loadFilm,
   loadFilms, redirectToFilm,
   redirectToNotFound,
@@ -15,6 +16,7 @@ export const fetchFilmList = () => (dispatch, _getState, api) => (
     .then(({data}) => {
       const films = FilmData.parseFilms(data);
       dispatch(loadFilms(films));
+      dispatch(changeAllFilmsByActiveGenre(films));
       const defaultFilterFilms = Array.from(films).slice(0, SHOW_MORE_DEFAULT_COUNT);
       dispatch(resetFilter(defaultFilterFilms));
       dispatch(setDataLoadStatus(true));

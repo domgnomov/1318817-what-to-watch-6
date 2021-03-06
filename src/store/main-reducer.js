@@ -37,7 +37,6 @@ const mainReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(loadFilms, (state, action) => {
     state.allFilms = action.payload;
-    state.allFilmsByActiveGenre = action.payload;
   });
 
   builder.addCase(setDataLoadStatus, (state, action) => {
