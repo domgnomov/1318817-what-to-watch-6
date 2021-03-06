@@ -1,8 +1,9 @@
 import React from 'react';
-import {changeAllFilmsByActiveGenre, changeGenre, changeShowCount, getFilms} from "../../store/action";
+import {changeGenre, changeShowCount} from "../../store/action";
 import {useDispatch, useSelector} from "react-redux";
 import PropTypes from "prop-types";
 import {SHOW_MORE_DEFAULT_COUNT} from "../../const";
+import {updateAllFilmsByActiveGenre, updateDisplayedFilms} from "../model/filter";
 
 const Genre = (props) => {
   const dispatch = useDispatch();
@@ -15,8 +16,8 @@ const Genre = (props) => {
         <a href="#" className="catalog__genres-link" onClick={(e) => {
           dispatch(changeShowCount(SHOW_MORE_DEFAULT_COUNT));
           dispatch(changeGenre(genre));
-          dispatch(changeAllFilmsByActiveGenre(genre, allFilms));
-          dispatch(getFilms(genre, allFilms, SHOW_MORE_DEFAULT_COUNT));
+          updateAllFilmsByActiveGenre(dispatch, allFilms, genre);
+          updateDisplayedFilms(dispatch, allFilms, genre, SHOW_MORE_DEFAULT_COUNT);
           e.preventDefault();
         }}>{genre}</a>
       </li>

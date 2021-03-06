@@ -2,7 +2,7 @@ import {
   changeAllFilmsByActiveGenre,
   changeGenre,
   changeShowCount,
-  getFilms, loadFilm,
+  changedDisplayedFilms, loadFilm,
   loadFilms, resetFilter, setDataLoadStatus,
 } from "./action";
 import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM} from "../const";
@@ -23,7 +23,7 @@ const mainReducer = createReducer(initialState, (builder) => {
     state.activeGenre = action.payload;
   });
 
-  builder.addCase(getFilms, (state, action) => {
+  builder.addCase(changedDisplayedFilms, (state, action) => {
     state.filteredFilms = action.payload;
   });
 

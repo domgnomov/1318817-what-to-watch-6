@@ -1,5 +1,4 @@
 import {
-  changeAllFilmsByActiveGenre,
   loadFilm,
   loadFilms, redirectToFilm,
   redirectToNotFound,
@@ -7,16 +6,17 @@ import {
   requireAuthorization, resetFilter,
   setAuthInfo, setDataLoadStatus
 } from "./action";
-import {APIRoute, AppRoute, AuthorizationStatus, SHOW_MORE_DEFAULT_COUNT} from "../const";
+import {APIRoute, AppRoute, AuthorizationStatus, DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../const";
 import FilmData from "../components/model/film";
 import AuthInfoData from "../components/model/authInfo";
+import {updateAllFilmsByActiveGenre} from "../components/model/filter";
 
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
     .then(({data}) => {
       const films = FilmData.parseFilms(data);
       dispatch(loadFilms(films));
-      dispatch(changeAllFilmsByActiveGenre(films));
+      updateAllFilmsByActiveGenre(dispatch, films, DEFAULT_GENRE);
       const defaultFilterFilms = Array.from(films).slice(0, SHOW_MORE_DEFAULT_COUNT);
       dispatch(resetFilter(defaultFilterFilms));
       dispatch(setDataLoadStatus(true));

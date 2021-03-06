@@ -1,9 +1,8 @@
-import {DEFAULT_GENRE} from "../const";
 import {createAction} from "@reduxjs/toolkit";
 
 export const ActionType = {
   CHANGE_GENRE: `changeGenre`,
-  GET_FILMS: `getFilms`,
+  CHANGE_DISPLAYED_FILMS: `changedDisplayedFilms`,
   CHANGE_SHOW_COUNT: `changeShowCount`,
   CHANGE_ALL_FILMS_BY_ACTIVE_GENRE: `changeAllFilmsByActiveGenre`,
   LOAD_FILMS: `loadFilms`,
@@ -21,11 +20,9 @@ export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
   return {payload: genre};
 });
 
-export const getFilms = createAction(ActionType.GET_FILMS, (genre, allFilms, showCount) => {
-  const filteredFilms = genre === DEFAULT_GENRE ? allFilms : Array.from(allFilms).filter((film) => film.genre === genre);
-  const showedFilms = filteredFilms.slice(0, showCount);
+export const changedDisplayedFilms = createAction(ActionType.CHANGE_DISPLAYED_FILMS, (films) => {
   return {
-    payload: showedFilms
+    payload: films
   };
 });
 
@@ -57,9 +54,8 @@ export const changeShowCount = createAction(ActionType.CHANGE_SHOW_COUNT, (showC
   return {payload: showCount};
 });
 
-export const changeAllFilmsByActiveGenre = createAction(ActionType.CHANGE_ALL_FILMS_BY_ACTIVE_GENRE, (genre, allFilms) => {
-  const allFilmsByActiveGenre = genre === DEFAULT_GENRE ? allFilms : Array.from(allFilms).filter((film) => film.genre === genre);
-  return {payload: allFilmsByActiveGenre};
+export const changeAllFilmsByActiveGenre = createAction(ActionType.CHANGE_ALL_FILMS_BY_ACTIVE_GENRE, (films) => {
+  return {payload: films};
 });
 
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => {
