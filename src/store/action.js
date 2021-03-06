@@ -2,7 +2,7 @@ import {createAction} from "@reduxjs/toolkit";
 
 export const ActionType = {
   CHANGE_GENRE: `changeGenre`,
-  CHANGE_DISPLAYED_FILMS: `changedDisplayedFilms`,
+  CHANGE_FILTERED_FILMS: `changedFilteredFilms`,
   CHANGE_SHOW_COUNT: `changeShowCount`,
   CHANGE_ALL_FILMS_BY_ACTIVE_GENRE: `changeAllFilmsByActiveGenre`,
   LOAD_FILMS: `loadFilms`,
@@ -19,10 +19,8 @@ export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
   return {payload: genre};
 });
 
-export const changedDisplayedFilms = createAction(ActionType.CHANGE_DISPLAYED_FILMS, (films) => {
-  return {
-    payload: films
-  };
+export const changedFilteredFilms = createAction(ActionType.CHANGE_FILTERED_FILMS, (films) => {
+  return {payload: films};
 });
 
 export const loadFilms = createAction(ActionType.LOAD_FILMS, (films) => {
