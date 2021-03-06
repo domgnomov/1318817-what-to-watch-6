@@ -3,10 +3,10 @@ import {
   changeGenre,
   changeShowCount,
   getFilms, loadFilm,
-  loadFilms,
+  loadFilms, resetFilter, setDataLoadStatus,
 } from "./action";
 import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM} from "../const";
-import {createReducer} from "@reduxjs/toolkit/";
+import {createReducer} from "@reduxjs/toolkit";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
@@ -38,8 +38,14 @@ const mainReducer = createReducer(initialState, (builder) => {
   builder.addCase(loadFilms, (state, action) => {
     state.allFilms = action.payload;
     state.allFilmsByActiveGenre = action.payload;
-    state.filteredFilms = Array.from(action.payload).slice(0, SHOW_MORE_DEFAULT_COUNT);
-    state.isDataLoaded = true;
+  });
+
+  builder.addCase(setDataLoadStatus, (state, action) => {
+    state.isDataLoaded = action.payload;
+  });
+
+  builder.addCase(resetFilter, (state, action) => {
+    state.filteredFilms = action.payload;
   });
 
   builder.addCase(loadFilm, (state, action) => {

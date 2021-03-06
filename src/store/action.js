@@ -1,5 +1,5 @@
 import {DEFAULT_GENRE} from "../const";
-import {createAction} from "@reduxjs/toolkit/";
+import {createAction} from "@reduxjs/toolkit";
 
 export const ActionType = {
   CHANGE_GENRE: `changeGenre`,
@@ -12,7 +12,9 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: `redirectToRoute`,
   REDIRECT_TO_FILM: `redirectToFilm`,
   REDIRECT_TO_NOT_FOUND: `redirectToNotFound`,
-  SET_AUTH_INFO: `setAuthInfo`
+  SET_AUTH_INFO: `setAuthInfo`,
+  RESET_FILTER: `resetFilter`,
+  SET_DATA_LOAD_STATUS: `setDataLoadStatus`,
 };
 
 export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
@@ -29,6 +31,14 @@ export const getFilms = createAction(ActionType.GET_FILMS, (genre, allFilms, sho
 
 export const loadFilms = createAction(ActionType.LOAD_FILMS, (films) => {
   return {payload: films};
+});
+
+export const resetFilter = createAction(ActionType.RESET_FILTER, (films) => {
+  return {payload: films};
+});
+
+export const setDataLoadStatus = createAction(ActionType.SET_DATA_LOAD_STATUS, (status) => {
+  return {payload: status};
 });
 
 export const loadFilm = createAction(ActionType.LOAD_FILM, (film) => {

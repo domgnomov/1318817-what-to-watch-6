@@ -3,17 +3,21 @@ import {
   loadFilms, redirectToFilm,
   redirectToNotFound,
   redirectToRoute,
-  requireAuthorization,
-  setAuthInfo
+  requireAuthorization, resetFilter,
+  setAuthInfo, setDataLoadStatus
 } from "./action";
-import {APIRoute, AppRoute, AuthorizationStatus} from "../const";
+import {APIRoute, AppRoute, AuthorizationStatus, SHOW_MORE_DEFAULT_COUNT} from "../const";
 import FilmData from "../components/model/film";
 import AuthInfoData from "../components/model/authInfo";
 
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
     .then(({data}) => {
-      dispatch(loadFilms(FilmData.parseFilms(data)));
+      const films = FilmData.parseFilms(data);
+      dispatch(loadFilms(films));
+      const defaultFilterFilms = Array.from(films).slice(0, SHOW_MORE_DEFAULT_COUNT);
+      dispatch(resetFilter(defaultFilterFilms));
+      dispatch(setDataLoadStatus(true));
     })
 );
 
