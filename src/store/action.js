@@ -13,6 +13,7 @@ export const ActionType = {
   REDIRECT_TO_NOT_FOUND: `redirectToNotFound`,
   SET_AUTH_INFO: `setAuthInfo`,
   SET_DATA_LOAD_STATUS: `setDataLoadStatus`,
+  SET_PLAYING_STATUS: `setPlayingStatus`,
 };
 
 export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
@@ -60,5 +61,9 @@ export const redirectToFilm = createAction(ActionType.REDIRECT_TO_FILM, (url) =>
 });
 
 export const redirectToNotFound = createAction(ActionType.REDIRECT_TO_NOT_FOUND, (url) => {
+  return {payload: url};
+});
+
+export const setPlayingStatus = createAction(ActionType.SET_PLAYING_STATUS, (url) => {
   return {payload: url};
 });

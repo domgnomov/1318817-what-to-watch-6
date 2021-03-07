@@ -1,7 +1,7 @@
 import React from 'react';
 import {FilmValidation} from "../validation/validation";
 
-const VideoPlayer = (props) => {
+const MiniPlayer = (props) => {
   const {film} = props;
 
   return (
@@ -13,6 +13,6 @@ const VideoPlayer = (props) => {
   );
 };
 
-VideoPlayer.propTypes = FilmValidation;
+MiniPlayer.propTypes = FilmValidation;
 
-export default VideoPlayer;
+export default MiniPlayer;

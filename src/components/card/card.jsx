@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {FilmValidation} from "../validation/validation";
-import VideoPlayer from "../video-player/video-player";
+import MiniPlayer from "../player/mini-player";
 import Cover from "../cover/cover";
 
 const Card = (props) => {
@@ -39,7 +39,7 @@ const Card = (props) => {
 
   const getFilmContainer = () => {
     if (isPreviewPlaying) {
-      return <VideoPlayer film={film}/>;
+      return <MiniPlayer film={film}/>;
     } else {
       return <Cover film={film}/>;
     }
