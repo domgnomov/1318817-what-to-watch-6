@@ -1,8 +1,8 @@
 import React from 'react';
-import {FilmValidation} from "../validation/validation";
 import {useSelector} from "react-redux";
 
 const PlayPause = () => {
+  debugger;
   const {playingStatus} = useSelector((state) => state.FILM);
 
   const getButtonPlayPauseButton = () => {
@@ -33,7 +33,5 @@ const PlayPause = () => {
     </>
   );
 };
-
-PlayPause.propTypes = FilmValidation;
 
 export default PlayPause;

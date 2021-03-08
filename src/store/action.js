@@ -14,6 +14,7 @@ export const ActionType = {
   SET_AUTH_INFO: `setAuthInfo`,
   SET_DATA_LOAD_STATUS: `setDataLoadStatus`,
   SET_PLAYING_STATUS: `setPlayingStatus`,
+  SET_PLAYING_TIME: `setPlayingTime`,
 };
 
 export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
@@ -65,5 +66,9 @@ export const redirectToNotFound = createAction(ActionType.REDIRECT_TO_NOT_FOUND,
 });
 
 export const setPlayingStatus = createAction(ActionType.SET_PLAYING_STATUS, (url) => {
+  return {payload: url};
+});
+
+export const setPlayingTime = createAction(ActionType.SET_PLAYING_TIME, (url) => {
   return {payload: url};
 });
