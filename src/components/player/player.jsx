@@ -14,7 +14,7 @@ const Player = () => {
   const videoRef = useRef();
   const history = useHistory();
   const {id} = useParams();
-  debugger;
+  console.log(`Player rerender`);
 
   useEffect(() => {
     dispatch(fetchFilm(id));
