@@ -7,7 +7,9 @@ export const DEFAULT_FILM = {};
 export const APIRoute = {
   LOGIN: `/login`,
   FILMS: `/films`,
-  COMMENT: `/comments`
+  COMMENT: `/comments`,
+  FAVORITE: `/favorite`,
+  PROMO: `/promo`,
 };
 
 export const AppRoute = {

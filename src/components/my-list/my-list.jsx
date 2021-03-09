@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FilmList} from "../film-list/film-list";
 import {useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {fetchFavoriteFilmList} from "../../store/api-actions";
+import {FavoriteFilmList} from "../film-list/favorite-film-list";
 
 const MyList = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteFilmList());
+  }, []);
 
   return (
     <>
@@ -29,7 +37,7 @@ const MyList = () => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <div className="catalog__movies-list">
-            <FilmList/>
+            <FavoriteFilmList/>
           </div>
         </section>
         <footer className="page-footer">

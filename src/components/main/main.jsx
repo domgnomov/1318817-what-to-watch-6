@@ -6,12 +6,13 @@ import {useSelector} from "react-redux";
 import {AuthorizationStatus} from "../../const";
 import NoAuthUserBlock from "../sign-in/no-auth-user-block";
 import {useHistory} from "react-router-dom";
+import MyListButton from "../my-list/my-list-button";
 
 
 const Main = () => {
-  const {allFilms} = useSelector((state) => state.FILM);
+  const {promoFilm} = useSelector((state) => state.FILM);
   const {authorizationStatus, authInfo} = useSelector((state) => state.AUTH);
-  const film = allFilms[0];
+  const film = promoFilm;
   const history = useHistory();
 
   const getUserBlock = () => {
@@ -60,12 +61,7 @@ const Main = () => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button" onClick={() => history.push(`/myList`)}>
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <MyListButton/>
               </div>
             </div>
           </div>
