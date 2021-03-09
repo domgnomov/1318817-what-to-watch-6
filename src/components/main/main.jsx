@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FilmList} from "../film-list/film-list";
 import {GenreList} from "../genre-list/genre-list";
 import {ShowMore} from "../show-more/show-more";
-import {useSelector} from "react-redux";
-import {AuthorizationStatus} from "../../const";
+import {useDispatch, useSelector} from "react-redux";
+import {AuthorizationStatus, DEFAULT_FILM} from "../../const";
 import NoAuthUserBlock from "../sign-in/no-auth-user-block";
 import {useHistory} from "react-router-dom";
 import MyListButton from "../my-list/my-list-button";
+import {loadFilm} from "../../store/action";
 
 
 const Main = () => {
@@ -14,6 +15,11 @@ const Main = () => {
   const {authorizationStatus, authInfo} = useSelector((state) => state.AUTH);
   const film = promoFilm;
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadFilm(DEFAULT_FILM));
+  }, []);
 
   const getUserBlock = () => {
     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {

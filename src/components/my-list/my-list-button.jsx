@@ -6,14 +6,14 @@ import {DEFAULT_FILM} from "../../const";
 const MyListButton = () => {
   const dispatch = useDispatch();
   const {currentFilm, promoFilm} = useSelector((state) => state.FILM);
+  const film = currentFilm === DEFAULT_FILM ? promoFilm : currentFilm;
 
   const handleListButtonClick = () => {
-    const film = currentFilm === DEFAULT_FILM ? promoFilm : currentFilm;
     dispatch(changeFavoriteStatus(film.id, !film.isFavorite ? `1` : `0`));
   };
 
   const getButtonContent = () => {
-    if (currentFilm.isFavorite) {
+    if (film.isFavorite) {
       return (
         <>
           <svg viewBox="0 0 18 14" width={18} height={14}>

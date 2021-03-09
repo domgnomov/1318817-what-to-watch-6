@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {FilmList} from "../film-list/film-list";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {fetchFavoriteFilmList} from "../../store/api-actions";
