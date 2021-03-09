@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchFilm} from "../../store/api-actions";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {AuthorizationStatus, DEFAULT_FILM} from "../../const";
+import MyListButton from "../my-list/my-list-button";
 
 const Film = () => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
@@ -34,6 +35,16 @@ const Film = () => {
             e.preventDefault();
           }}>Add review</a>
         </>
+      );
+    } else {
+      return ``;
+    }
+  };
+
+  const getMyListButton = () => {
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return (
+        <MyListButton/>
       );
     } else {
       return ``;
@@ -83,15 +94,7 @@ const Film = () => {
                     </svg>
                     <span>Play</span>
                   </button>
-                  <button className="btn btn--list movie-card__button " type="button" onClick={(e) => {
-                    history.push(`/myList`);
-                    e.preventDefault();
-                  }}>
-                    <svg viewBox="0 0 19 20" width={19} height={20}>
-                      <use xlinkHref="#add" />
-                    </svg>
-                    <span>My list</span>
-                  </button>
+                  {getMyListButton()}
                   {getAddReviewButton()}
                 </div>
               </div>
