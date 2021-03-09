@@ -2,9 +2,10 @@ import React, {useRef, useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import PlayPause from "./play-pause";
-import {setPlayingStatus, setPlayingTime} from "../../store/action";
+import {setPlayingProgress, setPlayingStatus, setPlayingTime} from "../../store/action";
 import TimeLapse from "./time-lapse";
 import {fetchFilm} from "../../store/api-actions";
+import PlayerToggler from "./player-toggler";
 
 
 const Player = () => {
@@ -51,7 +52,9 @@ const Player = () => {
     const time = Math.floor((videoRef.current.duration - videoRef.current.currentTime) % 60);
     if (lastTime !== time) {
       lastTime = time;
-      dispatch(setPlayingTime(format(time)));
+      dispatch(setPlayingTime(format(videoRef.current.duration - videoRef.current.currentTime)));
+      const progress = Math.round((videoRef.current.currentTime / videoRef.current.duration * 100) * 100) / 100;
+      dispatch(setPlayingProgress(progress));
     }
   };
 
@@ -75,10 +78,7 @@ const Player = () => {
         }}>Exit</button>
         <div className="player__controls">
           <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value={30} max={100} />
-              <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
-            </div>
+            <PlayerToggler/>
             <TimeLapse/>
           </div>
           <div className="player__controls-row">

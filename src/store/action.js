@@ -17,6 +17,7 @@ export const ActionType = {
   SET_DATA_LOAD_STATUS: `setDataLoadStatus`,
   SET_PLAYING_STATUS: `setPlayingStatus`,
   SET_PLAYING_TIME: `setPlayingTime`,
+  SET_PLAYING_PROGRESS: `setPlayingProgress`,
 };
 
 export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
@@ -80,5 +81,9 @@ export const setPlayingStatus = createAction(ActionType.SET_PLAYING_STATUS, (url
 });
 
 export const setPlayingTime = createAction(ActionType.SET_PLAYING_TIME, (url) => {
+  return {payload: url};
+});
+
+export const setPlayingProgress = createAction(ActionType.SET_PLAYING_PROGRESS, (url) => {
   return {payload: url};
 });
