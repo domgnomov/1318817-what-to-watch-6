@@ -8,6 +8,8 @@ import NoAuthUserBlock from "../sign-in/no-auth-user-block";
 import {useHistory} from "react-router-dom";
 import MyListButton from "../my-list/my-list-button";
 import {loadFilm} from "../../store/action";
+import Logo from "../logo/logo";
+import UserBlock from "../user-block";
 
 
 const Main = () => {
@@ -21,21 +23,13 @@ const Main = () => {
     dispatch(loadFilm(DEFAULT_FILM));
   }, []);
 
-  const getUserBlock = () => {
-    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      return <NoAuthUserBlock history={history}/>;
-    } else {
-      return authInfo.email;
-    }
-  };
-
   const getMyLisBlock = () => {
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       return <MyListButton/>;
     } else {
       return ``;
     }
-  }
+  };
 
   return (
     <>
@@ -46,15 +40,9 @@ const Main = () => {
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header movie-card__head">
           <link rel="shortcut icon" href="#"/>
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo/>
           <div className="user-block">
-            {getUserBlock()}
+            <UserBlock isMain={true}/>
           </div>
         </header>
         <div className="movie-card__wrap">
