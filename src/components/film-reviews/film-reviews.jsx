@@ -8,11 +8,11 @@ const FilmReviews = () => {
   const {reviews} = useSelector((state) => state.FILM);
   let firstColumnReviews = [];
   let secondColumnReviews = [];
-  debugger;
+
   if (reviews && reviews.length > 0) {
     const half = Math.ceil(reviews.length / 2);
     firstColumnReviews = Array.from(reviews).splice(0, half);
-    secondColumnReviews = Array.from(reviews).splice(-half);
+    secondColumnReviews = Array.from(reviews).splice(half, reviews.length);
   }
 
   return (

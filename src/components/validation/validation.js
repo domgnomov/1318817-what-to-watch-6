@@ -25,3 +25,16 @@ export const AuthInfoValidation = PropTypes.shape({
   email: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired
 }).isRequired;
+
+export const ReviewValidation = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  userName: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  comment: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  textDate: PropTypes.string.isRequired
+}).isRequired;
+
+export const ReviewsValidation = {
+  reviews: PropTypes.arrayOf(ReviewValidation).isRequired,
+};

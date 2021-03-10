@@ -1,14 +1,20 @@
+import {formatDate, formatTextDate} from "../../utils/data";
+
 export default class ReviewData {
   constructor(data) {
     this.id = data[`id`];
-    this.userId = data[`user`].id;
     this.userName = data[`user`].name;
     this.rating = data[`rating`];
     this.comment = data[`comment`];
-    this.date = data[`date`];
+    this.date = formatDate(data[`date`]);
+    this.textDate = formatTextDate(data[`date`]);
   }
 
   static parseReview(data) {
     return new ReviewData(data);
+  }
+
+  static parseReviews(data) {
+    return data.map(ReviewData.parseReview);
   }
 }

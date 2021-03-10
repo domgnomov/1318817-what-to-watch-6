@@ -10,6 +10,7 @@ import {APIRoute, AppRoute, AuthorizationStatus} from "../const";
 import FilmData from "../components/model/film";
 import AuthInfoData from "../components/model/authInfo";
 import {initFilms, updateFavoriteFilms} from "../components/model/dataService";
+import ReviewData from "../components/model/review";
 
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
@@ -45,11 +46,9 @@ export const fetchFilm = (id) => (dispatch, _getState, api) => (
 export const fetchReviews = (id) => (dispatch, _getState, api) => (
   api.get(APIRoute.COMMENT + `/` + id)
     .then(({data}) => {
-      debugger;
-      dispatch(setReviews(data));
+      dispatch(setReviews(ReviewData.parseReviews(data)));
     })
 );
-
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
