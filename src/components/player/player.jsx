@@ -15,7 +15,6 @@ const Player = () => {
   const videoRef = useRef();
   const history = useHistory();
   const {id} = useParams();
-  console.log(`Player rerender`);
 
   const film = currentFilm;
   let lastTime = 0;

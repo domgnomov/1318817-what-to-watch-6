@@ -4,7 +4,6 @@ import {GenreList} from "../genre-list/genre-list";
 import {ShowMore} from "../show-more/show-more";
 import {useDispatch, useSelector} from "react-redux";
 import {AuthorizationStatus, DEFAULT_FILM} from "../../const";
-import NoAuthUserBlock from "../sign-in/no-auth-user-block";
 import {useHistory} from "react-router-dom";
 import MyListButton from "../my-list/my-list-button";
 import {loadFilm} from "../../store/action";
@@ -14,7 +13,7 @@ import UserBlock from "../user-block";
 
 const Main = () => {
   const {promoFilm} = useSelector((state) => state.FILM);
-  const {authorizationStatus, authInfo} = useSelector((state) => state.AUTH);
+  const {authorizationStatus} = useSelector((state) => state.AUTH);
   const film = promoFilm;
   const history = useHistory();
   const dispatch = useDispatch();

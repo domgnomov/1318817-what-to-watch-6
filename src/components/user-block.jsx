@@ -3,6 +3,7 @@ import {AuthorizationStatus} from "../const";
 import NoAuthUserBlock from "./sign-in/no-auth-user-block";
 import {useSelector} from "react-redux";
 import Avatar from "./avatar/avatar";
+import PropTypes from "prop-types";
 
 const UserBlock = ({isMain}) => {
   const {authorizationStatus, authInfo} = useSelector((state) => state.AUTH);
@@ -13,7 +14,7 @@ const UserBlock = ({isMain}) => {
     } else if (isMain) {
       return authInfo.email;
     } else {
-      return <Avatar/>;
+      return <Avatar img={authInfo.avatarUrl}/>;
     }
   };
 
@@ -24,5 +25,8 @@ const UserBlock = ({isMain}) => {
   );
 };
 
+UserBlock.propTypes = {
+  isMain: PropTypes.bool
+};
 
 export default UserBlock;

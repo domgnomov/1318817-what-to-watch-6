@@ -2,7 +2,6 @@ import React from 'react';
 import {useSelector} from "react-redux";
 
 const PlayPause = () => {
-  console.log(`PlayPause rerender`);
   const {playingStatus} = useSelector((state) => state.FILM);
 
   const getButtonPlayPauseButton = () => {

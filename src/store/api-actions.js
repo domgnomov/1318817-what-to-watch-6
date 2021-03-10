@@ -21,7 +21,6 @@ export const fetchFilmList = () => (dispatch, _getState, api) => (
 export const fetchFavoriteFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FAVORITE)
     .then(({data}) => {
-      debugger;
       updateFavoriteFilms(dispatch, data);
     })
 );
@@ -71,7 +70,6 @@ export const sendComment = (id, commentPost) => (dispatch, _getState, api) => (
 export const changeFavoriteStatus = (id, status) => (dispatch, _getState, api) => (
   api.post(APIRoute.FAVORITE + `/` + id + `/` + status)
     .then(({data}) => {
-      debugger;
       dispatch(loadFilm(FilmData.parseFilm(data)));
     })
 );

@@ -44,6 +44,7 @@ const Card = (props) => {
       return <Cover film={film}/>;
     }
   };
+
   return (
     <>
       <article className="small-movie-card catalog__movies-card" ref={ref} onMouseEnter={() => setActiveId(film.id)}>

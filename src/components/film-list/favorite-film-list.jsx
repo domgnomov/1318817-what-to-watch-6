@@ -5,7 +5,6 @@ import {useSelector} from "react-redux";
 
 const FavoriteFilmList = () => {
   const setActiveId = useState(1)[1];
-  debugger;
   const {favoriteFilms} = useSelector((state) => state.FILM);
 
   return (
