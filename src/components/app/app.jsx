@@ -13,6 +13,7 @@ import {fetchFilmList, fetchPromo} from "../../store/api-actions";
 import {AppRoute} from "../../const";
 import {PrivateRoute} from "../private-route/private-route";
 import browserHistory from "../../browser-history";
+import {LoginRoute} from "../private-route/login-route";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,15 @@ const App = () => {
         <Route exact path="/">
           <Main/>
         </Route>
+        <LoginRoute
+          exact
+          path={AppRoute.LOGIN}
+          render={() => {
+            return (
+              <SignIn/>
+            );
+          }}
+        />
         <Route exact path="/login">
           <SignIn/>
         </Route>
