@@ -29,6 +29,14 @@ const Main = () => {
     }
   };
 
+  const getMyLisBlock = () => {
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return <MyListButton/>;
+    } else {
+      return ``;
+    }
+  }
+
   return (
     <>
       <section className="movie-card">
@@ -67,7 +75,7 @@ const Main = () => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <MyListButton/>
+                {getMyLisBlock()}
               </div>
             </div>
           </div>

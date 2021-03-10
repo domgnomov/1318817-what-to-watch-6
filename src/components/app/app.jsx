@@ -49,9 +49,15 @@ const App = () => {
             );
           }}
         />
-        <Route exact path="/films/:id/review">
-          <AddReview/>
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.REVIEW}
+          render={() => {
+            return (
+              <AddReview/>
+            );
+          }}
+        />
         <Route exact path="/films/:id">
           <Film/>
         </Route>

@@ -18,7 +18,8 @@ export const AppRoute = {
   ROOT: `/`,
   FILMS: `/films`,
   PLAYER: `/player/`,
-  NOT_FOUND: `/notFound`
+  NOT_FOUND: `/notFound`,
+  REVIEW: `/films/:id/review`
 };
 
 export const AuthorizationStatus = {
