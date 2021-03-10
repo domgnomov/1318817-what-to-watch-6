@@ -3,7 +3,7 @@ import {useHistory, useParams} from 'react-router-dom';
 import Tabs from "../tabs/tabs";
 import {LikeThisFilms} from "../like-this-films/like-this-films";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchFilm} from "../../store/api-actions";
+import {fetchFilm, fetchReviews} from "../../store/api-actions";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {AuthorizationStatus, DEFAULT_FILM} from "../../const";
 import MyListButton from "../my-list/my-list-button";
@@ -20,6 +20,7 @@ const Film = () => {
   const film = currentFilm;
   useEffect(() => {
     dispatch(fetchFilm(id));
+    dispatch(fetchReviews(id));
   }, [id]);
 
   if (film === DEFAULT_FILM) {

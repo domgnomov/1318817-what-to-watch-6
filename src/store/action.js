@@ -18,6 +18,7 @@ export const ActionType = {
   SET_PLAYING_STATUS: `setPlayingStatus`,
   SET_PLAYING_TIME: `setPlayingTime`,
   SET_PLAYING_PROGRESS: `setPlayingProgress`,
+  SET_REVIEWS: `setReviews`,
 };
 
 export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
@@ -85,5 +86,9 @@ export const setPlayingTime = createAction(ActionType.SET_PLAYING_TIME, (url) =>
 });
 
 export const setPlayingProgress = createAction(ActionType.SET_PLAYING_PROGRESS, (url) => {
+  return {payload: url};
+});
+
+export const setReviews = createAction(ActionType.SET_REVIEWS, (url) => {
   return {payload: url};
 });

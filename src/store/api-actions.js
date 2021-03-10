@@ -4,7 +4,7 @@ import {
   redirectToNotFound,
   redirectToRoute,
   requireAuthorization,
-  setAuthInfo
+  setAuthInfo, setReviews
 } from "./action";
 import {APIRoute, AppRoute, AuthorizationStatus} from "../const";
 import FilmData from "../components/model/film";
@@ -41,6 +41,15 @@ export const fetchFilm = (id) => (dispatch, _getState, api) => (
       dispatch(redirectToNotFound(AppRoute.NOT_FOUND));
     })
 );
+
+export const fetchReviews = (id) => (dispatch, _getState, api) => (
+  api.get(APIRoute.COMMENT + `/` + id)
+    .then(({data}) => {
+      debugger;
+      dispatch(setReviews(data));
+    })
+);
+
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
