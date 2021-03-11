@@ -14,6 +14,7 @@ import {AppRoute} from "../../const";
 import {PrivateRoute} from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 import {LoginRoute} from "../private-route/login-route";
+import NotAvailable from "../not-available/not-available";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -73,6 +74,9 @@ const App = () => {
         </Route>
         <Route exact path="/player/:id">
           <Player/>
+        </Route>
+        <Route exact path="/notAvailable">
+          <NotAvailable />
         </Route>
         <Route exact path="/notFound">
           <NotFound />

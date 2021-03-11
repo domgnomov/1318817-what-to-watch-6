@@ -13,8 +13,10 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: `redirectToRoute`,
   REDIRECT_TO_FILM: `redirectToFilm`,
   REDIRECT_TO_NOT_FOUND: `redirectToNotFound`,
+  REDIRECT_TO_NOT_AVAILABLE: `redirectToNotAvailable`,
   SET_AUTH_INFO: `setAuthInfo`,
   SET_DATA_LOAD_STATUS: `setDataLoadStatus`,
+  SET_SERVER_ERROR: `setServerError`,
   SET_PLAYING_STATUS: `setPlayingStatus`,
   SET_PLAYING_TIME: `setPlayingTime`,
   SET_PLAYING_PROGRESS: `setPlayingProgress`,
@@ -38,6 +40,10 @@ export const loadFilms = createAction(ActionType.LOAD_FILMS, (films) => {
 });
 
 export const setDataLoadStatus = createAction(ActionType.SET_DATA_LOAD_STATUS, (status) => {
+  return {payload: status};
+});
+
+export const setServerError = createAction(ActionType.SET_SERVER_ERROR, (status) => {
   return {payload: status};
 });
 
@@ -74,6 +80,10 @@ export const redirectToFilm = createAction(ActionType.REDIRECT_TO_FILM, (url) =>
 });
 
 export const redirectToNotFound = createAction(ActionType.REDIRECT_TO_NOT_FOUND, (url) => {
+  return {payload: url};
+});
+
+export const redirectToNotAvailable = createAction(ActionType.REDIRECT_TO_NOT_AVAILABLE, (url) => {
   return {payload: url};
 });
 

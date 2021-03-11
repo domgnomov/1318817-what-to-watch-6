@@ -1,10 +1,9 @@
 import {
   loadFilm, loadPromo,
-  redirectToFilm,
-  redirectToNotFound,
+  redirectToFilm, redirectToNotAvailable,
   redirectToRoute,
   requireAuthorization,
-  setAuthInfo, setReviews
+  setAuthInfo, setDataLoadStatus, setReviews, setServerError
 } from "./action";
 import {APIRoute, AppRoute, AuthorizationStatus} from "../const";
 import FilmData from "../components/model/film";
@@ -15,7 +14,13 @@ import ReviewData from "../components/model/review";
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
     .then(({data}) => {
-      initFilms(dispatch, data);
+      //initFilms(dispatch, data);
+      throw ``;
+    })
+    .catch(() => {
+      debugger;
+      dispatch(setDataLoadStatus(true));
+      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
     })
 );
 
@@ -24,6 +29,11 @@ export const fetchFavoriteFilmList = () => (dispatch, _getState, api) => (
     .then(({data}) => {
       updateFavoriteFilms(dispatch, data);
     })
+    .catch(() => {
+      debugger;
+      dispatch(setDataLoadStatus(true));
+      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
+    })
 );
 
 export const fetchPromo = () => (dispatch, _getState, api) => (
@@ -31,15 +41,22 @@ export const fetchPromo = () => (dispatch, _getState, api) => (
     .then(({data}) => {
       dispatch(loadPromo(FilmData.parseFilm(data)));
     })
+    .catch(() => {
+      debugger;
+      dispatch(setDataLoadStatus(true));
+      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
+    })
 );
 
 export const fetchFilm = (id) => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS + `/` + id)
     .then(({data}) => {
+      debugger;
       dispatch(loadFilm(FilmData.parseFilm(data)));
     })
     .catch(() => {
-      dispatch(redirectToNotFound(AppRoute.NOT_FOUND));
+      dispatch(setDataLoadStatus(true));
+      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
     })
 );
 
@@ -48,6 +65,11 @@ export const fetchReviews = (id) => (dispatch, _getState, api) => (
     .then(({data}) => {
       dispatch(setReviews(ReviewData.parseReviews(data)));
     })
+    .catch(() => {
+      debugger;
+      dispatch(setDataLoadStatus(true));
+      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
+    })
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
@@ -55,7 +77,11 @@ export const checkAuth = () => (dispatch, _getState, api) => (
     .then((data) => {
       authorize(dispatch, data);
     })
-    .catch(() => {})
+    .catch(() => {
+      debugger;
+      dispatch(setDataLoadStatus(true));
+      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
+    })
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
@@ -66,6 +92,11 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
     .then(() => {
       dispatch(redirectToRoute(AppRoute.ROOT));
     })
+    .catch(() => {
+      debugger;
+      dispatch(setDataLoadStatus(true));
+      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
+    })
 );
 
 export const sendComment = (id, commentPost) => (dispatch, _getState, api) => (
@@ -73,12 +104,22 @@ export const sendComment = (id, commentPost) => (dispatch, _getState, api) => (
     .then(() => {
       dispatch(redirectToFilm(AppRoute.FILMS + `/` + id));
     })
+    .catch(() => {
+      debugger;
+      dispatch(setDataLoadStatus(true));
+      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
+    })
 );
 
 export const changeFavoriteStatus = (id, status) => (dispatch, _getState, api) => (
   api.post(APIRoute.FAVORITE + `/` + id + `/` + status)
     .then(({data}) => {
       dispatch(loadFilm(FilmData.parseFilm(data)));
+    })
+    .catch(() => {
+      debugger;
+      dispatch(setDataLoadStatus(true));
+      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
     })
 );
 

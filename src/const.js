@@ -20,6 +20,7 @@ export const AppRoute = {
   FILMS: `/films`,
   PLAYER: `/player/`,
   NOT_FOUND: `/notFound`,
+  NOT_AVAILABLE: `/notAvailable`,
   REVIEW: `/films/:id/review`
 };
 

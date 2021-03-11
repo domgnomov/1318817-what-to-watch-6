@@ -3,7 +3,6 @@ import {
   changeGenre,
   changeShowCount,
   changedFilteredFilms,
-  loadFilm,
   loadFilms,
   setDataLoadStatus,
   setPlayingStatus,
@@ -11,7 +10,7 @@ import {
   loadPromo,
   changedFavoriteFilms,
   setPlayingProgress,
-  setReviews,
+  setReviews, setServerError,
 } from "./action";
 import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM, ALL_FILMS_BY_ACTIVE_GENRE_DEFAULT_COUNT} from "../const";
 import {createReducer} from "@reduxjs/toolkit";
@@ -29,12 +28,17 @@ const initialState = {
   playingStatus: true,
   playingTime: ``,
   playingProgress: 0,
-  reviews: []
+  reviews: [],
+  serverError: false
 };
 
 const filmReducer = createReducer(initialState, (builder) => {
   builder.addCase(changeGenre, (state, action) => {
     state.activeGenre = action.payload;
+  });
+
+  builder.addCase(setServerError, (state, action) => {
+    state.serverError = action.payload;
   });
 
   builder.addCase(changedFilteredFilms, (state, action) => {
