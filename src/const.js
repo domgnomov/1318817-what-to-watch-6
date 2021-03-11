@@ -36,3 +36,10 @@ export const DEFAULT_AUTH_INFO = {
   avatarUrl: ``
 };
 
+export const MARK = {
+  BAD: 0,
+  NORMAL: 3,
+  GOOD: 5,
+  VERY_GOOD: 8,
+  AWESOME: 10
+};

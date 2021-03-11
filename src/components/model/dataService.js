@@ -1,4 +1,4 @@
-import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../../const";
+import {DEFAULT_GENRE, MARK, SHOW_MORE_DEFAULT_COUNT} from "../../const";
 import {
   changeAllFilmsByActiveGenreCount, changedFavoriteFilms,
   changedFilteredFilms, changeGenre, changeShowCount,
@@ -6,6 +6,10 @@ import {
   setDataLoadStatus
 } from "../../store/action";
 import FilmData from "./film";
+import FilmDetails from "../film-details/film-details";
+import FilmReviews from "../film-reviews/film-reviews";
+import FilmOverview from "../film-overview/film-overview";
+import React from "react";
 
 export const initFilms = (dispatch, data) => {
   const films = FilmData.parseFilms(data);
@@ -37,3 +41,4 @@ export const getFilmsByGenreAndLimit = (genre, allFilms, limit) => {
 const getFilmsByGenre = (genre, allFilms) => {
   return genre === DEFAULT_GENRE ? allFilms : Array.from(allFilms).filter((film) => film.genre === genre);
 };
+

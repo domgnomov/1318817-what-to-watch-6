@@ -6,8 +6,6 @@ import {RATING_STARS_LENGTH} from "../../const";
 
 const AddReviewForm = (props) => {
   const {filmId} = props;
-
-  const [comment, setComment] = useState(``);
   const [currentRating, setRating] = useState(RATING_STARS_LENGTH);
   const dispatch = useDispatch();
 
@@ -21,11 +19,6 @@ const AddReviewForm = (props) => {
       rating: currentRating,
       comment: commentRef.current.value
     }));
-  };
-
-  const handleCommentChange = (evt) => {
-    const {value} = evt.target;
-    setComment(value);
   };
 
   return (
@@ -47,7 +40,7 @@ const AddReviewForm = (props) => {
           </div>
         </div>
         <div className="add-review__text">
-          <textarea ref={commentRef} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" defaultValue={comment} onChange={handleCommentChange}/>
+          <textarea ref={commentRef} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"/>
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">Post</button>
           </div>

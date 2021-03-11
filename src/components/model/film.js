@@ -1,3 +1,4 @@
+import {MARK} from "../../const";
 
 export default class FilmData {
   constructor(data) {
@@ -11,6 +12,7 @@ export default class FilmData {
     this.previewVideoLink = data[`preview_video_link`];
     this.description = data[`description`];
     this.rating = data[`rating`];
+    this.mark = getMark(data[`rating`]);
     this.scoresCount = data[`scores_count`];
     this.director = data[`director`];
     this.runTime = data[`run_time`];
@@ -28,3 +30,18 @@ export default class FilmData {
     return data.map(FilmData.parseFilm);
   }
 }
+
+const getMark = (rating) => {
+  const ratingValue = parseFloat(rating);
+  if (ratingValue < parseFloat(MARK.NORMAL)) {
+    return `Bad`;
+  } else if (ratingValue < parseFloat(MARK.GOOD)) {
+    return `Normal`;
+  } else if (ratingValue < parseFloat(MARK.VERY_GOOD)) {
+    return `Good`;
+  } else if (ratingValue < parseFloat(MARK.AWESOME)) {
+    return `Very good`;
+  } else {
+    return `Awesome`;
+  }
+};
