@@ -9,7 +9,7 @@ import PlayerToggler from "./player-toggler";
 
 
 const Player = () => {
-  const {currentFilm} = useSelector((state) => state.FILM);
+  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
   const dispatch = useDispatch();
 
   const videoRef = useRef();
@@ -70,7 +70,7 @@ const Player = () => {
   return (
     <>
       <div className="player">
-        <video autoPlay ref={videoRef} src={film.videoLink} className="player__video" poster={film.previewImage} onTimeUpdate={timeUpdateHandler}/>
+        <video autoPlay ref={videoRef} src={film.videoLink} className="player__video" poster={film.previewImage}/>
         <button type="button" className="player__exit" onClick={() => {
           videoRef.current.pause();
           history.push(`/`);
@@ -81,11 +81,11 @@ const Player = () => {
             <TimeLapse/>
           </div>
           <div className="player__controls-row">
-            <button type="button" className="player__play" onClick={handlePlayPauseClick}>
+            <button type="button" className="player__play">
               <PlayPause/>
             </button>
             <div className="player__name">Transpotting</div>
-            <button type="button" className="player__full-screen" onClick={handleFullscreenClick}>
+            <button type="button" className="player__full-screen">
               <svg viewBox="0 0 27 27" width={27} height={27}>
                 <use xlinkHref="#full-screen" />
               </svg>

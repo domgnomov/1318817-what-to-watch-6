@@ -61,10 +61,6 @@ const filmReducer = createReducer(initialState, (builder) => {
     state.isDataLoaded = action.payload;
   });
 
-  builder.addCase(loadFilm, (state, action) => {
-    state.currentFilm = action.payload;
-  });
-
   builder.addCase(loadPromo, (state, action) => {
     state.promoFilm = action.payload;
   });
