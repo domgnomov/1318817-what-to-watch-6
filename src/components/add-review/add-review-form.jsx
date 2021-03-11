@@ -8,6 +8,7 @@ const AddReviewForm = (props) => {
   const {filmId} = props;
   const [currentRating, setRating] = useState(RATING_STARS_LENGTH);
   const dispatch = useDispatch();
+  const [commentLength, setCommentLength] = useState(0);
 
   const commentRef = useRef();
 
@@ -19,6 +20,19 @@ const AddReviewForm = (props) => {
       rating: currentRating,
       comment: commentRef.current.value
     }));
+  };
+
+  const handleTextChange = (evt) => {
+    evt.preventDefault();
+    setCommentLength(commentRef.current.value.length);
+  };
+
+  const getInformMessage = () => {
+    if (commentLength < 50 || commentLength > 400) {
+      return `Текст отзыва должен быть не меньше 50 и не больше 400 символов`;
+    } else {
+      return ``;
+    }
   };
 
   return (
@@ -40,11 +54,12 @@ const AddReviewForm = (props) => {
           </div>
         </div>
         <div className="add-review__text">
-          <textarea ref={commentRef} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"/>
+          <textarea ref={commentRef} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange={handleTextChange}/>
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">Post</button>
           </div>
         </div>
+        <label>{getInformMessage()}</label>
       </form>
     </>);
 };
