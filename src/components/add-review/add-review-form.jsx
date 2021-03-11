@@ -2,23 +2,23 @@ import React, {useState, Fragment, useRef} from 'react';
 import {sendComment} from "../../store/api-actions";
 import PropTypes from "prop-types";
 import {useDispatch} from "react-redux";
+import {RATING_STARS_LENGTH} from "../../const";
 
 const AddReviewForm = (props) => {
   const {filmId} = props;
-  const ratingStarsLength = 10;
+
   const [comment, setComment] = useState(``);
-  const setRating = useState(ratingStarsLength)[1];
+  const [currentRating, setRating] = useState(RATING_STARS_LENGTH);
   const dispatch = useDispatch();
 
-  const rattingRef = useRef();
   const commentRef = useRef();
 
-  const ratingStars = new Array(ratingStarsLength).fill(false);
+  const ratingStars = new Array(RATING_STARS_LENGTH).fill(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(sendComment(filmId, {
-      rating: rattingRef.current.value,
+      rating: currentRating,
       comment: commentRef.current.value
     }));
   };
@@ -34,12 +34,15 @@ const AddReviewForm = (props) => {
         <div className="rating">
           <div className="rating__stars">
             {
-              ratingStars.map((value, id) => (
-                <Fragment key={id}>
-                  <input ref={rattingRef} className="rating__input" id={`star-` + (id + 1)} type="radio" name="rating" defaultValue={(id + 1)} onChange={() => setRating((id + 1))}/>
-                  <label className="rating__label" htmlFor={`star-` + (id + 1)}>Rating {(id + 1)}</label>
-                </Fragment>
-              ))
+              ratingStars.map((value, id) => {
+                const starId = id + 1;
+                return (
+                  <Fragment key={starId}>
+                    <input className="rating__input" id={`star-` + starId} type="radio" name="rating" defaultValue={starId} onChange={() => setRating(starId)}/>
+                    <label className="rating__label" htmlFor={`star-` + starId}>Rating {starId}</label>
+                  </Fragment>
+                );
+              })
             }
           </div>
         </div>
