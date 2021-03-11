@@ -5,7 +5,8 @@ import {DEFAULT_FILM} from "../../const";
 
 const MyListButton = () => {
   const dispatch = useDispatch();
-  const {currentFilm, promoFilm} = useSelector((state) => state.FILM);
+  const {promoFilm} = useSelector((state) => state.FILM);
+  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
   const film = currentFilm === DEFAULT_FILM ? promoFilm : currentFilm;
 
   const handleListButtonClick = () => {
