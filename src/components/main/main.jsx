@@ -11,16 +11,20 @@ import UserBlock from "../user-block";
 import {fetchFilm} from "../../store/api-actions";
 
 
-const Main = () => {
-  const {promoFilm} = useSelector((state) => state.FILM);
+const Main = ({promoFilm, serverError}) => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
   const film = promoFilm;
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('Test ' + promoFilm.id);
     dispatch(fetchFilm(promoFilm.id));
   }, []);
+
+/*  if (serverError) {
+    dispatch(redirectToRoute(AppRoute.ROOT));
+  }*/
 
   const getMyLisBlock = () => {
     if (authorizationStatus === AuthorizationStatus.AUTH) {

@@ -22,9 +22,6 @@ const initialState = {
   favoriteFilms: [],
   showCount: SHOW_MORE_DEFAULT_COUNT,
   isDataLoaded: false,
-  playingStatus: true,
-  playingTime: ``,
-  playingProgress: 0,
   reviews: [],
   serverError: false
 };

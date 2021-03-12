@@ -18,12 +18,13 @@ import NotAvailable from "../not-available/not-available";
 
 const App = () => {
   const dispatch = useDispatch();
-  const {isDataLoaded, allFilms} = useSelector((state) => state.FILM);
+  const {isDataLoaded, allFilms, promoFilm, serverError} = useSelector((state) => state.FILM);
 
   useEffect(() => {
     if (!isDataLoaded) {
-      dispatch(fetchFilmList());
+      console.log('App');
       dispatch(fetchPromo());
+      dispatch(fetchFilmList());
     }
   }, [isDataLoaded]);
 
@@ -37,7 +38,7 @@ const App = () => {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
-          <Main/>
+          <Main serverError={serverError} promoFilm={promoFilm}/>
         </Route>
         <LoginRoute
           exact
