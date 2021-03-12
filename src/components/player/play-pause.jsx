@@ -1,11 +1,9 @@
 import React from 'react';
-import {useSelector} from "react-redux";
 
-const PlayPause = () => {
-  const {playingStatus} = useSelector((state) => state.FILM);
+const PlayPause = ({isPlaying}) => {
 
   const getButtonPlayPauseButton = () => {
-    if (playingStatus) {
+    if (isPlaying) {
       return (
         <>
           <svg viewBox="0 0 14 21" width="14" height="21">

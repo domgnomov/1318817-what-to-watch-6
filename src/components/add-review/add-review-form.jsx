@@ -4,14 +4,12 @@ import PropTypes from "prop-types";
 import {useDispatch} from "react-redux";
 import {RATING_STARS_LENGTH} from "../../const";
 
-const AddReviewForm = (props) => {
-  console.log(`AddReviewForm rerender`);
-  const {filmId} = props;
+const AddReviewForm = ({filmId}) => {
   const [currentRating, setRating] = useState(RATING_STARS_LENGTH);
-  const dispatch = useDispatch();
   const [commentLength, setCommentLength] = useState(0);
 
   const commentRef = useRef();
+  const dispatch = useDispatch();
 
   const ratingStars = new Array(RATING_STARS_LENGTH).fill(false);
 
@@ -66,7 +64,7 @@ const AddReviewForm = (props) => {
 };
 
 AddReviewForm.propTypes = {
-  filmId: PropTypes.string.isRequired
+  filmId: PropTypes.number.isRequired
 };
 
 export {AddReviewForm};

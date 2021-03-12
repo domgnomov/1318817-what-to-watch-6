@@ -18,7 +18,7 @@ import NotAvailable from "../not-available/not-available";
 
 const App = () => {
   const dispatch = useDispatch();
-  const {isDataLoaded} = useSelector((state) => state.FILM);
+  const {isDataLoaded, allFilms} = useSelector((state) => state.FILM);
 
   useEffect(() => {
     if (!isDataLoaded) {
@@ -65,7 +65,7 @@ const App = () => {
           path={AppRoute.REVIEW}
           render={() => {
             return (
-              <AddReview/>
+              <AddReview allFilms={allFilms}/>
             );
           }}
         />
@@ -73,7 +73,7 @@ const App = () => {
           <Film/>
         </Route>
         <Route exact path="/player/:id">
-          <Player/>
+          <Player allFilms={allFilms}/>
         </Route>
         <Route exact path="/notAvailable">
           <NotAvailable />

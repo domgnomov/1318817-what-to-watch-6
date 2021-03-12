@@ -1,31 +1,25 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux";
 import PlayPause from "./play-pause";
-import {setPlayingProgress, setPlayingStatus, setPlayingTime} from "../../store/action";
 import TimeLapse from "./time-lapse";
-import {fetchFilm} from "../../store/api-actions";
 import PlayerToggler from "./player-toggler";
+import {format} from "../../utils/data";
 
 
-const Player = () => {
-  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
-  const dispatch = useDispatch();
+const Player = ({allFilms}) => {
+  const [togglerProgress, setTogglerProgress] = useState(0);
+  const [timeLapse, setTimeLapse] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [previousTime, setPreviousTime] = useState(0);
 
   const videoRef = useRef();
   const history = useHistory();
   const {id} = useParams();
+  const film = allFilms.find((obj) => obj.id.toString() === id);
 
-  const film = currentFilm;
-  let lastTime = 0;
-
-  useEffect(() => {
-    dispatch(fetchFilm(id));
-  }, [id]);
-
-  const handlePlayPauseClick = () => {
+  const playPauseClickHandler = () => {
     const elem = videoRef.current;
-    dispatch(setPlayingStatus(elem.paused));
+    setIsPlaying(!elem.paused);
     if (elem.paused) {
       elem.play();
     } else {
@@ -33,7 +27,7 @@ const Player = () => {
     }
   };
 
-  const handleFullscreenClick = (evt) => {
+  const fullscreenClickHandler = (evt) => {
     evt.preventDefault();
     const elem = videoRef.current;
     if (elem.requestFullscreen) {
@@ -48,44 +42,40 @@ const Player = () => {
   };
 
   const timeUpdateHandler = () => {
-    const time = Math.floor((videoRef.current.duration - videoRef.current.currentTime) % 60);
-    if (lastTime !== time) {
-      lastTime = time;
-      dispatch(setPlayingTime(format(videoRef.current.duration - videoRef.current.currentTime)));
-      const progress = Math.round((videoRef.current.currentTime / videoRef.current.duration * 100) * 100) / 100;
-      dispatch(setPlayingProgress(progress));
+    const duration = videoRef.current.duration;
+    const currentTime = videoRef.current.currentTime;
+    const time = Math.floor((duration - currentTime) % 60);
+    if (previousTime !== time) {
+      setPreviousTime(time);
+      setTimeLapse(format(duration - currentTime));
     }
+    const progress = Math.round((currentTime / duration * 100) * 100) / 100;
+    setTogglerProgress(progress);
   };
 
-  function format(s) {
-    let h = Math.floor(s / 60 / 60);
-    h = (h >= 10) ? h : `0` + h;
-    let m = Math.floor(s / 60);
-    m = (m >= 10) ? m : `0` + m;
-    s = Math.floor(s % 60);
-    s = (s >= 10) ? s : `0` + s;
-    return h + `:` + m + `:` + s;
-  }
+  const playPauseHandler = () => {
+    setIsPlaying(!videoRef.current.paused);
+  };
 
   return (
     <>
       <div className="player">
-        <video autoPlay ref={videoRef} src={film.videoLink} className="player__video" poster={film.previewImage}/>
+        <video autoPlay ref={videoRef} src={film.videoLink} className="player__video" poster={film.previewImage} onPause={playPauseHandler} onPlay={playPauseHandler} onTimeUpdate={timeUpdateHandler}/>
         <button type="button" className="player__exit" onClick={() => {
           videoRef.current.pause();
           history.push(`/`);
         }}>Exit</button>
         <div className="player__controls">
           <div className="player__controls-row">
-            <PlayerToggler/>
-            <TimeLapse/>
+            <PlayerToggler togglerProgress={togglerProgress}/>
+            <TimeLapse timeLapse={timeLapse}/>
           </div>
           <div className="player__controls-row">
-            <button type="button" className="player__play">
-              <PlayPause/>
+            <button type="button" className="player__play" onClick={playPauseClickHandler}>
+              <PlayPause isPlaying={isPlaying}/>
             </button>
             <div className="player__name">Transpotting</div>
-            <button type="button" className="player__full-screen">
+            <button type="button" className="player__full-screen" onClick={fullscreenClickHandler}>
               <svg viewBox="0 0 27 27" width={27} height={27}>
                 <use xlinkHref="#full-screen" />
               </svg>

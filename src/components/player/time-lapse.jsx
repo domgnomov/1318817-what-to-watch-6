@@ -1,12 +1,10 @@
 import React from 'react';
-import {useSelector} from "react-redux";
 
-const TimeLapse = () => {
-  const {playingTime} = useSelector((state) => state.FILM);
+const TimeLapse = ({timeLapse}) => {
 
   return (
     <>
-      <div className="player__time-value">{playingTime}</div>
+      <div className="player__time-value">{timeLapse}</div>
     </>
   );
 };

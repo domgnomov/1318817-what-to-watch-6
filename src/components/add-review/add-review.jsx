@@ -1,15 +1,13 @@
 import React from 'react';
 import {AddReviewForm} from "./add-review-form";
 import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block";
 
-const AddReview = () => {
-  console.log(`AddReview rerender`);
-  const {allFilms} = useSelector((state) => state.FILM);
+const AddReview = ({allFilms}) => {
   const {id} = useParams();
   const film = allFilms.find((obj) => obj.id.toString() === id);
+
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -39,7 +37,7 @@ const AddReview = () => {
           </div>
         </div>
         <div className="add-review">
-          <AddReviewForm filmId={id}/>
+          <AddReviewForm filmId={film.id}/>
         </div>
       </section>
     </>
