@@ -1,5 +1,4 @@
 import React from 'react';
-import {FilmValidation} from "../validation/validation";
 import {useSelector} from "react-redux";
 import {ReviewsColumn} from "./reviews-column";
 
@@ -24,7 +23,5 @@ const FilmReviews = () => {
     </>
   );
 };
-
-FilmReviews.propTypes = FilmValidation;
 
 export default FilmReviews;

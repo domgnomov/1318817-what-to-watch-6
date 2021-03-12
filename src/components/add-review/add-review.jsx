@@ -6,6 +6,7 @@ import Logo from "../logo/logo";
 import UserBlock from "../user-block";
 
 const AddReview = () => {
+  console.log(`AddReview rerender`);
   const {allFilms} = useSelector((state) => state.FILM);
   const {id} = useParams();
   const film = allFilms.find((obj) => obj.id.toString() === id);

@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {RATING_STARS_LENGTH} from "../../const";
 
 const AddReviewForm = (props) => {
+  console.log(`AddReviewForm rerender`);
   const {filmId} = props;
   const [currentRating, setRating] = useState(RATING_STARS_LENGTH);
   const dispatch = useDispatch();
