@@ -1,12 +1,12 @@
 import React from 'react';
 import {AddReviewForm} from "./add-review-form";
-import {useParams} from "react-router-dom";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block";
+import {useSelector} from "react-redux";
 
-const AddReview = ({allFilms}) => {
-  const {id} = useParams();
-  const film = allFilms.find((obj) => obj.id.toString() === id);
+const AddReview = () => {
+  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const film = currentFilm;
 
   return (
     <>

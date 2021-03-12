@@ -5,11 +5,8 @@ import {
   changedFilteredFilms,
   loadFilms,
   setDataLoadStatus,
-  setPlayingStatus,
-  setPlayingTime,
   loadPromo,
   changedFavoriteFilms,
-  setPlayingProgress,
   setReviews, setServerError,
 } from "./action";
 import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM, ALL_FILMS_BY_ACTIVE_GENRE_DEFAULT_COUNT} from "../const";
@@ -67,18 +64,6 @@ const filmReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(loadPromo, (state, action) => {
     state.promoFilm = action.payload;
-  });
-
-  builder.addCase(setPlayingStatus, (state, action) => {
-    state.playingStatus = action.payload;
-  });
-
-  builder.addCase(setPlayingTime, (state, action) => {
-    state.playingTime = action.payload;
-  });
-
-  builder.addCase(setPlayingProgress, (state, action) => {
-    state.playingProgress = action.payload;
   });
 
   builder.addCase(setReviews, (state, action) => {

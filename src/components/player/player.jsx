@@ -1,12 +1,16 @@
 import React, {useRef, useState} from 'react';
-import {useHistory, useParams} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import PlayPause from "./play-pause";
 import TimeLapse from "./time-lapse";
 import PlayerToggler from "./player-toggler";
 import {format} from "../../utils/data";
+import {useSelector} from "react-redux";
 
 
-const Player = ({allFilms}) => {
+const Player = () => {
+  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const film = currentFilm;
+
   const [togglerProgress, setTogglerProgress] = useState(0);
   const [timeLapse, setTimeLapse] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -14,8 +18,6 @@ const Player = ({allFilms}) => {
 
   const videoRef = useRef();
   const history = useHistory();
-  const {id} = useParams();
-  const film = allFilms.find((obj) => obj.id.toString() === id);
 
   const playPauseClickHandler = () => {
     const elem = videoRef.current;

@@ -3,12 +3,12 @@ import {FilmList} from "../film-list/film-list";
 import {GenreList} from "../genre-list/genre-list";
 import {ShowMore} from "../show-more/show-more";
 import {useDispatch, useSelector} from "react-redux";
-import {AuthorizationStatus, DEFAULT_FILM} from "../../const";
+import {AuthorizationStatus} from "../../const";
 import {useHistory} from "react-router-dom";
 import MyListButton from "../my-list/my-list-button";
-import {loadFilm} from "../../store/action";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block";
+import {fetchFilm} from "../../store/api-actions";
 
 
 const Main = () => {
@@ -19,7 +19,7 @@ const Main = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadFilm(DEFAULT_FILM));
+    dispatch(fetchFilm(promoFilm.id));
   }, []);
 
   const getMyLisBlock = () => {

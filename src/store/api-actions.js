@@ -3,7 +3,7 @@ import {
   redirectToFilm, redirectToNotAvailable,
   redirectToRoute,
   requireAuthorization,
-  setAuthInfo, setDataLoadStatus, setReviews
+  setAuthInfo, setReviews
 } from "./action";
 import {APIRoute, AppRoute, AuthorizationStatus} from "../const";
 import FilmData from "../components/model/film";
