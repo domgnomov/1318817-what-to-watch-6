@@ -10,9 +10,8 @@ const Cover = (props) => {
   const dispatch = useDispatch();
 
   const clickHandler = (evt) => {
-    window.scrollTo(0, 0);
-    dispatch(redirectToFilm(AppRoute.FILMS + `/` + film.id));
     evt.preventDefault();
+    dispatch(redirectToFilm(AppRoute.FILMS + `/` + film.id));
   };
 
   return (

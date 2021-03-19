@@ -29,6 +29,8 @@ const Film = () => {
     );
   }
 
+  window.scrollTo(0, 0);
+
   const getAddReviewButton = () => {
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       return (
