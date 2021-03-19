@@ -7,7 +7,7 @@ import {
   setDataLoadStatus,
   loadPromo,
   changedFavoriteFilms,
-  setReviews, setServerError,
+  setReviews, setServerError, setIsFormDisabled,
 } from "./action";
 import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM, ALL_FILMS_BY_ACTIVE_GENRE_DEFAULT_COUNT} from "../const";
 import {createReducer} from "@reduxjs/toolkit";
@@ -23,7 +23,8 @@ const initialState = {
   showCount: SHOW_MORE_DEFAULT_COUNT,
   isDataLoaded: false,
   reviews: [],
-  serverError: false
+  serverError: false,
+  isFormDisabled: false
 };
 
 const filmReducer = createReducer(initialState, (builder) => {
@@ -65,6 +66,10 @@ const filmReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(setReviews, (state, action) => {
     state.reviews = action.payload;
+  });
+
+  builder.addCase(setIsFormDisabled, (state, action) => {
+    state.isFormDisabled = action.payload;
   });
 
 });

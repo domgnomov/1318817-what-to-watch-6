@@ -18,6 +18,7 @@ export const ActionType = {
   SET_DATA_LOAD_STATUS: `setDataLoadStatus`,
   SET_SERVER_ERROR: `setServerError`,
   SET_REVIEWS: `setReviews`,
+  SET_IS_FROM_DISABLED: `setIsFormDisabled`,
 };
 
 export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
@@ -84,7 +85,10 @@ export const redirectToNotAvailable = createAction(ActionType.REDIRECT_TO_NOT_AV
   return {payload: url};
 });
 
-
 export const setReviews = createAction(ActionType.SET_REVIEWS, (url) => {
+  return {payload: url};
+});
+
+export const setIsFormDisabled = createAction(ActionType.SET_IS_FROM_DISABLED, (url) => {
   return {payload: url};
 });

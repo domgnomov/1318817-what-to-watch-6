@@ -3,7 +3,7 @@ import {
   redirectToFilm, redirectToNotAvailable,
   redirectToRoute,
   requireAuthorization,
-  setAuthInfo, setReviews, setServerError
+  setAuthInfo, setIsFormDisabled, setReviews, setServerError
 } from "./action";
 import {APIRoute, AppRoute, AuthorizationStatus} from "../const";
 import FilmData from "../components/model/film";
@@ -95,11 +95,14 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 export const sendComment = (id, commentPost) => (dispatch, _getState, api) => (
   api.post(APIRoute.COMMENT + `/` + id, commentPost)
     .then(() => {
+      console.log(' !!!!! sendComment');
       dispatch(redirectToFilm(AppRoute.FILMS + `/` + id));
+      dispatch(setIsFormDisabled(false));
     })
     .catch(() => {
       console.log(' redirect sendComment');
       dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
+      dispatch(setIsFormDisabled(false));
     })
 );
 
