@@ -22,13 +22,12 @@ const App = () => {
 
   useEffect(() => {
     if (!isDataLoaded) {
-      console.log('App');
       dispatch(fetchPromo());
       dispatch(fetchFilmList());
     }
-  }, [isDataLoaded]);
+  }, [isDataLoaded, serverError]);
 
-  if (!isDataLoaded) {
+  if (!isDataLoaded && !serverError) {
     return (
       <LoadingScreen />
     );
@@ -38,7 +37,7 @@ const App = () => {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
-          <Main serverError={serverError} promoFilm={promoFilm}/>
+          <Main promoFilm={promoFilm}/>
         </Route>
         <LoginRoute
           exact
