@@ -5,16 +5,16 @@ import {SignIn} from "../sign-in/sign-in";
 import MyList from "../film-list/my-list";
 import {AddReview} from "../add-review/add-review";
 import {Player} from "../player/player";
-import NotFound from "../info-pages/not-found";
+import NotFound from "../not-found/not-found";
 import {Film} from "../film/film";
 import {useDispatch, useSelector} from "react-redux";
-import LoadingScreen from "../info-pages/loading-screen";
+import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchFilmList, fetchPromo} from "../../store/api-actions";
 import {AppRoute} from "../../const/const";
 import {PrivateRoute} from "../private-route/private-route";
 import browserHistory from "../../services/browser-history";
 import {LoginRoute} from "../login-route/login-route";
-import NotAvailable from "../info-pages/not-available";
+import NotAvailable from "../not-available/not-available";
 
 const App = () => {
   const dispatch = useDispatch();

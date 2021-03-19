@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {setServerError} from "../../store/action";
 
 const NotAvailable = () => {
   const dispatch = useDispatch();
-  dispatch(setServerError(false));
+  useEffect(() => {
+    dispatch(setServerError(false));
+  });
+
   return (
     <>
       <div className="user-page">
