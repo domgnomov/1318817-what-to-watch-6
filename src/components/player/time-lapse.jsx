@@ -10,7 +10,7 @@ const TimeLapse = ({timeLapse}) => {
 };
 
 TimeLapse.propTypes = {
-  timeLapse: PropTypes.number.isRequired
+  timeLapse: PropTypes.string.isRequired
 };
 
 export default TimeLapse;

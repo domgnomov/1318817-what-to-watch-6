@@ -73,7 +73,7 @@ const App = () => {
           <Film/>
         </Route>
         <Route exact path="/player/:id">
-          <Player allFilms={allFilms}/>
+          <Player />
         </Route>
         <Route exact path="/notAvailable">
           <NotAvailable />

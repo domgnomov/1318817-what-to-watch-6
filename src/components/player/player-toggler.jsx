@@ -13,7 +13,7 @@ const PlayerToggler = ({togglerProgress}) => {
 };
 
 PlayerToggler.propTypes = {
-  togglerProgress: PropTypes.string.isRequired
+  togglerProgress: PropTypes.number.isRequired
 };
 
 export default PlayerToggler;

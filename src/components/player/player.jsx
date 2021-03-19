@@ -1,18 +1,27 @@
 import React, {useRef, useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import PlayPause from "./play-pause";
 import TimeLapse from "./time-lapse";
 import PlayerToggler from "./player-toggler";
 import {format} from "../../utils/date";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {DEFAULT_FILM} from "../../const/const";
+import {fetchFilm} from "../../store/api-actions";
 
 
 const Player = () => {
+  const {id} = useParams();
+  const dispatch = useDispatch();
   const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+
+  if (currentFilm === DEFAULT_FILM) {
+    dispatch(fetchFilm(id));
+  }
+
   const film = currentFilm;
 
   const [togglerProgress, setTogglerProgress] = useState(0);
-  const [timeLapse, setTimeLapse] = useState(0);
+  const [timeLapse, setTimeLapse] = useState(``);
   const [isPlaying, setIsPlaying] = useState(false);
   const [previousTime, setPreviousTime] = useState(0);
 

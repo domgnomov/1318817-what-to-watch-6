@@ -1,14 +1,17 @@
 import React from 'react';
 import {FilmValidation} from "../../validation/validation";
-import {useHistory} from "react-router-dom";
+import {redirectToFilm} from "../../store/action";
+import {AppRoute} from "../../const/const";
+import {useDispatch} from "react-redux";
 
 const Cover = (props) => {
   const {film} = props;
 
-  const history = useHistory();
+  const dispatch = useDispatch();
 
   const clickHandler = (evt) => {
-    history.push(`/films/` + film.id);
+    window.scrollTo(0, 0);
+    dispatch(redirectToFilm(AppRoute.FILMS + `/` + film.id));
     evt.preventDefault();
   };
 
