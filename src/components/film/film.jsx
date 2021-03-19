@@ -19,7 +19,6 @@ const Film = () => {
   const {id} = useParams();
   const film = currentFilm;
   useEffect(() => {
-    console.log('Film');
     dispatch(fetchFilm(id));
     dispatch(fetchReviews(id));
   }, [id]);

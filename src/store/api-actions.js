@@ -14,9 +14,9 @@ import ReviewData from "../components/model/review";
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
     .then(({data}) => {
-      if (Math.round(Math.random()) !== 1) {
+      /*if (Math.round(Math.random()) !== 1) {
         throw ``;
-      }
+      }*/
       initFilms(dispatch, data);
     })
     .catch(() => {
