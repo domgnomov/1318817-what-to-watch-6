@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import Tabs from "../tabs/tabs";
-import {LikeThisFilms} from "../lists/like-this-film-list";
+import {LikeThisFilms} from "../film-list/like-this-film-list";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchFilm, fetchReviews} from "../../store/api-actions";
 import LoadingScreen from "../info-pages/loading-screen";
 import {AuthorizationStatus, DEFAULT_FILM} from "../../const/const";
-import MyListButton from "../lists/my-list-button";
+import MyListButton from "../film-list/my-list-button";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
 

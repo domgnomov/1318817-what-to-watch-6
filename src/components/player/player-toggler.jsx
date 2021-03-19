@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const PlayerToggler = ({togglerProgress}) => {
   return (
@@ -11,5 +12,8 @@ const PlayerToggler = ({togglerProgress}) => {
   );
 };
 
+PlayerToggler.propTypes = {
+  togglerProgress: PropTypes.string.isRequired
+};
 
 export default PlayerToggler;

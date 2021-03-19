@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const PlayPause = ({isPlaying}) => {
 
@@ -29,6 +30,10 @@ const PlayPause = ({isPlaying}) => {
       {getButtonPlayPauseButton()}
     </>
   );
+};
+
+PlayPause.propTypes = {
+  isPlaying: PropTypes.bool.isRequired
 };
 
 export default PlayPause;

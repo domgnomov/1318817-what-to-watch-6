@@ -1,24 +1,23 @@
 import React, {useEffect} from 'react';
-import {FilmList} from "../lists/film-list";
-import {GenreList} from "../genres/genre-list";
+import {FilmList} from "../film-list/film-list";
+import {Genres} from "../genres/genres";
 import {ShowMore} from "../show-more/show-more";
 import {useDispatch, useSelector} from "react-redux";
 import {AuthorizationStatus} from "../../const/const";
 import {useHistory} from "react-router-dom";
-import MyListButton from "../lists/my-list-button";
+import MyListButton from "../film-list/my-list-button";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
 import {fetchFilm} from "../../store/api-actions";
+import {FilmValidation} from "../../validation/validation";
 
-
-const Main = ({promoFilm}) => {
+const Main = ({film}) => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
-  const film = promoFilm;
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchFilm(promoFilm.id));
+    dispatch(fetchFilm(film.id));
   }, []);
 
   const getMyLisBlock = () => {
@@ -70,7 +69,7 @@ const Main = ({promoFilm}) => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenreList/>
+          <Genres/>
           <div className="catalog__movies-list">
             <FilmList/>
           </div>
@@ -82,5 +81,7 @@ const Main = ({promoFilm}) => {
     </>
   );
 };
+
+Main.propTypes = FilmValidation;
 
 export {Main};

@@ -6,7 +6,6 @@ import {
   setDataLoadStatus
 } from "../store/action";
 import FilmData from "../model/film";
-import React from "react";
 
 export const initFilms = (dispatch, data) => {
   const films = FilmData.parseFilms(data);

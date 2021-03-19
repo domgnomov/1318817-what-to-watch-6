@@ -2,7 +2,7 @@ import React from 'react';
 import {Genre} from "./genre";
 import {useSelector} from "react-redux";
 
-const GenreList = () => {
+const Genres = () => {
   const {allFilms} = useSelector((state) => state.FILM);
 
   const genres = new Set();
@@ -19,4 +19,4 @@ const GenreList = () => {
   );
 };
 
-export {GenreList};
+export {Genres};

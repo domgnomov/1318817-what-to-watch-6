@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import {Main} from '../main/main';
 import {SignIn} from "../sign-in/sign-in";
-import MyList from "../lists/my-list";
+import MyList from "../film-list/my-list";
 import {AddReview} from "../add-review/add-review";
 import {Player} from "../player/player";
 import NotFound from "../info-pages/not-found";
@@ -11,9 +11,9 @@ import {useDispatch, useSelector} from "react-redux";
 import LoadingScreen from "../info-pages/loading-screen";
 import {fetchFilmList, fetchPromo} from "../../store/api-actions";
 import {AppRoute} from "../../const/const";
-import {PrivateRoute} from "../route/private-route";
+import {PrivateRoute} from "../private-route/private-route";
 import browserHistory from "../../services/browser-history";
-import {LoginRoute} from "../route/login-route";
+import {LoginRoute} from "../login-route/login-route";
 import NotAvailable from "../info-pages/not-available";
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
-          <Main promoFilm={promoFilm}/>
+          <Main film={promoFilm}/>
         </Route>
         <LoginRoute
           exact
