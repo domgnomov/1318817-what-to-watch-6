@@ -2,10 +2,20 @@ import React from 'react';
 import {AddReviewForm} from "./add-review-form";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchFilm} from "../../store/api-actions";
+import {useParams} from "react-router-dom";
+import {DEFAULT_FILM} from "../../const";
 
 const AddReview = () => {
+  const dispatch = useDispatch();
+  const {id} = useParams();
   const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+
+  if (currentFilm === DEFAULT_FILM) {
+    dispatch(fetchFilm(id));
+  }
+
   const film = currentFilm;
 
   return (
