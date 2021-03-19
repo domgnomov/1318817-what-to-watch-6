@@ -1,11 +1,19 @@
 import React, {useState, Fragment, useRef} from 'react';
-import {sendComment} from "../../store/api-actions";
-import PropTypes from "prop-types";
+import {fetchFilm, sendComment} from "../../store/api-actions";
 import {useDispatch, useSelector} from "react-redux";
-import {RATING_STARS_LENGTH} from "../../const/const";
+import {DEFAULT_FILM, RATING_STARS_LENGTH} from "../../const/const";
 import {setIsFormDisabled} from "../../store/action";
+import {useParams} from "react-router-dom";
 
-const AddReviewForm = ({filmId}) => {
+const AddReviewForm = () => {
+  const {id} = useParams();
+  const dispatch = useDispatch();
+  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+
+  if (currentFilm === DEFAULT_FILM) {
+    dispatch(fetchFilm(id));
+  }
+
   const {isFormDisabled} = useSelector((state) => state.FILM);
 
   const [currentRating, setRating] = useState(0);
@@ -14,14 +22,12 @@ const AddReviewForm = ({filmId}) => {
   const commentRef = useRef();
   const submitRef = useRef();
 
-  const dispatch = useDispatch();
-
   const ratingStars = new Array(RATING_STARS_LENGTH).fill(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(setIsFormDisabled(true));
-    dispatch(sendComment(filmId, {
+    dispatch(sendComment(currentFilm.Id, {
       rating: currentRating,
       comment: commentRef.current.value
     }));
@@ -60,8 +66,8 @@ const AddReviewForm = ({filmId}) => {
         <div className="rating">
           <div className="rating__stars">
             {
-              ratingStars.map((value, id) => {
-                const starId = id + 1;
+              ratingStars.map((value, ratingStarId) => {
+                const starId = ratingStarId + 1;
                 return (
                   <Fragment key={starId}>
                     <input disabled={isFormDisabled} className="rating__input" id={`star-` + starId} type="radio" name="rating" defaultValue={starId} onChange={() => setRating(starId)}/>
@@ -81,10 +87,6 @@ const AddReviewForm = ({filmId}) => {
         <label>{getInformMessage()}</label>
       </form>
     </>);
-};
-
-AddReviewForm.propTypes = {
-  filmId: PropTypes.number.isRequired
 };
 
 export {AddReviewForm};
