@@ -18,7 +18,7 @@ export const fetchFilmList = () => (dispatch, _getState, api) => (
     })
     .catch(() => {
       console.log(' redirect fetchFilmList');
-      dispatch(setServerError(true));
+      dispatch(setServerError(false));
       dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
     })
 );
@@ -74,7 +74,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
     })
     .catch(() => {
       console.log(' redirect checkAuth');
-      dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
+      //dispatch(redirectToNotAvailable(AppRoute.NOT_AVAILABLE));
     })
 );
 

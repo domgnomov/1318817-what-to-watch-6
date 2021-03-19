@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import {RATING_STARS_LENGTH} from "../../const";
 
 const AddReviewForm = ({filmId}) => {
-  const [currentRating, setRating] = useState(RATING_STARS_LENGTH);
+  const [currentRating, setRating] = useState(0);
   const [commentLength, setCommentLength] = useState(0);
 
   const commentRef = useRef();
@@ -26,8 +26,22 @@ const AddReviewForm = ({filmId}) => {
     setCommentLength(commentRef.current.value.length);
   };
 
+  const isValidComment = () => {
+    return commentLength >= 50 && commentLength <= 400;
+  };
+
+  const isValidRating = () => {
+    return currentRating > 0;
+  };
+
+  const isSubmitNotAvailable = () => {
+    return !isValidComment() || !isValidRating();
+  };
+
   const getInformMessage = () => {
-    if (commentLength < 50 || commentLength > 400) {
+    if (!isValidRating()) {
+      return `Поставьте фильму оценку`;
+    } else if (!isValidComment()) {
       return `Текст отзыва должен быть не меньше 50 и не больше 400 символов`;
     } else {
       return ``;
@@ -36,7 +50,7 @@ const AddReviewForm = ({filmId}) => {
 
   return (
     <>
-      <form action="#" className="add-review__form" onSubmit={handleSubmit}>
+      <form action="#" className="add-review__form" disabled="disabled" onSubmit={handleSubmit}>
         <div className="rating">
           <div className="rating__stars">
             {
@@ -55,7 +69,7 @@ const AddReviewForm = ({filmId}) => {
         <div className="add-review__text">
           <textarea ref={commentRef} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange={handleTextChange}/>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">Post</button>
+            <button className="add-review__btn" disabled={isSubmitNotAvailable()} type="submit">Post</button>
           </div>
         </div>
         <label>{getInformMessage()}</label>
