@@ -1,6 +1,6 @@
 import React from 'react';
 import Review from "./review";
-import {ReviewsValidation} from "../validation/validation";
+import {ReviewsValidation} from "../../validation/validation";
 
 
 const ReviewsColumn = ({reviews}) => {

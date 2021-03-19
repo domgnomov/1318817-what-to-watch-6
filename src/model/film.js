@@ -1,4 +1,4 @@
-import {MARK} from "../../const";
+import {MARK} from "../const/const";
 
 export default class FilmData {
   constructor(data) {

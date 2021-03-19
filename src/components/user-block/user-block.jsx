@@ -1,8 +1,8 @@
 import React from 'react';
-import {AuthorizationStatus} from "../const";
-import NoAuthUserBlock from "./sign-in/no-auth-user-block";
+import {AuthorizationStatus} from "../../const/const";
+import NoAuthUserBlock from "./no-auth-user-block";
 import {useSelector} from "react-redux";
-import Avatar from "./avatar/avatar";
+import Avatar from "./avatar";
 import PropTypes from "prop-types";
 
 const UserBlock = ({isMain}) => {

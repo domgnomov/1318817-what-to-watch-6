@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {changeFavoriteStatus} from "../../store/api-actions";
-import {DEFAULT_FILM} from "../../const";
+import {DEFAULT_FILM} from "../../const/const";
 
 const MyListButton = () => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {FilmValidation} from "../validation/validation";
+import {FilmValidation} from "../../validation/validation";
 import MiniPlayer from "../player/mini-player";
-import Cover from "../cover/cover";
+import Cover from "./cover";
 
 const Card = (props) => {
   const {film, setActiveId} = props;

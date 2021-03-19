@@ -1,4 +1,4 @@
-import {formatDate, formatTextDate} from "../../utils/data";
+import {formatDate, formatTextDate} from "../utils/date";
 
 export default class ReviewData {
   constructor(data) {

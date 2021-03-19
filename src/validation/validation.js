@@ -19,13 +19,6 @@ export const FilmValidation = PropTypes.shape({
   released: PropTypes.number.isRequired,
 }).isRequired;
 
-export const AuthInfoValidation = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string.isRequired
-}).isRequired;
-
 export const ReviewValidation = PropTypes.shape({
   id: PropTypes.number.isRequired,
   userName: PropTypes.string.isRequired,

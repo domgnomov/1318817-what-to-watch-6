@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from "react-redux";
 import {fetchFavoriteFilmList} from "../../store/api-actions";
-import {FavoriteFilmList} from "../film-list/favorite-film-list";
+import {FavoriteFilmList} from "./favorite-film-list";
 import Logo from "../logo/logo";
-import UserBlock from "../user-block";
+import UserBlock from "../user-block/user-block";
 
 const MyList = () => {
   const dispatch = useDispatch();

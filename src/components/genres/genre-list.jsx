@@ -1,5 +1,5 @@
 import React from 'react';
-import {Genre} from "../genre/genre";
+import {Genre} from "./genre";
 import {useSelector} from "react-redux";
 
 const GenreList = () => {

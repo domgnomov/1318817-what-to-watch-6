@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReviewValidation} from "../validation/validation";
+import {ReviewValidation} from "../../validation/validation";
 
 const Review = ({review}) => {
   return (

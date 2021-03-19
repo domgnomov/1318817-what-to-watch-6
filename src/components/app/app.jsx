@@ -2,19 +2,19 @@ import React, {useEffect} from 'react';
 import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import {Main} from '../main/main';
 import {SignIn} from "../sign-in/sign-in";
-import MyList from "../my-list/my-list";
+import MyList from "../lists/my-list";
 import {AddReview} from "../add-review/add-review";
 import {Player} from "../player/player";
-import NotFound from "../not-found/not-found";
+import NotFound from "../info-pages/not-found";
 import {Film} from "../film/film";
 import {useDispatch, useSelector} from "react-redux";
-import LoadingScreen from "../loading-screen/loading-screen";
+import LoadingScreen from "../info-pages/loading-screen";
 import {fetchFilmList, fetchPromo} from "../../store/api-actions";
-import {AppRoute} from "../../const";
-import {PrivateRoute} from "../private-route/private-route";
-import browserHistory from "../../browser-history";
-import {LoginRoute} from "../private-route/login-route";
-import NotAvailable from "../not-available/not-available";
+import {AppRoute} from "../../const/const";
+import {PrivateRoute} from "../route/private-route";
+import browserHistory from "../../services/browser-history";
+import {LoginRoute} from "../route/login-route";
+import NotAvailable from "../info-pages/not-available";
 
 const App = () => {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 
-import {DEFAULT_FILM} from "../const";
+import {DEFAULT_FILM} from "../const/const";
 import {createReducer} from "@reduxjs/toolkit";
 import {loadFilm} from "./action";
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FilmValidation} from "../validation/validation";
+import {FilmValidation} from "../../validation/validation";
 import FilmReviews from "../film-reviews/film-reviews";
 import Tab from "./tab";
 import FilmOverview from "../film-overview/film-overview";

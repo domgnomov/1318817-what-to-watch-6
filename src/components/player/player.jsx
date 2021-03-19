@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom';
 import PlayPause from "./play-pause";
 import TimeLapse from "./time-lapse";
 import PlayerToggler from "./player-toggler";
-import {format} from "../../utils/data";
+import {format} from "../../utils/date";
 import {useSelector} from "react-redux";
 
 

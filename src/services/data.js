@@ -1,11 +1,11 @@
-import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../../const";
+import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../const/const";
 import {
   changeAllFilmsByActiveGenreCount, changedFavoriteFilms,
   changedFilteredFilms, changeGenre, changeShowCount,
   loadFilms,
   setDataLoadStatus
-} from "../../store/action";
-import FilmData from "./film";
+} from "../store/action";
+import FilmData from "../model/film";
 import React from "react";
 
 export const initFilms = (dispatch, data) => {

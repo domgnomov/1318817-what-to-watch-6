@@ -5,11 +5,11 @@ import {
   requireAuthorization,
   setAuthInfo, setIsFormDisabled, setReviews, setServerError
 } from "./action";
-import {APIRoute, AppRoute, AuthorizationStatus} from "../const";
-import FilmData from "../components/model/film";
-import AuthInfoData from "../components/model/authInfo";
-import {initFilms, updateFavoriteFilms} from "../components/model/dataService";
-import ReviewData from "../components/model/review";
+import {APIRoute, AppRoute, AuthorizationStatus} from "../const/const";
+import FilmData from "../model/film";
+import AuthInfoData from "../model/authInfo";
+import {initFilms, updateFavoriteFilms} from "../services/data";
+import ReviewData from "../model/review";
 
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)

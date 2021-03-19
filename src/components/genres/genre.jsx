@@ -1,8 +1,8 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import PropTypes from "prop-types";
-import {SHOW_MORE_DEFAULT_COUNT} from "../../const";
-import {updateFilms} from "../model/dataService";
+import {SHOW_MORE_DEFAULT_COUNT} from "../../const/const";
+import {updateFilms} from "../../services/data";
 
 const Genre = (props) => {
   const dispatch = useDispatch();

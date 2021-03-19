@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
-import {FilmList} from "../film-list/film-list";
-import {GenreList} from "../genre-list/genre-list";
+import {FilmList} from "../lists/film-list";
+import {GenreList} from "../genres/genre-list";
 import {ShowMore} from "../show-more/show-more";
 import {useDispatch, useSelector} from "react-redux";
-import {AuthorizationStatus} from "../../const";
+import {AuthorizationStatus} from "../../const/const";
 import {useHistory} from "react-router-dom";
-import MyListButton from "../my-list/my-list-button";
+import MyListButton from "../lists/my-list-button";
 import Logo from "../logo/logo";
-import UserBlock from "../user-block";
+import UserBlock from "../user-block/user-block";
 import {fetchFilm} from "../../store/api-actions";
 
 

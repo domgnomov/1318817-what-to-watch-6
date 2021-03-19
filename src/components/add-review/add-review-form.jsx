@@ -2,7 +2,7 @@ import React, {useState, Fragment, useRef} from 'react';
 import {sendComment} from "../../store/api-actions";
 import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
-import {RATING_STARS_LENGTH} from "../../const";
+import {RATING_STARS_LENGTH} from "../../const/const";
 import {setIsFormDisabled} from "../../store/action";
 
 const AddReviewForm = ({filmId}) => {

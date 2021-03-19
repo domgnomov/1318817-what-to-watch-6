@@ -9,7 +9,7 @@ import {
   changedFavoriteFilms,
   setReviews, setServerError, setIsFormDisabled,
 } from "./action";
-import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM, ALL_FILMS_BY_ACTIVE_GENRE_DEFAULT_COUNT} from "../const";
+import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM, ALL_FILMS_BY_ACTIVE_GENRE_DEFAULT_COUNT} from "../const/const";
 import {createReducer} from "@reduxjs/toolkit";
 
 const initialState = {
