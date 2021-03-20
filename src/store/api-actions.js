@@ -66,9 +66,6 @@ export const checkAuth = () => (dispatch, _getState, api) => (
     .then((data) => {
       authorize(dispatch, data);
     })
-    .catch(() => {
-      dispatch(redirectToRoute(AppRoute.ROOT));
-    })
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
