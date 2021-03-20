@@ -17,7 +17,8 @@ import {LoginRoute} from "../login-route/login-route";
 import NotAvailable from "../not-available/not-available";
 
 const App = () => {
-  const {isDataLoaded, allFilms, promoFilm, serverError} = useSelector((state) => state.FILM);
+  const {isDataLoaded, allFilms, promoFilm} = useSelector((state) => state.FILM);
+  const {serverError} = useSelector((state) => state.ERROR);
 
   const dispatch = useDispatch();
 
