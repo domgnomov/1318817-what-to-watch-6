@@ -28,7 +28,7 @@ const Player = () => {
     dispatch(fetchFilm(id));
   }
 
-  const playPauseClickHandler = () => {
+  const handlePlayPauseClick = () => {
     const elem = videoRef.current;
     setIsPlaying(!elem.paused);
     if (elem.paused) {
@@ -38,7 +38,7 @@ const Player = () => {
     }
   };
 
-  const fullscreenClickHandler = (evt) => {
+  const handleFullscreenClick = (evt) => {
     evt.preventDefault();
     const elem = videoRef.current;
     if (elem.requestFullscreen) {
@@ -52,7 +52,7 @@ const Player = () => {
     }
   };
 
-  const timeUpdateHandler = () => {
+  const handleTimeUpdate = () => {
     const duration = videoRef.current.duration;
     const currentTime = videoRef.current.currentTime;
     const time = Math.floor((duration - currentTime) % 60);
@@ -71,7 +71,7 @@ const Player = () => {
   return (
     <>
       <div className="player">
-        <video autoPlay ref={videoRef} src={film.videoLink} className="player__video" poster={film.previewImage} onPause={playPauseHandler} onPlay={playPauseHandler} onTimeUpdate={timeUpdateHandler}/>
+        <video autoPlay ref={videoRef} src={film.videoLink} className="player__video" poster={film.previewImage} onPause={playPauseHandler} onPlay={playPauseHandler} onTimeUpdate={handleTimeUpdate}/>
         <button type="button" className="player__exit" onClick={() => {
           videoRef.current.pause();
           history.push(AppRoute.ROOT);
@@ -82,11 +82,11 @@ const Player = () => {
             <TimeLapse timeLapse={timeLapse}/>
           </div>
           <div className="player__controls-row">
-            <button type="button" className="player__play" onClick={playPauseClickHandler}>
+            <button type="button" className="player__play" onClick={handlePlayPauseClick}>
               <PlayPause isPlaying={isPlaying}/>
             </button>
             <div className="player__name">Transpotting</div>
-            <button type="button" className="player__full-screen" onClick={fullscreenClickHandler}>
+            <button type="button" className="player__full-screen" onClick={handleFullscreenClick}>
               <svg viewBox="0 0 27 27" width={27} height={27}>
                 <use xlinkHref="#full-screen" />
               </svg>
