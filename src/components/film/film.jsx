@@ -12,7 +12,7 @@ import UserBlock from "../user-block/user-block";
 
 const Film = () => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
-  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const {currentFilm} = useSelector((state) => state.FILM);
   const film = currentFilm;
 
   const dispatch = useDispatch();

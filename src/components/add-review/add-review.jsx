@@ -8,7 +8,7 @@ import {useParams} from "react-router-dom";
 import {DEFAULT_FILM} from "../../const/const";
 
 const AddReview = () => {
-  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const {currentFilm} = useSelector((state) => state.FILM);
   const film = currentFilm;
 
   const dispatch = useDispatch();

@@ -6,7 +6,7 @@ import {
   loadFilms,
   setDataLoadStatus,
   loadPromo,
-  changedFavoriteFilms
+  changedFavoriteFilms, loadFilm
 } from "./action";
 import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT, DEFAULT_FILM, ALL_FILMS_BY_ACTIVE_GENRE_DEFAULT_COUNT} from "../const/const";
 import {createReducer} from "@reduxjs/toolkit";
@@ -26,6 +26,10 @@ const initialState = {
 const filmReducer = createReducer(initialState, (builder) => {
   builder.addCase(changeGenre, (state, action) => {
     state.activeGenre = action.payload;
+  });
+
+  builder.addCase(loadFilm, (state, action) => {
+    state.currentFilm = action.payload;
   });
 
   builder.addCase(changedFilteredFilms, (state, action) => {

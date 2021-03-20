@@ -6,7 +6,7 @@ import {setIsFormDisabled} from "../../store/action";
 import {useParams} from "react-router-dom";
 
 const AddReviewForm = () => {
-  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const {currentFilm} = useSelector((state) => state.FILM);
   const {isFormDisabled} = useSelector((state) => state.REVIEW);
   const [currentRating, setRating] = useState(0);
   const [commentLength, setCommentLength] = useState(0);

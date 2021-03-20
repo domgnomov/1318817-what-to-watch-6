@@ -14,7 +14,7 @@ const Player = () => {
   const [timeLapse, setTimeLapse] = useState(``);
   const [isPlaying, setIsPlaying] = useState(false);
   const [previousTime, setPreviousTime] = useState(0);
-  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const {currentFilm} = useSelector((state) => state.FILM);
   const film = currentFilm;
 
   const dispatch = useDispatch();

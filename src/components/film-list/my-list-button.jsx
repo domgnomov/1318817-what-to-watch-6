@@ -4,8 +4,7 @@ import {changeFavoriteStatus} from "../../store/api-actions";
 import {DEFAULT_FILM} from "../../const/const";
 
 const MyListButton = () => {
-  const {promoFilm} = useSelector((state) => state.FILM);
-  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const {promoFilm, currentFilm} = useSelector((state) => state.FILM);
   const film = currentFilm === DEFAULT_FILM ? promoFilm : currentFilm;
 
   const dispatch = useDispatch();
