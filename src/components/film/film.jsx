@@ -5,7 +5,7 @@ import {LikeThisFilms} from "../film-list/like-this-film-list";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchFilm, fetchReviews} from "../../store/api-actions";
 import LoadingScreen from "../loading-screen/loading-screen";
-import {AuthorizationStatus, DEFAULT_FILM} from "../../const/const";
+import {AppRoute, AuthorizationStatus, DEFAULT_FILM} from "../../const/const";
 import MyListButton from "../film-list/my-list-button";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
@@ -39,7 +39,7 @@ const Film = () => {
       return (
         <>
           <a href="add-review.html" className="btn movie-card__button" onClick={(e) => {
-            history.push(`/films/` + film.id + `/review`);
+            history.push(AppRoute.FILMS + `/` + film.id + AppRoute.REVIEWS);
             e.preventDefault();
           }}>Add review</a>
         </>
@@ -83,7 +83,7 @@ const Film = () => {
                 </p>
                 <div className="movie-card__buttons">
                   <button className="btn btn--play movie-card__button" type="button" onClick={(e) => {
-                    history.push(`/player/` + film.id);
+                    history.push(AppRoute.PLAYERS + `/` + film.id);
                     e.preventDefault();
                   }}>
                     <svg viewBox="0 0 19 19" width={19} height={19}>

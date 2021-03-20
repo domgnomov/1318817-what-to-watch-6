@@ -28,9 +28,12 @@ export const AppRoute = {
   MY_LIST: `/myList`,
   ROOT: `/`,
   FILMS: `/films`,
-  PLAYER: `/player/`,
+  FILM: `/films/:id`,
+  PLAYERS: `/player`,
+  PLAYER: `/player/:id`,
   NOT_FOUND: `/notFound`,
   NOT_AVAILABLE: `/notAvailable`,
+  REVIEWS: `/review`,
   REVIEW: `/films/:id/review`
 };
 
@@ -38,7 +41,6 @@ export const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };
-
 
 export const DEFAULT_AUTH_INFO = {
   id: 0,

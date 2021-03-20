@@ -3,7 +3,7 @@ import {FilmList} from "../film-list/film-list";
 import {Genres} from "../genres/genres";
 import {ShowMore} from "../show-more/show-more";
 import {useDispatch, useSelector} from "react-redux";
-import {AuthorizationStatus} from "../../const/const";
+import {AppRoute, AuthorizationStatus} from "../../const/const";
 import {useHistory} from "react-router-dom";
 import MyListButton from "../film-list/my-list-button";
 import Logo from "../logo/logo";
@@ -56,7 +56,7 @@ const Main = ({film}) => {
                 <span className="movie-card__year">{film.released}</span>
               </p>
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={() => history.push(`/player/` + film.id)}>
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => history.push(AppRoute.PLAYERS + `/` + film.id)}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>

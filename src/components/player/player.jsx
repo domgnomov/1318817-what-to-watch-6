@@ -5,7 +5,7 @@ import TimeLapse from "./time-lapse";
 import PlayerToggler from "./player-toggler";
 import {format} from "../../utils/date";
 import {useDispatch, useSelector} from "react-redux";
-import {DEFAULT_FILM} from "../../const/const";
+import {AppRoute, DEFAULT_FILM} from "../../const/const";
 import {fetchFilm} from "../../store/api-actions";
 
 
@@ -74,7 +74,7 @@ const Player = () => {
         <video autoPlay ref={videoRef} src={film.videoLink} className="player__video" poster={film.previewImage} onPause={playPauseHandler} onPlay={playPauseHandler} onTimeUpdate={timeUpdateHandler}/>
         <button type="button" className="player__exit" onClick={() => {
           videoRef.current.pause();
-          history.push(`/`);
+          history.push(AppRoute.ROOT);
         }}>Exit</button>
         <div className="player__controls">
           <div className="player__controls-row">

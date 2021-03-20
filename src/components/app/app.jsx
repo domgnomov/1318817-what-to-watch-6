@@ -37,7 +37,7 @@ const App = () => {
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.ROOT}>
           <Main film={promoFilm}/>
         </Route>
         <LoginRoute
@@ -49,9 +49,6 @@ const App = () => {
             );
           }}
         />
-        <Route exact path="/login">
-          <SignIn/>
-        </Route>
         <PrivateRoute
           exact
           path={AppRoute.MY_LIST}
@@ -70,16 +67,16 @@ const App = () => {
             );
           }}
         />
-        <Route exact path="/films/:id">
+        <Route exact path={AppRoute.FILM}>
           <Film/>
         </Route>
-        <Route exact path="/player/:id">
+        <Route exact path={AppRoute.PLAYER}>
           <Player />
         </Route>
-        <Route exact path="/notAvailable">
+        <Route exact path={AppRoute.NOT_AVAILABLE}>
           <NotAvailable />
         </Route>
-        <Route exact path="/notFound">
+        <Route exact path={AppRoute.NOT_FOUND}>
           <NotFound />
         </Route>
         <Route>

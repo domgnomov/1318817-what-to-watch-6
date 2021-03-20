@@ -85,7 +85,7 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 export const sendComment = (id, commentPost) => (dispatch, _getState, api) => (
   api.post(APIRoute.COMMENT + `/` + id, commentPost)
     .then(() => {
-      dispatch(redirectToFilm(AppRoute.FILMS + `/` + id));
+      dispatch(redirectToFilm(APIRoute.FILMS + `/` + id));
       dispatch(setIsFormDisabled(false));
     })
     .catch(() => {
