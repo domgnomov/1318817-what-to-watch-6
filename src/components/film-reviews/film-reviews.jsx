@@ -4,7 +4,7 @@ import {ReviewsColumn} from "./reviews-column";
 
 
 const FilmReviews = () => {
-  const {reviews} = useSelector((state) => state.FILM);
+  const {reviews} = useSelector((state) => state.REVIEW);
 
   let firstColumnReviews = [];
   let secondColumnReviews = [];

@@ -22,9 +22,7 @@ const initialState = {
   favoriteFilms: [],
   showCount: SHOW_MORE_DEFAULT_COUNT,
   isDataLoaded: false,
-  reviews: [],
   serverError: false,
-  isFormDisabled: false
 };
 
 const filmReducer = createReducer(initialState, (builder) => {
@@ -62,14 +60,6 @@ const filmReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(loadPromo, (state, action) => {
     state.promoFilm = action.payload;
-  });
-
-  builder.addCase(setReviews, (state, action) => {
-    state.reviews = action.payload;
-  });
-
-  builder.addCase(setIsFormDisabled, (state, action) => {
-    state.isFormDisabled = action.payload;
   });
 
 });
