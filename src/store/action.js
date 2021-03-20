@@ -3,18 +3,22 @@ import {createAction} from "@reduxjs/toolkit";
 export const ActionType = {
   CHANGE_GENRE: `changeGenre`,
   CHANGE_FILTERED_FILMS: `changedFilteredFilms`,
+  CHANGE_FAVORITE_FILMS: `changedFavoriteFilms`,
   CHANGE_SHOW_COUNT: `changeShowCount`,
   CHANGE_ALL_FILMS_BY_ACTIVE_GENRE_COUNT: `changeAllFilmsByActiveGenreCount`,
   LOAD_FILMS: `loadFilms`,
   LOAD_FILM: `loadFilm`,
+  LOAD_PROMO: `loadPromo`,
   REQUIRED_AUTHORIZATION: `requiredAuthorization`,
   REDIRECT_TO_ROUTE: `redirectToRoute`,
   REDIRECT_TO_FILM: `redirectToFilm`,
   REDIRECT_TO_NOT_FOUND: `redirectToNotFound`,
+  REDIRECT_TO_NOT_AVAILABLE: `redirectToNotAvailable`,
   SET_AUTH_INFO: `setAuthInfo`,
   SET_DATA_LOAD_STATUS: `setDataLoadStatus`,
-  SET_PLAYING_STATUS: `setPlayingStatus`,
-  SET_PLAYING_TIME: `setPlayingTime`,
+  SET_SERVER_ERROR: `setServerError`,
+  SET_REVIEWS: `setReviews`,
+  SET_IS_FROM_DISABLED: `setIsFormDisabled`,
 };
 
 export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
@@ -22,6 +26,10 @@ export const changeGenre = createAction(ActionType.CHANGE_GENRE, (genre) => {
 });
 
 export const changedFilteredFilms = createAction(ActionType.CHANGE_FILTERED_FILMS, (films) => {
+  return {payload: films};
+});
+
+export const changedFavoriteFilms = createAction(ActionType.CHANGE_FAVORITE_FILMS, (films) => {
   return {payload: films};
 });
 
@@ -33,7 +41,15 @@ export const setDataLoadStatus = createAction(ActionType.SET_DATA_LOAD_STATUS, (
   return {payload: status};
 });
 
+export const setServerError = createAction(ActionType.SET_SERVER_ERROR, (status) => {
+  return {payload: status};
+});
+
 export const loadFilm = createAction(ActionType.LOAD_FILM, (film) => {
+  return {payload: film};
+});
+
+export const loadPromo = createAction(ActionType.LOAD_PROMO, (film) => {
   return {payload: film};
 });
 
@@ -65,10 +81,14 @@ export const redirectToNotFound = createAction(ActionType.REDIRECT_TO_NOT_FOUND,
   return {payload: url};
 });
 
-export const setPlayingStatus = createAction(ActionType.SET_PLAYING_STATUS, (url) => {
+export const redirectToNotAvailable = createAction(ActionType.REDIRECT_TO_NOT_AVAILABLE, (url) => {
   return {payload: url};
 });
 
-export const setPlayingTime = createAction(ActionType.SET_PLAYING_TIME, (url) => {
+export const setReviews = createAction(ActionType.SET_REVIEWS, (url) => {
+  return {payload: url};
+});
+
+export const setIsFormDisabled = createAction(ActionType.SET_IS_FROM_DISABLED, (url) => {
   return {payload: url};
 });

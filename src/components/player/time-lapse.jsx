@@ -1,15 +1,16 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import PropTypes from "prop-types";
 
-const TimeLapse = () => {
-  const {playingTime} = useSelector((state) => state.FILM);
-
+const TimeLapse = ({timeLapse}) => {
   return (
     <>
-      <div className="player__time-value">{playingTime}</div>
+      <div className="player__time-value">{timeLapse}</div>
     </>
   );
 };
 
+TimeLapse.propTypes = {
+  timeLapse: PropTypes.string.isRequired
+};
 
 export default TimeLapse;

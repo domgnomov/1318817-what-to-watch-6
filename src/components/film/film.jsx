@@ -1,22 +1,29 @@
 import React, {useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import Tabs from "../tabs/tabs";
-import {LikeThisFilms} from "../like-this-films/like-this-films";
+import {LikeThisFilms} from "../film-list/like-this-film-list";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchFilm} from "../../store/api-actions";
+import {fetchFilm, fetchReviews} from "../../store/api-actions";
 import LoadingScreen from "../loading-screen/loading-screen";
-import {AuthorizationStatus, DEFAULT_FILM} from "../../const";
+import {AppRoute, AuthorizationStatus, DEFAULT_FILM} from "../../const/const";
+import MyListButton from "../film-list/my-list-button";
+import Logo from "../logo/logo";
+import UserBlock from "../user-block/user-block";
 
 const Film = () => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
   const {currentFilm} = useSelector((state) => state.FILM);
+  const film = currentFilm;
+
   const dispatch = useDispatch();
 
-  const history = useHistory();
   const {id} = useParams();
-  const film = currentFilm;
+
+  const history = useHistory();
+
   useEffect(() => {
     dispatch(fetchFilm(id));
+    dispatch(fetchReviews(id));
   }, [id]);
 
   if (film === DEFAULT_FILM) {
@@ -25,15 +32,27 @@ const Film = () => {
     );
   }
 
+  window.scrollTo(0, 0);
+
   const getAddReviewButton = () => {
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       return (
         <>
           <a href="add-review.html" className="btn movie-card__button" onClick={(e) => {
-            history.push(`/films/` + film.id + `/review`);
+            history.push(AppRoute.FILMS + `/` + film.id + AppRoute.REVIEWS);
             e.preventDefault();
           }}>Add review</a>
         </>
+      );
+    } else {
+      return ``;
+    }
+  };
+
+  const getMyListButton = () => {
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return (
+        <MyListButton/>
       );
     } else {
       return ``;
@@ -50,20 +69,9 @@ const Film = () => {
             </div>
             <h1 className="visually-hidden">WTW</h1>
             <header className="page-header movie-card__head">
-              <div className="logo">
-                <a href="main.html" className="logo__link" onClick={(e) => {
-                  history.push(`/`);
-                  e.preventDefault();
-                }}>
-                  <span className="logo__letter logo__letter--1">W</span>
-                  <span className="logo__letter logo__letter--2">T</span>
-                  <span className="logo__letter logo__letter--3">W</span>
-                </a>
-              </div>
+              <Logo/>
               <div className="user-block">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-                </div>
+                <UserBlock/>
               </div>
             </header>
             <div className="movie-card__wrap">
@@ -71,11 +79,11 @@ const Film = () => {
                 <h2 className="movie-card__title">{film.name}</h2>
                 <p className="movie-card__meta">
                   <span className="movie-card__genre">{film.genre}</span>
-                  <span className="movie-card__year">{film.year}</span>
+                  <span className="movie-card__year">{film.released}</span>
                 </p>
                 <div className="movie-card__buttons">
                   <button className="btn btn--play movie-card__button" type="button" onClick={(e) => {
-                    history.push(`/player/` + film.id);
+                    history.push(AppRoute.PLAYERS + `/` + film.id);
                     e.preventDefault();
                   }}>
                     <svg viewBox="0 0 19 19" width={19} height={19}>
@@ -83,15 +91,7 @@ const Film = () => {
                     </svg>
                     <span>Play</span>
                   </button>
-                  <button className="btn btn--list movie-card__button " type="button" onClick={(e) => {
-                    history.push(`/myList`);
-                    e.preventDefault();
-                  }}>
-                    <svg viewBox="0 0 19 20" width={19} height={20}>
-                      <use xlinkHref="#add" />
-                    </svg>
-                    <span>My list</span>
-                  </button>
+                  {getMyListButton()}
                   {getAddReviewButton()}
                 </div>
               </div>
@@ -114,13 +114,6 @@ const Film = () => {
             </div>
           </section>
           <footer className="page-footer">
-            <div className="logo">
-              <a href="main.html" className="logo__link logo__link--light">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
             <div className="copyright">
               <p>© 2019 What to watch Ltd.</p>
             </div>

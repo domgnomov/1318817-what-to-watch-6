@@ -1,5 +1,5 @@
 import {ActionType} from "./action";
-import browserHistory from "../browser-history";
+import browserHistory from "../services/browser-history";
 
 
 export const redirect = (_store) => (next) => (action) => {
@@ -10,6 +10,12 @@ export const redirect = (_store) => (next) => (action) => {
     browserHistory.push(action.payload);
   }
   if (action.type === ActionType.REDIRECT_TO_FILM) {
+    browserHistory.push(action.payload);
+  }
+  if (action.type === ActionType.REDIRECT_TO_NOT_AVAILABLE) {
+    browserHistory.push(action.payload);
+  }
+  if (action.type === ActionType.REDIRECT_TO_NOT_AVAILABLE) {
     browserHistory.push(action.payload);
   }
 

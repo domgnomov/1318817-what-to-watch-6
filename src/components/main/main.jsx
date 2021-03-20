@@ -1,24 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FilmList} from "../film-list/film-list";
-import {GenreList} from "../genre-list/genre-list";
+import {Genres} from "../genres/genres";
 import {ShowMore} from "../show-more/show-more";
-import {useSelector} from "react-redux";
-import {AuthorizationStatus} from "../../const";
-import NoAuthUserBlock from "../sign-in/no-auth-user-block";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRoute, AuthorizationStatus} from "../../const/const";
 import {useHistory} from "react-router-dom";
+import MyListButton from "../film-list/my-list-button";
+import Logo from "../logo/logo";
+import UserBlock from "../user-block/user-block";
+import {fetchFilm} from "../../store/api-actions";
+import {FilmValidation} from "../../validation/validation";
 
+const Main = ({film}) => {
+  const {authorizationStatus} = useSelector((state) => state.AUTH);
 
-const Main = () => {
-  const {allFilms} = useSelector((state) => state.FILM);
-  const {authorizationStatus, authInfo} = useSelector((state) => state.AUTH);
-  const film = allFilms[0];
+  const dispatch = useDispatch();
+
   const history = useHistory();
 
-  const getUserBlock = () => {
-    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      return <NoAuthUserBlock history={history}/>;
+  useEffect(() => {
+    dispatch(fetchFilm(film.id));
+  }, []);
+
+  const getMyLisBlock = () => {
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return <MyListButton/>;
     } else {
-      return authInfo.email;
+      return ``;
     }
   };
 
@@ -31,15 +39,9 @@ const Main = () => {
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header movie-card__head">
           <link rel="shortcut icon" href="#"/>
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo/>
           <div className="user-block">
-            {getUserBlock()}
+            <UserBlock isMain={true}/>
           </div>
         </header>
         <div className="movie-card__wrap">
@@ -51,21 +53,16 @@ const Main = () => {
               <h2 className="movie-card__title">{film.name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{film.genre}</span>
-                <span className="movie-card__year">{film.year}</span>
+                <span className="movie-card__year">{film.released}</span>
               </p>
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={() => history.push(`/player/` + film.id)}>
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => history.push(AppRoute.PLAYERS + `/` + film.id)}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button" onClick={() => history.push(`/myList`)}>
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
+                {getMyLisBlock()}
               </div>
             </div>
           </div>
@@ -74,7 +71,7 @@ const Main = () => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenreList/>
+          <Genres/>
           <div className="catalog__movies-list">
             <FilmList/>
           </div>
@@ -86,5 +83,7 @@ const Main = () => {
     </>
   );
 };
+
+Main.propTypes = FilmValidation;
 
 export {Main};

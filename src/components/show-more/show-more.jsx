@@ -1,15 +1,17 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {SHOW_MORE_DEFAULT_COUNT} from "../../const";
-import {updateFilteredFilms} from "../model/dataService";
-
-const isShowMoreAvailable = (filteredFilms, allFilmsByActiveGenreCount) => {
-  return filteredFilms.length < allFilmsByActiveGenreCount;
-};
+import {SHOW_MORE_DEFAULT_COUNT} from "../../const/const";
+import {updateFilteredFilms} from "../../services/data";
 
 const ShowMore = () => {
-  const dispatch = useDispatch();
   const {filteredFilms, activeGenre, allFilms, allFilmsByActiveGenreCount, showCount} = useSelector((state) => state.FILM);
+
+  const dispatch = useDispatch();
+
+  const isShowMoreAvailable = (films, count) => {
+    return films.length < count;
+  };
+
   return (
     <>
       {
