@@ -4,6 +4,16 @@ export const ALL_FILMS_BY_ACTIVE_GENRE_DEFAULT_COUNT = 0;
 export const DEFAULT_GENRE = `All genres`;
 export const DEFAULT_FILM = {};
 export const RATING_STARS_LENGTH = 10;
+export const GENRES_LIMIT = 9;
+export const MIN_COMMENT_LENGTH = 50;
+export const MAX_COMMENT_LENGTH = 400;
+export const TIMEOUT_LENGTH = 1000;
+
+export const TabType = {
+  OVERVIEW: 1,
+  DETAILS: 2,
+  REVIEWS: 3
+};
 
 export const APIRoute = {
   LOGIN: `/login`,

@@ -13,11 +13,14 @@ import UserBlock from "../user-block/user-block";
 const Film = () => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
   const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const film = currentFilm;
+
   const dispatch = useDispatch();
 
-  const history = useHistory();
   const {id} = useParams();
-  const film = currentFilm;
+
+  const history = useHistory();
+
   useEffect(() => {
     dispatch(fetchFilm(id));
     dispatch(fetchReviews(id));
@@ -76,7 +79,7 @@ const Film = () => {
                 <h2 className="movie-card__title">{film.name}</h2>
                 <p className="movie-card__meta">
                   <span className="movie-card__genre">{film.genre}</span>
-                  <span className="movie-card__year">{film.year}</span>
+                  <span className="movie-card__year">{film.released}</span>
                 </p>
                 <div className="movie-card__buttons">
                   <button className="btn btn--play movie-card__button" type="button" onClick={(e) => {

@@ -4,10 +4,11 @@ import {changeFavoriteStatus} from "../../store/api-actions";
 import {DEFAULT_FILM} from "../../const/const";
 
 const MyListButton = () => {
-  const dispatch = useDispatch();
   const {promoFilm} = useSelector((state) => state.FILM);
   const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
   const film = currentFilm === DEFAULT_FILM ? promoFilm : currentFilm;
+
+  const dispatch = useDispatch();
 
   const handleListButtonClick = () => {
     dispatch(changeFavoriteStatus(film.id, !film.isFavorite ? `1` : `0`));

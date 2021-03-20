@@ -5,6 +5,7 @@ import {setServerError} from "../../store/action";
 
 const NotAvailable = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(setServerError(false));
   });

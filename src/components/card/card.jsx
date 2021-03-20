@@ -2,18 +2,20 @@ import React, {useState, useEffect, useRef} from 'react';
 import {FilmValidation} from "../../validation/validation";
 import MiniPlayer from "../player/mini-player";
 import Cover from "./cover";
+import {TIMEOUT_LENGTH} from "../../const/const";
 
 const Card = (props) => {
   const {film, setActiveId} = props;
-  const ref = useRef();
   const [isPreviewPlaying, setIsPreviewPlaying] = useState(false);
+
+  const ref = useRef();
 
   useEffect(() => {
     let isMounted = true;
     const delay = function (elem, callback) {
       let timeout = null;
       elem.onmouseover = function () {
-        timeout = setTimeout(callback, 1000);
+        timeout = setTimeout(callback, TIMEOUT_LENGTH);
       };
 
       elem.onmouseout = function () {

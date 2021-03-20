@@ -10,23 +10,23 @@ import {fetchFilm} from "../../store/api-actions";
 
 
 const Player = () => {
-  const {id} = useParams();
-  const dispatch = useDispatch();
-  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
-
-  if (currentFilm === DEFAULT_FILM) {
-    dispatch(fetchFilm(id));
-  }
-
-  const film = currentFilm;
-
   const [togglerProgress, setTogglerProgress] = useState(0);
   const [timeLapse, setTimeLapse] = useState(``);
   const [isPlaying, setIsPlaying] = useState(false);
   const [previousTime, setPreviousTime] = useState(0);
+  const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const film = currentFilm;
+
+  const dispatch = useDispatch();
+
+  const {id} = useParams();
 
   const videoRef = useRef();
   const history = useHistory();
+
+  if (currentFilm === DEFAULT_FILM) {
+    dispatch(fetchFilm(id));
+  }
 
   const playPauseClickHandler = () => {
     const elem = videoRef.current;

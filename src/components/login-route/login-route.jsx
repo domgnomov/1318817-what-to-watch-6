@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 
 const LoginRoute = ({render, path, exact}) => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
+
   return (
     <Route
       path={path}

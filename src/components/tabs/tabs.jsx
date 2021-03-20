@@ -4,24 +4,18 @@ import FilmReviews from "../film-reviews/film-reviews";
 import Tab from "./tab";
 import FilmOverview from "../film-overview/film-overview";
 import FilmDetails from "../film-details/film-details";
+import {TabType} from "../../const/const";
 
 
 const Tabs = (props) => {
+  const [activeTabId, setActiveTabId] = useState(TabType.OVERVIEW);
   const {film} = props;
-
-  const Type = {
-    OVERVIEW: 1,
-    DETAILS: 2,
-    REVIEWS: 3
-  };
-
-  const [activeTabId, setActiveTabId] = useState(Type.OVERVIEW);
 
   const getTabContainer = () => {
     switch (activeTabId) {
-      case Type.DETAILS:
+      case TabType.DETAILS:
         return <FilmDetails film={film} />;
-      case Type.REVIEWS:
+      case TabType.REVIEWS:
         return <FilmReviews film={film} />;
       default:
         return <FilmOverview film={film} />;
@@ -34,7 +28,7 @@ const Tabs = (props) => {
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">
             {
-              Object.keys(Type).map((name, id) => (<Tab key={id} name={name} id={Type[name]} activeTabId={activeTabId} setActiveTabId={setActiveTabId}/>))
+              Object.keys(TabType).map((name, id) => (<Tab key={id} name={name} id={TabType[name]} activeTabId={activeTabId} setActiveTabId={setActiveTabId}/>))
             }
           </ul>
         </nav>

@@ -1,33 +1,33 @@
 import React, {useState, Fragment, useRef} from 'react';
 import {fetchFilm, sendComment} from "../../store/api-actions";
 import {useDispatch, useSelector} from "react-redux";
-import {DEFAULT_FILM, RATING_STARS_LENGTH} from "../../const/const";
+import {DEFAULT_FILM, MAX_COMMENT_LENGTH, MIN_COMMENT_LENGTH, RATING_STARS_LENGTH} from "../../const/const";
 import {setIsFormDisabled} from "../../store/action";
 import {useParams} from "react-router-dom";
 
 const AddReviewForm = () => {
-  const {id} = useParams();
-  const dispatch = useDispatch();
   const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
-
-  if (currentFilm === DEFAULT_FILM) {
-    dispatch(fetchFilm(id));
-  }
-
   const {isFormDisabled} = useSelector((state) => state.FILM);
-
   const [currentRating, setRating] = useState(0);
   const [commentLength, setCommentLength] = useState(0);
+
+  const dispatch = useDispatch();
+
+  const {id} = useParams();
 
   const commentRef = useRef();
   const submitRef = useRef();
 
   const ratingStars = new Array(RATING_STARS_LENGTH).fill(false);
 
+  if (currentFilm === DEFAULT_FILM) {
+    dispatch(fetchFilm(id));
+  }
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(setIsFormDisabled(true));
-    dispatch(sendComment(currentFilm.Id, {
+    dispatch(sendComment(currentFilm.id, {
       rating: currentRating,
       comment: commentRef.current.value
     }));
@@ -39,7 +39,7 @@ const AddReviewForm = () => {
   };
 
   const isValidComment = () => {
-    return commentLength >= 50 && commentLength <= 400;
+    return commentLength >= MIN_COMMENT_LENGTH && commentLength <= MAX_COMMENT_LENGTH;
   };
 
   const isValidRating = () => {

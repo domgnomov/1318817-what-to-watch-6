@@ -13,8 +13,10 @@ import {FilmValidation} from "../../validation/validation";
 
 const Main = ({film}) => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
-  const history = useHistory();
+
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchFilm(film.id));
@@ -51,7 +53,7 @@ const Main = ({film}) => {
               <h2 className="movie-card__title">{film.name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{film.genre}</span>
-                <span className="movie-card__year">{film.year}</span>
+                <span className="movie-card__year">{film.released}</span>
               </p>
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button" onClick={() => history.push(`/player/` + film.id)}>

@@ -17,8 +17,9 @@ import {LoginRoute} from "../login-route/login-route";
 import NotAvailable from "../not-available/not-available";
 
 const App = () => {
-  const dispatch = useDispatch();
   const {isDataLoaded, allFilms, promoFilm, serverError} = useSelector((state) => state.FILM);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isDataLoaded) {

@@ -5,9 +5,10 @@ import {SHOW_MORE_DEFAULT_COUNT} from "../../const/const";
 import {updateFilms} from "../../services/data";
 
 const Genre = (props) => {
-  const dispatch = useDispatch();
   const {genre} = props;
   const {allFilms, activeGenre} = useSelector((state) => state.FILM);
+
+  const dispatch = useDispatch();
 
   return (
     <>

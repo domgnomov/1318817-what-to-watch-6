@@ -8,15 +8,16 @@ import {useParams} from "react-router-dom";
 import {DEFAULT_FILM} from "../../const/const";
 
 const AddReview = () => {
-  const dispatch = useDispatch();
-  const {id} = useParams();
   const {currentFilm} = useSelector((state) => state.CURRENT_FILM);
+  const film = currentFilm;
 
-  if (currentFilm === DEFAULT_FILM) {
+  const dispatch = useDispatch();
+
+  const {id} = useParams();
+
+  if (film === DEFAULT_FILM) {
     dispatch(fetchFilm(id));
   }
-
-  const film = currentFilm;
 
   return (
     <>
