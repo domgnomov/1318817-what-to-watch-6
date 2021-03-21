@@ -1,13 +1,24 @@
 import React from 'react';
 import {AddReviewForm} from "./add-review-form";
-import {useHistory, useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import Logo from "../logo/logo";
+import UserBlock from "../user-block/user-block";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchFilm} from "../../store/api-actions";
+import {useParams} from "react-router-dom";
+import {DEFAULT_FILM} from "../../const/const";
 
 const AddReview = () => {
-  const {allFilms} = useSelector((state) => state.FILM);
-  const history = useHistory();
+  const {currentFilm} = useSelector((state) => state.FILM);
+  const film = currentFilm;
+
+  const dispatch = useDispatch();
+
   const {id} = useParams();
-  const film = allFilms.find((obj) => obj.id.toString() === id);
+
+  if (film === DEFAULT_FILM) {
+    dispatch(fetchFilm(id));
+  }
+
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -17,16 +28,7 @@ const AddReview = () => {
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header">
-            <div className="logo">
-              <a href="main.html" className="logo__link" onClick={(e) => {
-                history.push(`/`);
-                e.preventDefault();
-              }}>
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
+            <Logo/>
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
@@ -38,9 +40,7 @@ const AddReview = () => {
               </ul>
             </nav>
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-              </div>
+              <UserBlock/>
             </div>
           </header>
           <div className="movie-card__poster movie-card__poster--small">
@@ -48,7 +48,7 @@ const AddReview = () => {
           </div>
         </div>
         <div className="add-review">
-          <AddReviewForm filmId={id}/>
+          <AddReviewForm filmId={film.id}/>
         </div>
       </section>
     </>

@@ -1,37 +1,92 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {useSelector} from "react-redux";
+import PlayPause from "./play-pause";
+import TimeLapse from "./time-lapse";
+import PlayerToggler from "./player-toggler";
+import {format} from "../../utils/date";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRoute, DEFAULT_FILM} from "../../const/const";
+import {fetchFilm} from "../../store/api-actions";
+
 
 const Player = () => {
-  const {allFilms} = useSelector((state) => state.FILM);
+  const [togglerProgress, setTogglerProgress] = useState(0);
+  const [timeLapse, setTimeLapse] = useState(``);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [previousTime, setPreviousTime] = useState(0);
+  const {currentFilm} = useSelector((state) => state.FILM);
+  const film = currentFilm;
 
-  const history = useHistory();
+  const dispatch = useDispatch();
 
   const {id} = useParams();
-  const film = allFilms.find((obj) => obj.id.toString() === id);
+
+  const videoRef = useRef();
+  const history = useHistory();
+
+  if (currentFilm === DEFAULT_FILM) {
+    dispatch(fetchFilm(id));
+  }
+
+  const handlePlayPauseClick = () => {
+    const elem = videoRef.current;
+    setIsPlaying(!elem.paused);
+    if (elem.paused) {
+      elem.play();
+    } else {
+      elem.pause();
+    }
+  };
+
+  const handleFullscreenClick = (evt) => {
+    evt.preventDefault();
+    const elem = videoRef.current;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    const duration = videoRef.current.duration;
+    const currentTime = videoRef.current.currentTime;
+    const time = Math.floor((duration - currentTime) % 60);
+    if (previousTime !== time) {
+      setPreviousTime(time);
+      setTimeLapse(format(duration - currentTime));
+    }
+    const progress = Math.round((currentTime / duration * 100) * 100) / 100;
+    setTogglerProgress(progress);
+  };
+
+  const playPauseHandler = () => {
+    setIsPlaying(!videoRef.current.paused);
+  };
 
   return (
     <>
       <div className="player">
-        <video src="#" className="player__video" poster={film.previewImage} />
-        <button type="button" className="player__exit" onClick={() => history.push(`/`)}>Exit</button>
+        <video autoPlay ref={videoRef} src={film.videoLink} className="player__video" poster={film.previewImage} onPause={playPauseHandler} onPlay={playPauseHandler} onTimeUpdate={handleTimeUpdate}/>
+        <button type="button" className="player__exit" onClick={() => {
+          videoRef.current.pause();
+          history.push(AppRoute.ROOT);
+        }}>Exit</button>
         <div className="player__controls">
           <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value={30} max={100} />
-              <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
-            </div>
-            <div className="player__time-value">1:30:29</div>
+            <PlayerToggler togglerProgress={togglerProgress}/>
+            <TimeLapse timeLapse={timeLapse}/>
           </div>
           <div className="player__controls-row">
-            <button type="button" className="player__play">
-              <svg viewBox="0 0 19 19" width={19} height={19}>
-                <use xlinkHref="#play-s" />
-              </svg>
-              <span>Play</span>
+            <button type="button" className="player__play" onClick={handlePlayPauseClick}>
+              <PlayPause isPlaying={isPlaying}/>
             </button>
             <div className="player__name">Transpotting</div>
-            <button type="button" className="player__full-screen">
+            <button type="button" className="player__full-screen" onClick={handleFullscreenClick}>
               <svg viewBox="0 0 27 27" width={27} height={27}>
                 <use xlinkHref="#full-screen" />
               </svg>

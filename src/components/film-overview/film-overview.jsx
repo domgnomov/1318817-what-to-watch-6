@@ -1,5 +1,5 @@
 import React from 'react';
-import {FilmValidation} from "../validation/validation";
+import {FilmValidation} from "../../validation/validation";
 
 
 const FilmOverview = (props) => {
@@ -10,7 +10,7 @@ const FilmOverview = (props) => {
       <div className="movie-rating">
         <div className="movie-rating__score">{film.rating}</div>
         <p className="movie-rating__meta">
-          <span className="movie-rating__level">Very good</span>
+          <span className="movie-rating__level">{film.mark}</span>
           <span className="movie-rating__count">{film.scoresCount} ratings</span>
         </p>
       </div>

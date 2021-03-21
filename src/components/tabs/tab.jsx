@@ -1,5 +1,5 @@
 import React from 'react';
-import {FilmValidation} from "../validation/validation";
+import {FilmValidation} from "../../validation/validation";
 
 
 const Tab = (props) => {
