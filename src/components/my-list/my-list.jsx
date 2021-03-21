@@ -1,12 +1,12 @@
-import React, {Fragment} from 'react';
-import FilmList from "../film-list/film-list";
+import React from 'react';
+import {FilmList} from "../film-list/film-list";
 import {useHistory} from "react-router-dom";
 
 const MyList = () => {
   const history = useHistory();
 
   return (
-    <Fragment>
+    <>
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
@@ -45,7 +45,7 @@ const MyList = () => {
           </div>
         </footer>
       </div>
-    </Fragment>
+    </>
   );
 };
 

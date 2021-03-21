@@ -1,13 +1,10 @@
 import React from 'react';
-import Genre from "../genre/genre";
-import {FilmValidation} from "../validation/validation";
-import {connect} from "react-redux";
-import PropTypes from "prop-types";
-import {ActionCreator} from "../../store/action";
-import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../../const";
+import {Genre} from "../genre/genre";
+import {useSelector} from "react-redux";
 
-const GenreList = (props) => {
-  const {allFilms} = props;
+const GenreList = () => {
+  const {allFilms} = useSelector((state) => state.FILM);
+
   const genres = new Set();
   genres.add(`All genres`);
   allFilms.map((film) => film.genre).forEach(genres.add, genres);
@@ -22,23 +19,4 @@ const GenreList = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  allFilms: state.allFilms
-});
-
-GenreList.propTypes = {
-  allFilms: PropTypes.arrayOf(FilmValidation),
-  changeGenre: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  changeGenre(allFilms) {
-    dispatch(ActionCreator.changeGenre(DEFAULT_GENRE));
-    dispatch(ActionCreator.changeShowCount(SHOW_MORE_DEFAULT_COUNT));
-    dispatch(ActionCreator.changeAllFilmsByActiveGenre(DEFAULT_GENRE, allFilms));
-    dispatch(ActionCreator.getFilms(DEFAULT_GENRE, allFilms, SHOW_MORE_DEFAULT_COUNT));
-  },
-});
-
 export {GenreList};
-export default connect(mapStateToProps, mapDispatchToProps)(GenreList);

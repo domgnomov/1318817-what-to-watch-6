@@ -1,21 +1,22 @@
 import React, {useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {FilmValidation} from "../validation/validation";
 import Tabs from "../tabs/tabs";
-import LikeThisFilms from "../like-this-films/like-this-films";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import {LikeThisFilms} from "../like-this-films/like-this-films";
+import {useDispatch, useSelector} from "react-redux";
 import {fetchFilm} from "../../store/api-actions";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {AuthorizationStatus, DEFAULT_FILM} from "../../const";
 
-const Film = (props) => {
-  const {onLoadFilm, authorizationStatus, currentFilm} = props;
+const Film = () => {
+  const {authorizationStatus} = useSelector((state) => state.AUTH);
+  const {currentFilm} = useSelector((state) => state.FILM);
+  const dispatch = useDispatch();
+
   const history = useHistory();
   const {id} = useParams();
   const film = currentFilm;
   useEffect(() => {
-    onLoadFilm(id);
+    dispatch(fetchFilm(id));
   }, [id]);
 
   if (film === DEFAULT_FILM) {
@@ -130,25 +131,5 @@ const Film = (props) => {
   );
 };
 
-Film.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  currentFilm: PropTypes.oneOfType([
-    FilmValidation,
-    PropTypes.shape(DEFAULT_FILM).isRequired
-  ]),
-  onLoadFilm: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  currentFilm: state.currentFilm,
-  authorizationStatus: state.authorizationStatus,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadFilm(id) {
-    dispatch(fetchFilm(id));
-  },
-});
-
 export {Film};
-export default connect(mapStateToProps, mapDispatchToProps)(Film);
+

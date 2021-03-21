@@ -1,11 +1,9 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {FilmValidation} from "../validation/validation";
-import {connect} from "react-redux";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-const Player = (props) => {
-  const {allFilms} = props;
+const Player = () => {
+  const {allFilms} = useSelector((state) => state.FILM);
 
   const history = useHistory();
 
@@ -13,7 +11,7 @@ const Player = (props) => {
   const film = allFilms.find((obj) => obj.id.toString() === id);
 
   return (
-    <Fragment>
+    <>
       <div className="player">
         <video src="#" className="player__video" poster={film.previewImage} />
         <button type="button" className="player__exit" onClick={() => history.push(`/`)}>Exit</button>
@@ -42,17 +40,8 @@ const Player = (props) => {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 
-Player.propTypes = {
-  allFilms: PropTypes.arrayOf(FilmValidation).isRequired
-};
-
-const mapStateToProps = (state) => ({
-  allFilms: state.allFilms,
-});
-
 export {Player};
-export default connect(mapStateToProps, null)(Player);

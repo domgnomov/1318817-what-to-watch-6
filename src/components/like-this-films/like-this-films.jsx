@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
-import {connect} from "react-redux";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 import Card from "../card/card";
-import {FilmValidation} from "../validation/validation";
 import {LIKE_THIS_LIMIT} from "../../const";
+import {getFilmsByGenreAndLimit} from "../model/dataService";
 
-const LikeThisFilms = (props) => {
+const LikeThisFilms = () => {
   const setActiveId = useState(1)[1];
-  const {allFilms, genre} = props;
-  const likeThisFilms = Array.from(allFilms).filter((film) => film.genre === genre).slice(0, LIKE_THIS_LIMIT);
+  const {allFilms, genre} = useSelector((state) => state.FILM);
+  const likeThisFilms = getFilmsByGenreAndLimit(genre, allFilms, LIKE_THIS_LIMIT);
   return (
     <>
       {
@@ -18,14 +17,4 @@ const LikeThisFilms = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  allFilms: state.allFilms,
-});
-
-LikeThisFilms.propTypes = {
-  allFilms: PropTypes.arrayOf(FilmValidation).isRequired,
-  genre: PropTypes.string.isRequired
-};
-
 export {LikeThisFilms};
-export default connect(mapStateToProps, null)(LikeThisFilms);
