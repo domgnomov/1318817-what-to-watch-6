@@ -38,22 +38,22 @@ const AddReviewForm = () => {
     setCommentLength(commentRef.current.value.length);
   };
 
-  const isValidComment = () => {
+  const getIsValidComment = () => {
     return commentLength >= MIN_COMMENT_LENGTH && commentLength <= MAX_COMMENT_LENGTH;
   };
 
-  const isValidRating = () => {
+  const getIsValidRating = () => {
     return currentRating > 0;
   };
 
-  const isSubmitNotAvailable = () => {
-    return !isValidComment() || !isValidRating();
+  const getIsSubmitNotAvailable = () => {
+    return !getIsValidComment() || !getIsValidRating();
   };
 
   const getInformMessage = () => {
-    if (!isValidRating()) {
+    if (!getIsValidRating()) {
       return `Поставьте фильму оценку`;
-    } else if (!isValidComment()) {
+    } else if (!getIsValidComment()) {
       return `Текст отзыва должен быть не меньше 50 и не больше 400 символов`;
     } else {
       return ``;
@@ -81,7 +81,7 @@ const AddReviewForm = () => {
         <div className="add-review__text">
           <textarea disabled={isFormDisabled} ref={commentRef} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange={handleTextChange}/>
           <div className="add-review__submit">
-            <button ref={submitRef} className="add-review__btn" disabled={isSubmitNotAvailable() || isFormDisabled} type="submit">Post</button>
+            <button ref={submitRef} className="add-review__btn" disabled={getIsSubmitNotAvailable() || isFormDisabled} type="submit">Post</button>
           </div>
         </div>
         <label>{getInformMessage()}</label>
