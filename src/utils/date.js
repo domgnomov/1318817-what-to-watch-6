@@ -8,7 +8,7 @@ export const formatTextDate = (date) => {
   return moment(date).format(`MMMM DD, YYYY`);
 };
 
-export const format = (s) => {
+export const formatWithSeconds = (s) => {
   let h = Math.floor(s / 60 / 60);
   h = (h >= 10) ? h : `0` + h;
   let m = Math.floor(s / 60);
@@ -16,4 +16,10 @@ export const format = (s) => {
   s = Math.floor(s % 60);
   s = (s >= 10) ? s : `0` + s;
   return h + `:` + m + `:` + s;
+};
+
+export const formatWithoutSeconds = (s) => {
+  let h = Math.floor(s / 60 / 60);
+  let m = Math.floor(s / 60);
+  return h + `h ` + m + `m`;
 };

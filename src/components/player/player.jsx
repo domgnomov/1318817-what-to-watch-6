@@ -3,7 +3,7 @@ import {useHistory, useParams} from 'react-router-dom';
 import PlayPause from "./play-pause";
 import TimeLapse from "./time-lapse";
 import PlayerToggler from "./player-toggler";
-import {format} from "../../utils/date";
+import {formatWithSeconds} from "../../utils/date";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRoute, DEFAULT_FILM} from "../../const/const";
 import {fetchFilm} from "../../store/api-actions";
@@ -58,7 +58,7 @@ const Player = () => {
     const time = Math.floor((duration - currentTime) % 60);
     if (previousTime !== time) {
       setPreviousTime(time);
-      setTimeLapse(format(duration - currentTime));
+      setTimeLapse(formatWithSeconds(duration - currentTime));
     }
     const progress = Math.round((currentTime / duration * 100) * 100) / 100;
     setTogglerProgress(progress);
