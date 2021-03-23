@@ -28,7 +28,7 @@ const Tabs = (props) => {
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">
             {
-              Object.keys(TabType).map((name, id) => (<Tab key={id} name={name} id={TabType[name]} activeTabId={activeTabId} setActiveTabId={setActiveTabId}/>))
+              Object.keys(TabType).map((name) => (<Tab key={TabType[name]} name={name} id={TabType[name]} activeTabId={activeTabId} setActiveTabId={setActiveTabId}/>))
             }
           </ul>
         </nav>

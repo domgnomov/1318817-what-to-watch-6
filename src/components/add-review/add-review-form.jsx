@@ -18,7 +18,7 @@ const AddReviewForm = () => {
   const commentRef = useRef();
   const submitRef = useRef();
 
-  const ratingStars = new Array(RATING_STARS_LENGTH).fill(false);
+  const ratingStars = Array.from(Array(RATING_STARS_LENGTH).keys());
 
   if (currentFilm === DEFAULT_FILM) {
     dispatch(fetchFilm(id));
@@ -66,10 +66,10 @@ const AddReviewForm = () => {
         <div className="rating">
           <div className="rating__stars">
             {
-              ratingStars.map((value, ratingStarId) => {
-                const starId = ratingStarId + 1;
+              ratingStars.map((value) => {
+                const starId = value + 1;
                 return (
-                  <Fragment key={starId}>
+                  <Fragment key={value}>
                     <input disabled={isFormDisabled} className="rating__input" id={`star-` + starId} type="radio" name="rating" defaultValue={starId} onChange={() => setRating(starId)}/>
                     <label className="rating__label" htmlFor={`star-` + starId}>Rating {starId}</label>
                   </Fragment>

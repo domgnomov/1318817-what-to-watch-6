@@ -18,7 +18,7 @@ const FilmDetails = (props) => {
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Starring</strong>
             <span className="movie-card__details-value">
-              {film.starring.map((star, index) => (<Star key={index} star={star} index={index} length={film.starring.length}/>))}
+              {film.starring.map((star, index) => (<Star key={star} star={star} index={index} length={film.starring.length}/>))}
             </span>
           </p>
         </div>

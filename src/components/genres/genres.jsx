@@ -15,7 +15,7 @@ const Genres = () => {
     <>
       <ul className="catalog__genres-list">
         {
-          limitedGenres.map((genre, id) => (<Genre key={id} genre={genre}/>))
+          limitedGenres.map((genre) => (<Genre key={genre} genre={genre}/>))
         }
       </ul>
     </>
