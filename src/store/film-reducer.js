@@ -1,7 +1,6 @@
 import {
   changeAllFilmsByActiveGenreCount,
   changeGenre,
-  changeShowCount,
   changedFilteredFilms,
   loadFilms,
   setDataLoadStatus,
@@ -19,7 +18,6 @@ const initialState = {
   allFilmsByActiveGenreCount: ALL_FILMS_BY_ACTIVE_GENRE_DEFAULT_COUNT,
   filteredFilms: [],
   favoriteFilms: [],
-  showCount: SHOW_MORE_DEFAULT_COUNT,
   isDataLoaded: false,
 };
 
@@ -38,10 +36,6 @@ const filmReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(changedFavoriteFilms, (state, action) => {
     state.favoriteFilms = action.payload;
-  });
-
-  builder.addCase(changeShowCount, (state, action) => {
-    state.showCount = action.payload;
   });
 
   builder.addCase(changeAllFilmsByActiveGenreCount, (state, action) => {

@@ -1,7 +1,7 @@
 import {DEFAULT_GENRE, SHOW_MORE_DEFAULT_COUNT} from "../const/const";
 import {
   changeAllFilmsByActiveGenreCount, changedFavoriteFilms,
-  changedFilteredFilms, changeGenre, changeShowCount,
+  changedFilteredFilms, changeGenre,
   loadFilms,
   setDataLoadStatus
 } from "../store/action";
@@ -21,7 +21,6 @@ export const updateFilms = (dispatch, films, genre, showCount) => {
 };
 
 export const updateFilteredFilms = (dispatch, allFilms, genre, showCount) => {
-  dispatch(changeShowCount(showCount));
   dispatch(changedFilteredFilms(getFilmsByGenre(genre, allFilms).slice(0, showCount)));
 };
 

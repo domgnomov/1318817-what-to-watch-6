@@ -1,12 +1,8 @@
 import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {SHOW_MORE_DEFAULT_COUNT} from "../../const/const";
-import {updateFilteredFilms} from "../../services/data";
+import {useSelector} from "react-redux";
 
-const ShowMore = () => {
-  const {filteredFilms, activeGenre, allFilms, allFilmsByActiveGenreCount, showCount} = useSelector((state) => state.FILM);
-
-  const dispatch = useDispatch();
+const ShowMore = ({updateShowCount}) => {
+  const {filteredFilms, allFilmsByActiveGenreCount} = useSelector((state) => state.FILM);
 
   const isShowMoreAvailable = (films, count) => {
     return films.length < count;
@@ -16,7 +12,7 @@ const ShowMore = () => {
     <>
       {
         isShowMoreAvailable(filteredFilms, allFilmsByActiveGenreCount) && <button className="catalog__button" type="button" onClick={() => {
-          updateFilteredFilms(dispatch, allFilms, activeGenre, showCount + SHOW_MORE_DEFAULT_COUNT);
+          updateShowCount();
         }}>Show more</button>
       }
     </>
