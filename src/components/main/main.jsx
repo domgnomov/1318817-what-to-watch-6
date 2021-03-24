@@ -41,7 +41,7 @@ const Main = ({film}) => {
           <link rel="shortcut icon" href="#"/>
           <Logo/>
           <div className="user-block">
-            <UserBlock isMain={true}/>
+            <UserBlock/>
           </div>
         </header>
         <div className="movie-card__wrap">
