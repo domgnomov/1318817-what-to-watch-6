@@ -42,6 +42,10 @@ const AddReviewForm = () => {
     return commentLength >= MIN_COMMENT_LENGTH && commentLength <= MAX_COMMENT_LENGTH;
   };
 
+  const getIsEmptyComment = () => {
+    return commentLength === 0;
+  };
+
   const getIsValidRating = () => {
     return currentRating > 0;
   };
@@ -50,11 +54,17 @@ const AddReviewForm = () => {
     return !getIsValidComment() || !getIsValidRating();
   };
 
-  const getInformMessage = () => {
-    if (!getIsValidRating()) {
-      return `Поставьте фильму оценку`;
-    } else if (!getIsValidComment()) {
+  const getCommentValidationMessage = () => {
+    if (!getIsValidComment() && !getIsEmptyComment()) {
       return `Текст отзыва должен быть не меньше 50 и не больше 400 символов`;
+    } else {
+      return ``;
+    }
+  };
+
+  const getRattingValidationMessage = () => {
+    if (!getIsValidRating() && !getIsEmptyComment()) {
+      return `Поставьте фильму оценку`;
     } else {
       return ``;
     }
@@ -84,7 +94,9 @@ const AddReviewForm = () => {
             <button ref={submitRef} className="add-review__btn" disabled={getIsSubmitNotAvailable() || isFormDisabled} type="submit">Post</button>
           </div>
         </div>
-        <label>{getInformMessage()}</label>
+        <label>{getRattingValidationMessage()}</label>
+        <br />
+        <label>{getCommentValidationMessage()}</label>
       </form>
     </>);
 };
