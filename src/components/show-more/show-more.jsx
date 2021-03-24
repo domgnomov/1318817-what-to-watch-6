@@ -1,5 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
+import PropTypes from "prop-types";
 
 const ShowMore = ({updateShowCount}) => {
   const {filteredFilms, allFilmsByActiveGenreCount} = useSelector((state) => state.FILM);
@@ -17,6 +18,10 @@ const ShowMore = ({updateShowCount}) => {
       }
     </>
   );
+};
+
+ShowMore.propTypes = {
+  updateShowCount: PropTypes.func.isRequired
 };
 
 export {ShowMore};

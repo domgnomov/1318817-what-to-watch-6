@@ -15,7 +15,7 @@ import {updateFilteredFilms} from "../../services/data";
 const Main = ({film}) => {
   const {authorizationStatus} = useSelector((state) => state.AUTH);
   const {activeGenre, allFilms} = useSelector((state) => state.FILM);
-  const [shCount, setShCount] = useState(SHOW_MORE_DEFAULT_COUNT);
+  const [showCount, setShowCount] = useState(SHOW_MORE_DEFAULT_COUNT);
 
   const dispatch = useDispatch();
 
@@ -26,8 +26,8 @@ const Main = ({film}) => {
   }, []);
 
   useEffect(() => {
-    updateFilteredFilms(dispatch, allFilms, activeGenre, shCount);
-  }, [shCount]);
+    updateFilteredFilms(dispatch, allFilms, activeGenre, showCount);
+  }, [showCount]);
 
   const getMyLisBlock = () => {
     if (authorizationStatus === AuthorizationStatus.AUTH) {
@@ -38,7 +38,7 @@ const Main = ({film}) => {
   };
 
   const updateShowCount = () => {
-    setShCount(shCount + SHOW_MORE_DEFAULT_COUNT);
+    setShowCount(showCount + SHOW_MORE_DEFAULT_COUNT);
   };
 
   return (
